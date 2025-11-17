@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -35,20 +37,56 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/arrow_right.svg
+  SvgGenImage get arrowRight =>
+      const SvgGenImage('assets/icons/arrow_right.svg');
+
+  /// Directory path: assets/icons/bank_categories_icons
+  $AssetsIconsBankCategoriesIconsGen get bankCategoriesIcons =>
+      const $AssetsIconsBankCategoriesIconsGen();
+
+  /// Directory path: assets/icons/buttons_icon
+  $AssetsIconsButtonsIconGen get buttonsIcon =>
+      const $AssetsIconsButtonsIconGen();
+
   /// Directory path: assets/icons/nav_bar_icons
   $AssetsIconsNavBarIconsGen get navBarIcons =>
       const $AssetsIconsNavBarIconsGen();
+
+  /// File path: assets/icons/safe_icon.svg
+  SvgGenImage get safeIcon => const SvgGenImage('assets/icons/safe_icon.svg');
+
+  /// File path: assets/icons/verify_icon.svg
+  SvgGenImage get verifyIcon =>
+      const SvgGenImage('assets/icons/verify_icon.svg');
+
+  /// File path: assets/icons/yellow_star.svg
+  SvgGenImage get yellowStar =>
+      const SvgGenImage('assets/icons/yellow_star.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values =>
+      [arrowRight, safeIcon, verifyIcon, yellowStar];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/background_for_appbar.png
+  AssetGenImage get backgroundForAppbar =>
+      const AssetGenImage('assets/images/background_for_appbar.png');
+
   /// File path: assets/images/edit_profile_image.png
   AssetGenImage get editProfileImage =>
       const AssetGenImage('assets/images/edit_profile_image.png');
 
+  /// File path: assets/images/empty_page_star.png
+  AssetGenImage get emptyPageStar =>
+      const AssetGenImage('assets/images/empty_page_star.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [editProfileImage];
+  List<AssetGenImage> get values =>
+      [backgroundForAppbar, editProfileImage, emptyPageStar];
 }
 
 class $AssetsTranslationsGen {
@@ -64,8 +102,117 @@ class $AssetsTranslationsGen {
   List<String> get values => [intlEn, intlRu];
 }
 
+class $AssetsIconsBankCategoriesIconsGen {
+  const $AssetsIconsBankCategoriesIconsGen();
+
+  /// File path: assets/icons/bank_categories_icons/credit_card.svg
+  SvgGenImage get creditCard =>
+      const SvgGenImage('assets/icons/bank_categories_icons/credit_card.svg');
+
+  /// File path: assets/icons/bank_categories_icons/debit_card.svg
+  SvgGenImage get debitCard =>
+      const SvgGenImage('assets/icons/bank_categories_icons/debit_card.svg');
+
+  /// File path: assets/icons/bank_categories_icons/invest.svg
+  SvgGenImage get invest =>
+      const SvgGenImage('assets/icons/bank_categories_icons/invest.svg');
+
+  /// File path: assets/icons/bank_categories_icons/mortgage.svg
+  SvgGenImage get mortgage =>
+      const SvgGenImage('assets/icons/bank_categories_icons/mortgage.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [creditCard, debitCard, invest, mortgage];
+}
+
+class $AssetsIconsButtonsIconGen {
+  const $AssetsIconsButtonsIconGen();
+
+  /// File path: assets/icons/buttons_icon/arrow_right.svg
+  SvgGenImage get arrowRight =>
+      const SvgGenImage('assets/icons/buttons_icon/arrow_right.svg');
+
+  /// File path: assets/icons/buttons_icon/comparison.svg
+  SvgGenImage get comparison =>
+      const SvgGenImage('assets/icons/buttons_icon/comparison.svg');
+
+  /// File path: assets/icons/buttons_icon/credit_card_green.svg
+  SvgGenImage get creditCardGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/credit_card_green.svg');
+
+  /// File path: assets/icons/buttons_icon/debit_card_green.svg
+  SvgGenImage get debitCardGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/debit_card_green.svg');
+
+  /// File path: assets/icons/buttons_icon/discount_green.svg
+  SvgGenImage get discountGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/discount_green.svg');
+
+  /// File path: assets/icons/buttons_icon/favourite_star.svg
+  SvgGenImage get favouriteStar =>
+      const SvgGenImage('assets/icons/buttons_icon/favourite_star.svg');
+
+  /// File path: assets/icons/buttons_icon/home_green.svg
+  SvgGenImage get homeGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/home_green.svg');
+
+  /// File path: assets/icons/buttons_icon/outlined_star.svg
+  SvgGenImage get outlinedStar =>
+      const SvgGenImage('assets/icons/buttons_icon/outlined_star.svg');
+
+  /// File path: assets/icons/buttons_icon/ruble_green.svg
+  SvgGenImage get rubleGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/ruble_green.svg');
+
+  /// File path: assets/icons/buttons_icon/safe_green.svg
+  SvgGenImage get safeGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/safe_green.svg');
+
+  /// File path: assets/icons/buttons_icon/settings.svg
+  SvgGenImage get settings =>
+      const SvgGenImage('assets/icons/buttons_icon/settings.svg');
+
+  /// File path: assets/icons/buttons_icon/star.svg
+  SvgGenImage get star =>
+      const SvgGenImage('assets/icons/buttons_icon/star.svg');
+
+  /// File path: assets/icons/buttons_icon/time_green.svg
+  SvgGenImage get timeGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/time_green.svg');
+
+  /// File path: assets/icons/buttons_icon/wallet_green.svg
+  SvgGenImage get walletGreen =>
+      const SvgGenImage('assets/icons/buttons_icon/wallet_green.svg');
+
+  /// List of all assets
+  List<SvgGenImage> get values => [
+        arrowRight,
+        comparison,
+        creditCardGreen,
+        debitCardGreen,
+        discountGreen,
+        favouriteStar,
+        homeGreen,
+        outlinedStar,
+        rubleGreen,
+        safeGreen,
+        settings,
+        star,
+        timeGreen,
+        walletGreen
+      ];
+}
+
 class $AssetsIconsNavBarIconsGen {
   const $AssetsIconsNavBarIconsGen();
+
+  /// File path: assets/icons/nav_bar_icons/comparison_icon.svg
+  SvgGenImage get comparisonIcon =>
+      const SvgGenImage('assets/icons/nav_bar_icons/comparison_icon.svg');
+
+  /// File path: assets/icons/nav_bar_icons/fin_services.svg
+  SvgGenImage get finServices =>
+      const SvgGenImage('assets/icons/nav_bar_icons/fin_services.svg');
 
   /// File path: assets/icons/nav_bar_icons/home_nav_bar_icon.svg
   SvgGenImage get homeNavBarIcon =>
@@ -80,12 +227,17 @@ class $AssetsIconsNavBarIconsGen {
       const SvgGenImage('assets/icons/nav_bar_icons/profile_nav_bar_icon.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [homeNavBarIcon, mapNavBarIcon, profileNavBarIcon];
+  List<SvgGenImage> get values => [
+        comparisonIcon,
+        finServices,
+        homeNavBarIcon,
+        mapNavBarIcon,
+        profileNavBarIcon
+      ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
@@ -98,12 +250,14 @@ class AssetGenImage {
     this._assetName, {
     this.size,
     this.flavors = const {},
+    this.animation,
   });
 
   final String _assetName;
 
   final Size? size;
   final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -126,7 +280,7 @@ class AssetGenImage {
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -174,6 +328,18 @@ class AssetGenImage {
   String get keyName => _assetName;
 }
 
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
+}
+
 class SvgGenImage {
   const SvgGenImage(
     this._assetName, {
@@ -206,6 +372,7 @@ class SvgGenImage {
     String? semanticsLabel,
     bool excludeFromSemantics = false,
     _svg.SvgTheme? theme,
+    _svg.ColorMapper? colorMapper,
     ColorFilter? colorFilter,
     Clip clipBehavior = Clip.hardEdge,
     @deprecated Color? color,
@@ -225,6 +392,7 @@ class SvgGenImage {
         assetBundle: bundle,
         packageName: package,
         theme: theme,
+        colorMapper: colorMapper,
       );
     }
     return _svg.SvgPicture(

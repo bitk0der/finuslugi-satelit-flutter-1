@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// dart format width=80
 
 // **************************************************************************
 // InjectableConfigGenerator
@@ -9,38 +10,76 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:fin_uslugi/core/di/service_locator.dart' as _i751;
+import 'package:fin_uslugi/core/network/api_client.dart' as _i623;
+import 'package:fin_uslugi/core/network/api_util.dart' as _i597;
+import 'package:fin_uslugi/core/network/service/rest_service.dart' as _i1048;
+import 'package:fin_uslugi/core/routes/app_router.dart' as _i194;
+import 'package:fin_uslugi/core/utils/storage_util.dart' as _i124;
+import 'package:fin_uslugi/features/cards/data/repositories/credit_search_repository.dart'
+    as _i3;
+import 'package:fin_uslugi/features/cards/data/repositories/storage_repository.dart'
+    as _i102;
+import 'package:fin_uslugi/features/cards/domain/repositories/credit_search_data_repository.dart'
+    as _i779;
+import 'package:fin_uslugi/features/cards/domain/repositories/storage_data_repository.dart'
+    as _i348;
+import 'package:fin_uslugi/features/cards/presentation/blocs/credit_search_bloc.dart'
+    as _i930;
+import 'package:fin_uslugi/features/cards/presentation/blocs/debit_card_search_bloc.dart'
+    as _i147;
+import 'package:fin_uslugi/features/cards/presentation/blocs/profile_bloc.dart'
+    as _i1010;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
-import 'package:fin_uslugi/core/di/service_locator.dart' as _i960;
-import 'package:fin_uslugi/core/network/api_client.dart' as _i37;
-import 'package:fin_uslugi/core/routes/app_router.dart' as _i479;
 
 extension GetItInjectableX on _i174.GetIt {
-  // initializes the registration of main-scope dependencies inside of GetIt
+// initializes the registration of main-scope dependencies inside of GetIt
   Future<_i174.GetIt> init({
     String? environment,
     _i526.EnvironmentFilter? environmentFilter,
   }) async {
-    final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
     final sharedPreferencesModule = _$SharedPreferencesModule();
     final loggerModule = _$LoggerModule();
     final dioModule = _$DioModule();
+    gh.factory<_i1048.RestService>(() => _i1048.RestService());
+    gh.factory<_i124.StorageUtil>(() => _i124.StorageUtil());
     await gh.singletonAsync<_i460.SharedPreferences>(
       () => sharedPreferencesModule.sp,
       preResolve: true,
     );
     gh.singleton<_i974.Logger>(() => loggerModule.logger());
-    gh.singleton<_i479.AppRouter>(() => _i479.AppRouter());
+    gh.singleton<_i194.AppRouter>(() => _i194.AppRouter());
     gh.lazySingleton<_i361.Dio>(() => dioModule.dio());
-    gh.factory<_i37.ApiClient>(() => _i37.ApiClient(gh<_i361.Dio>()));
+    gh.factory<_i102.StorageRepository>(
+        () => _i348.StorageDataRepository(gh<_i124.StorageUtil>()));
+    gh.factory<_i597.ApiUtil>(() => _i597.ApiUtil(gh<_i1048.RestService>()));
+    gh.factory<_i623.ApiClient>(() => _i623.ApiClient(gh<_i361.Dio>()));
+    gh.singleton<_i1010.ProfileBloc>(() =>
+        _i1010.ProfileBloc(storageRepository: gh<_i102.StorageRepository>()));
+    gh.factory<_i3.CreditSearchRepository>(
+        () => _i779.SearchDataRepository(gh<_i597.ApiUtil>()));
+    gh.factory<_i930.CreditSearchBloc>(() => _i930.CreditSearchBloc(
+          profileBloc: gh<_i1010.ProfileBloc>(),
+          repository: gh<_i3.CreditSearchRepository>(),
+        ));
+    gh.factory<_i147.DebitCardSearchBloc>(() => _i147.DebitCardSearchBloc(
+          profileBloc: gh<_i1010.ProfileBloc>(),
+          repository: gh<_i3.CreditSearchRepository>(),
+        ));
     return this;
   }
 }
 
-class _$SharedPreferencesModule extends _i960.SharedPreferencesModule {}
+class _$SharedPreferencesModule extends _i751.SharedPreferencesModule {}
 
-class _$LoggerModule extends _i960.LoggerModule {}
+class _$LoggerModule extends _i751.LoggerModule {}
 
-class _$DioModule extends _i960.DioModule {}
+class _$DioModule extends _i751.DioModule {}

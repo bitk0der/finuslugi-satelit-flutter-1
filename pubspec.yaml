@@ -47,6 +47,18 @@ dependencies:
   shared_preferences: ^2.5.1
   webview_flutter: ^4.10.0
   cached_network_image: ^3.4.1
+  flutter_bloc: ^9.1.1
+  infinite_scroll_pagination: ^4.1.0
+  url_launcher: ^6.3.2
+  flutter_widget_from_html_core: ^0.17.0
+  hive_ce_flutter: ^2.2.3
+  hive_ce_generator: ^1.10.0
+  json_store: ^2.0.2
+  loadmore: ^2.1.0
+  group_button: ^5.3.4
+  package_info_plus: ^9.0.0
+  contentsize_tabbarview: ^0.0.2
+  mask_text_input_formatter: ^2.9.0
 
 dev_dependencies:
   flutter_test:
@@ -80,6 +92,8 @@ flutter:
     - assets/translations/
     - assets/icons/
     - assets/icons/nav_bar_icons/
+    - assets/icons/bank_categories_icons/
+    - assets/icons/buttons_icon/
     - assets/images/
     - assets/fonts/
   generate: true
