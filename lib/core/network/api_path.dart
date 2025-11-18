@@ -6,4 +6,7 @@ class ApiPath {
 
   static const String creditSearch =
       "https://xn----7sbbdaevmqdrrt8b.xn--p1ai/api/mfo/searchmfo.php?search={searchString}&page={page}{query}";
+
+  static const getLastMessage =
+      'https://xn--80anhm0a.xn--p1ai/apimobile/machat/mareceive.php';
 }

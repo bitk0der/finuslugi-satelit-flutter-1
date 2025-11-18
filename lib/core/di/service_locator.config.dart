@@ -14,7 +14,6 @@ import 'package:fin_uslugi/core/di/service_locator.dart' as _i751;
 import 'package:fin_uslugi/core/network/api_client.dart' as _i623;
 import 'package:fin_uslugi/core/network/api_util.dart' as _i597;
 import 'package:fin_uslugi/core/network/service/rest_service.dart' as _i1048;
-import 'package:fin_uslugi/core/routes/app_router.dart' as _i194;
 import 'package:fin_uslugi/core/utils/storage_util.dart' as _i124;
 import 'package:fin_uslugi/features/cards/data/repositories/credit_search_repository.dart'
     as _i3;
@@ -36,6 +35,8 @@ import 'package:fin_uslugi/features/loans/domain/repositories/credit_search_data
     as _i106;
 import 'package:fin_uslugi/features/loans/presentation/blocs/credit_search_bloc.dart'
     as _i214;
+import 'package:fin_uslugi/features/local_notifications/presentation/bloc/notification_bloc.dart'
+    as _i747;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
@@ -62,12 +63,15 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i974.Logger>(() => loggerModule.logger());
-    gh.singleton<_i194.AppRouter>(() => _i194.AppRouter());
     gh.lazySingleton<_i361.Dio>(() => dioModule.dio());
     gh.factory<_i102.StorageRepository>(
         () => _i348.StorageDataRepository(gh<_i124.StorageUtil>()));
     gh.factory<_i597.ApiUtil>(() => _i597.ApiUtil(gh<_i1048.RestService>()));
     gh.factory<_i623.ApiClient>(() => _i623.ApiClient(gh<_i361.Dio>()));
+    gh.singleton<_i747.LocalNotificationBloc>(() => _i747.LocalNotificationBloc(
+          gh<_i623.ApiClient>(),
+          gh<_i460.SharedPreferences>(),
+        ));
     gh.factory<_i796.CreditSearchRepository>(
         () => _i106.SearchDataRepository(gh<_i623.ApiClient>()));
     gh.singleton<_i214.CreditSearchBloc>(() =>

@@ -64,6 +64,9 @@ dependencies:
   equatable: ^2.0.7
   dio_smart_retry: ^7.0.1
   dotted_decoration: ^2.0.0
+  flutter_local_notifications: ^19.5.0
+  background_fetch: ^1.5.0
+  appmetrica_plugin: ^3.4.0
 
 dev_dependencies:
   flutter_test:

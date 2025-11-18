@@ -22,16 +22,19 @@ import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dar
 import 'package:fin_uslugi/features/loans/presentation/pages/loan_details_page.dart';
 import 'package:fin_uslugi/features/loans/presentation/pages/loans_filters_page.dart';
 import 'package:fin_uslugi/features/loans/presentation/pages/loans_main_screen.dart';
+import 'package:fin_uslugi/features/local_notifications/data/models/response_message_model.dart';
+import 'package:fin_uslugi/features/local_notifications/presentation/pages/background_notifications_screen.dart';
+import 'package:fin_uslugi/features/local_notifications/presentation/pages/notification_details_page.dart';
 import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
 import 'package:fin_uslugi/core/app_root_screen.dart';
 import 'package:fin_uslugi/features/home/presentation/pages/home_screen.dart';
 
 part 'app_router.gr.dart';
 
-@singleton
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
+  AppRouter(GlobalKey<NavigatorState>? navigatorKey)
+      : super(navigatorKey: navigatorKey);
   @override
   List<AutoRoute> get routes {
     return [

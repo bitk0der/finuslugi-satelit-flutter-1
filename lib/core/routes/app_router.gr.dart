@@ -112,6 +112,22 @@ class AppWebViewPageArgs {
 }
 
 /// generated route for
+/// [BackgroundNotificationsScreen]
+class BackgroundNotificationsRoute extends PageRouteInfo<void> {
+  const BackgroundNotificationsRoute({List<PageRouteInfo>? children})
+      : super(BackgroundNotificationsRoute.name, initialChildren: children);
+
+  static const String name = 'BackgroundNotificationsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BackgroundNotificationsScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [BanksScreen]
 class BanksRoute extends PageRouteInfo<void> {
   const BanksRoute({List<PageRouteInfo>? children})
@@ -724,4 +740,58 @@ class MoreAboutinvestmentRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ investment.hashCode;
+}
+
+/// generated route for
+/// [NotificationDetailsPage]
+class NotificationDetailsRoute
+    extends PageRouteInfo<NotificationDetailsRouteArgs> {
+  NotificationDetailsRoute({
+    Key? key,
+    required MessagesResponse messageResponse,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NotificationDetailsRoute.name,
+          args: NotificationDetailsRouteArgs(
+            key: key,
+            messageResponse: messageResponse,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'NotificationDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<NotificationDetailsRouteArgs>();
+      return NotificationDetailsPage(
+        key: args.key,
+        messageResponse: args.messageResponse,
+      );
+    },
+  );
+}
+
+class NotificationDetailsRouteArgs {
+  const NotificationDetailsRouteArgs({this.key, required this.messageResponse});
+
+  final Key? key;
+
+  final MessagesResponse messageResponse;
+
+  @override
+  String toString() {
+    return 'NotificationDetailsRouteArgs{key: $key, messageResponse: $messageResponse}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! NotificationDetailsRouteArgs) return false;
+    return key == other.key && messageResponse == other.messageResponse;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ messageResponse.hashCode;
 }

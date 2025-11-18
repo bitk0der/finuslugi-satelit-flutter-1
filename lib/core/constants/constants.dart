@@ -21,6 +21,8 @@ Map<int, String> documents = {
   4: 'Постоянная регистрация',
   8: 'Временная регистрация'
 };
+
+const standartDuration = Duration(milliseconds: 250);
 final Map<String, String> categoryCodeToRussian = {
   'travel': 'Путешествия',
   'fooddelivery': 'Доставка еды',
