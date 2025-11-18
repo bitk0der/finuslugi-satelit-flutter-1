@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
   FiltersBloc() : super(FiltersBlocStateInitial()) {
     on<ChangeFilters>(_onFiltersChanged);

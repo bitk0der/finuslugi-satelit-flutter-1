@@ -113,35 +113,37 @@ class _FsinServiceScreenState extends State<FsinServiceScreen>
                 ),
               ],
             ),
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerDocked,
-            floatingActionButton: Container(
-              decoration: BoxDecoration(
-                  color: ColorStyles.blue,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12.r),
-                      topRight: Radius.circular(12.r))),
-              child: TabBar(
-                tabAlignment: TabAlignment.center,
-                controller: tabController,
-                isScrollable: true,
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-                indicatorWeight: 0.1,
-                indicatorColor: Colors.transparent,
-                indicatorPadding: EdgeInsets.zero,
-                labelPadding: EdgeInsets.only(right: 8.w),
-                dividerHeight: 0,
-                tabs: [
-                  for (var i = 0; i < tabsUpper.length; i++) upperTab(i),
-                ],
+            body: Stack(alignment: Alignment.bottomCenter, children: [
+              TabBarView(controller: tabController, children: const [
+                CreditCardSearchScreen(),
+                DebitCardSearchScreen(),
+                CreditSearchScreen(),
+                InvestmentSearchScreen(),
+                MortgageSearchScreen()
+              ]),
+              Container(
+                decoration: BoxDecoration(
+                    color: ColorStyles.blue,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12.r),
+                        topRight: Radius.circular(12.r))),
+                child: SafeArea(
+                    child: TabBar(
+                  tabAlignment: TabAlignment.center,
+                  controller: tabController,
+                  isScrollable: true,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
+                  indicatorWeight: 0.1,
+                  indicatorColor: Colors.transparent,
+                  indicatorPadding: EdgeInsets.zero,
+                  labelPadding: EdgeInsets.only(right: 8.w),
+                  dividerHeight: 0,
+                  tabs: [
+                    for (var i = 0; i < tabsUpper.length; i++) upperTab(i),
+                  ],
+                )),
               ),
-            ),
-            body: TabBarView(controller: tabController, children: const [
-              CreditCardSearchScreen(),
-              DebitCardSearchScreen(),
-              CreditSearchScreen(),
-              InvestmentSearchScreen(),
-              MortgageSearchScreen()
             ]),
           );
         });

@@ -4,8 +4,10 @@ import 'package:fin_uslugi/features/cards/data/repositories/credit_search_reposi
 import 'package:fin_uslugi/features/cards/presentation/blocs/profile_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@singleton
 class CreditCardSearchBloc
     extends Bloc<CreditCardSearchBlocEvent, CreditCardSearchBlocState> {
   final ProfileBloc profileBloc;

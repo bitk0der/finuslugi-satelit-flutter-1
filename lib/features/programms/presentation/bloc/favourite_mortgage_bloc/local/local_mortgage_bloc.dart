@@ -4,10 +4,12 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_ce_flutter/adapters.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 part 'local_mortgage_event.dart';
 part 'local_mortgage_state.dart';
 
+@singleton
 class LocalMortgageBloc extends Bloc<LocalMortgageEvent, LocalMortgageState> {
   LocalMortgageBloc() : super(LocalMortgageBlocStateInitial()) {
     on<AddMortgageToFavourite>(_onAddMortgageToFavourite);

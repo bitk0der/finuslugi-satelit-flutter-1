@@ -119,6 +119,30 @@ class $AssetsImagesGen {
   AssetGenImage get emptyPageStar =>
       const AssetGenImage('assets/images/empty_page_star.png');
 
+  /// File path: assets/images/fin_product_back_gray_four.png
+  AssetGenImage get finProductBackGrayFour =>
+      const AssetGenImage('assets/images/fin_product_back_gray_four.png');
+
+  /// File path: assets/images/fin_product_back_gray_one.png
+  AssetGenImage get finProductBackGrayOne =>
+      const AssetGenImage('assets/images/fin_product_back_gray_one.png');
+
+  /// File path: assets/images/fin_product_back_gray_three.png
+  AssetGenImage get finProductBackGrayThree =>
+      const AssetGenImage('assets/images/fin_product_back_gray_three.png');
+
+  /// File path: assets/images/fin_product_back_gray_two.png
+  AssetGenImage get finProductBackGrayTwo =>
+      const AssetGenImage('assets/images/fin_product_back_gray_two.png');
+
+  /// File path: assets/images/fin_product_back_one.png
+  AssetGenImage get finProductBackOne =>
+      const AssetGenImage('assets/images/fin_product_back_one.png');
+
+  /// File path: assets/images/fin_product_back_two.png
+  AssetGenImage get finProductBackTwo =>
+      const AssetGenImage('assets/images/fin_product_back_two.png');
+
   /// File path: assets/images/home_background_top_widget.png
   AssetGenImage get homeBackgroundTopWidget =>
       const AssetGenImage('assets/images/home_background_top_widget.png');
@@ -130,6 +154,12 @@ class $AssetsImagesGen {
         couponDiscount,
         editProfileImage,
         emptyPageStar,
+        finProductBackGrayFour,
+        finProductBackGrayOne,
+        finProductBackGrayThree,
+        finProductBackGrayTwo,
+        finProductBackOne,
+        finProductBackTwo,
         homeBackgroundTopWidget
       ];
 }

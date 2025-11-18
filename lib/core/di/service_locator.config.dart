@@ -23,10 +23,18 @@ import 'package:fin_uslugi/features/cards/domain/repositories/credit_search_data
     as _i779;
 import 'package:fin_uslugi/features/cards/domain/repositories/storage_data_repository.dart'
     as _i348;
+import 'package:fin_uslugi/features/cards/presentation/blocs/credit_card_search_bloc.dart'
+    as _i307;
 import 'package:fin_uslugi/features/cards/presentation/blocs/credit_search_bloc.dart'
     as _i930;
 import 'package:fin_uslugi/features/cards/presentation/blocs/debit_card_search_bloc.dart'
     as _i147;
+import 'package:fin_uslugi/features/cards/presentation/blocs/filters_bloc.dart'
+    as _i649;
+import 'package:fin_uslugi/features/cards/presentation/blocs/investment_search_bloc.dart'
+    as _i932;
+import 'package:fin_uslugi/features/cards/presentation/blocs/mortgage_search_bloc.dart'
+    as _i32;
 import 'package:fin_uslugi/features/cards/presentation/blocs/profile_bloc.dart'
     as _i1010;
 import 'package:fin_uslugi/features/loans/data/repositories/credit_search_repository.dart'
@@ -37,6 +45,8 @@ import 'package:fin_uslugi/features/loans/presentation/blocs/credit_search_bloc.
     as _i214;
 import 'package:fin_uslugi/features/local_notifications/presentation/bloc/notification_bloc.dart'
     as _i747;
+import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart'
+    as _i282;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
@@ -63,6 +73,8 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i974.Logger>(() => loggerModule.logger());
+    gh.singleton<_i649.FiltersBloc>(() => _i649.FiltersBloc());
+    gh.singleton<_i282.LocalMortgageBloc>(() => _i282.LocalMortgageBloc());
     gh.lazySingleton<_i361.Dio>(() => dioModule.dio());
     gh.factory<_i102.StorageRepository>(
         () => _i348.StorageDataRepository(gh<_i124.StorageUtil>()));
@@ -88,6 +100,14 @@ extension GetItInjectableX on _i174.GetIt {
           profileBloc: gh<_i1010.ProfileBloc>(),
           repository: gh<_i3.CreditSearchRepository>(),
         ));
+    gh.singleton<_i307.CreditCardSearchBloc>(() => _i307.CreditCardSearchBloc(
+          profileBloc: gh<_i1010.ProfileBloc>(),
+          repository: gh<_i3.CreditSearchRepository>(),
+        ));
+    gh.singleton<_i932.InvestmentSearchBloc>(() => _i932.InvestmentSearchBloc(
+        repository: gh<_i3.CreditSearchRepository>()));
+    gh.singleton<_i32.MortgageSearchBloc>(() =>
+        _i32.MortgageSearchBloc(repository: gh<_i3.CreditSearchRepository>()));
     return this;
   }
 }

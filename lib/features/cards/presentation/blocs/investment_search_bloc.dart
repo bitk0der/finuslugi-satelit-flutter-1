@@ -2,8 +2,10 @@ import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/re
 import 'package:fin_uslugi/features/cards/data/repositories/credit_search_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+@singleton
 class InvestmentSearchBloc
     extends Bloc<InvestmentSearchBlocEvent, InvestmentSearchBlocState> {
   final CreditSearchRepository repository;
