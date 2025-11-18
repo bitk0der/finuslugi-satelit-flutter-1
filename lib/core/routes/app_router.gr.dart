@@ -332,6 +332,85 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LoanDetailsPage]
+class LoanDetailsRoute extends PageRouteInfo<LoanDetailsRouteArgs> {
+  LoanDetailsRoute({
+    Key? key,
+    required LoanMainModel loan,
+    List<PageRouteInfo>? children,
+  }) : super(
+          LoanDetailsRoute.name,
+          args: LoanDetailsRouteArgs(key: key, loan: loan),
+          initialChildren: children,
+        );
+
+  static const String name = 'LoanDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<LoanDetailsRouteArgs>();
+      return LoanDetailsPage(key: args.key, loan: args.loan);
+    },
+  );
+}
+
+class LoanDetailsRouteArgs {
+  const LoanDetailsRouteArgs({this.key, required this.loan});
+
+  final Key? key;
+
+  final LoanMainModel loan;
+
+  @override
+  String toString() {
+    return 'LoanDetailsRouteArgs{key: $key, loan: $loan}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! LoanDetailsRouteArgs) return false;
+    return key == other.key && loan == other.loan;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ loan.hashCode;
+}
+
+/// generated route for
+/// [LoansFiltersPage]
+class LoansFiltersRoute extends PageRouteInfo<void> {
+  const LoansFiltersRoute({List<PageRouteInfo>? children})
+      : super(LoansFiltersRoute.name, initialChildren: children);
+
+  static const String name = 'LoansFiltersRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoansFiltersPage();
+    },
+  );
+}
+
+/// generated route for
+/// [LoansScreen]
+class LoansRoute extends PageRouteInfo<void> {
+  const LoansRoute({List<PageRouteInfo>? children})
+      : super(LoansRoute.name, initialChildren: children);
+
+  static const String name = 'LoansRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const LoansScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [MoreAboutCreditCardScreen]
 class MoreAboutCreditCardRoute
     extends PageRouteInfo<MoreAboutCreditCardRouteArgs> {

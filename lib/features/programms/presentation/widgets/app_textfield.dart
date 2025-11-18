@@ -14,6 +14,7 @@ class AppTextField extends StatefulWidget {
   final TextAlign? textAlign;
   final bool? readOnly;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final Function(String)? onChange;
@@ -34,6 +35,7 @@ class AppTextField extends StatefulWidget {
       this.onChange,
       this.readOnly,
       this.suffixIcon,
+      this.prefixIcon,
       this.textAlign,
       this.textStyle,
       this.borderRadius,
@@ -102,6 +104,7 @@ class _AppTextFieldState extends State<AppTextField> {
         hintText: widget.hintText,
         hintStyle: widget.hintStyle,
         suffixIcon: widget.suffixIcon,
+        prefixIcon: widget.prefixIcon,
         border: getBorderRadius(isErrorborder: false),
         enabledBorder: getBorderRadius(isErrorborder: false),
         focusedBorder: getBorderRadius(),

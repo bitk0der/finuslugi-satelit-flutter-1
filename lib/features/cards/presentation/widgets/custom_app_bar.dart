@@ -2,11 +2,14 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fin_uslugi/core/routes/app_router.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/theme/app_fonts.dart';
+import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/core/widgets/app_small_button.dart';
 import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
 import 'package:fin_uslugi/features/banks/presentation/blocs/banks_cubit.dart';
 import 'package:fin_uslugi/features/cards/presentation/blocs/filters_bloc.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
+import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
+import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/comparison_mortgage_bloc/local/local_comparison_mortgage_bloc.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
@@ -47,6 +50,55 @@ class CustomAppBar {
               ),
             )
           : null,
+    );
+  }
+
+  static PreferredSize getLoanAppBar(
+      {required BuildContext context, required LoanMainModel loan}) {
+    return PreferredSize(
+      preferredSize: Size(0, 105.h),
+      child: Container(
+        decoration: const BoxDecoration(
+            color: ColorStyles.violetColor,
+            border: Border(
+                bottom: BorderSide(
+              color: Colors.white10,
+            ))),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 21.w, vertical: 15.h),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              InkWell(
+                onTap: () => context.maybePop(),
+                child: ButtonRounded(
+                    quarterTurns: 2,
+                    color: Colors.white,
+                    icon: Assets.icons.arrowRight),
+              ),
+              SizedBox(width: 15.w),
+              ClipRRect(
+                  borderRadius: BorderRadius.circular(11.23),
+                  child:
+                      AppImageNetwork(UiUtil.getlogoUrl(loan.meta.logoSquare))),
+              SizedBox(width: 13.w),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text('Микрофинансовая организация',
+                      style: TextStyles.h3
+                          .copyWith(color: Colors.white70, fontSize: 13.sp)),
+                  SizedBox(height: 3.64.h),
+                  Text(loan.title,
+                      style: TextStyles.h1
+                          .copyWith(fontFamily: TextStyles.fontFamily)),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 

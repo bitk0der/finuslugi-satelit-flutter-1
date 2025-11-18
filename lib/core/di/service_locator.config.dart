@@ -30,6 +30,12 @@ import 'package:fin_uslugi/features/cards/presentation/blocs/debit_card_search_b
     as _i147;
 import 'package:fin_uslugi/features/cards/presentation/blocs/profile_bloc.dart'
     as _i1010;
+import 'package:fin_uslugi/features/loans/data/repositories/credit_search_repository.dart'
+    as _i796;
+import 'package:fin_uslugi/features/loans/domain/repositories/credit_search_data_repository.dart'
+    as _i106;
+import 'package:fin_uslugi/features/loans/presentation/blocs/credit_search_bloc.dart'
+    as _i214;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:logger/logger.dart' as _i974;
@@ -62,6 +68,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i348.StorageDataRepository(gh<_i124.StorageUtil>()));
     gh.factory<_i597.ApiUtil>(() => _i597.ApiUtil(gh<_i1048.RestService>()));
     gh.factory<_i623.ApiClient>(() => _i623.ApiClient(gh<_i361.Dio>()));
+    gh.factory<_i796.CreditSearchRepository>(
+        () => _i106.SearchDataRepository(gh<_i623.ApiClient>()));
+    gh.singleton<_i214.CreditSearchBloc>(() =>
+        _i214.CreditSearchBloc(repository: gh<_i796.CreditSearchRepository>()));
     gh.singleton<_i1010.ProfileBloc>(() =>
         _i1010.ProfileBloc(storageRepository: gh<_i102.StorageRepository>()));
     gh.factory<_i3.CreditSearchRepository>(

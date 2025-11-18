@@ -1,3 +1,4 @@
+import 'package:fin_uslugi/features/loans/data/models/response_data.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -9,4 +10,8 @@ part 'api_client.g.dart';
 abstract class ApiClient {
   @factoryMethod
   factory ApiClient(Dio dio) = _ApiClient;
+
+  @GET(ApiPath.creditSearch)
+  Future<ResponseData> searchCredit(@Path('searchString') String searchString,
+      @Path('query') String query, @Path('page') int page);
 }

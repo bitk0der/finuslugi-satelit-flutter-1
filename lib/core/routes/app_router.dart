@@ -18,6 +18,10 @@ import 'package:fin_uslugi/features/cards/presentation/pages/filters/credits_fil
 import 'package:fin_uslugi/features/cards/presentation/pages/filters/debit_cards_filters_screen.dart';
 import 'package:fin_uslugi/features/favourites/presentation/pages/home/favourites_page.dart';
 import 'package:fin_uslugi/features/fin_service/presentation/pages/fin_service_screen.dart';
+import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
+import 'package:fin_uslugi/features/loans/presentation/pages/loan_details_page.dart';
+import 'package:fin_uslugi/features/loans/presentation/pages/loans_filters_page.dart';
+import 'package:fin_uslugi/features/loans/presentation/pages/loans_main_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:fin_uslugi/core/app_root_screen.dart';

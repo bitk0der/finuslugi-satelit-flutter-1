@@ -8,7 +8,7 @@ part of 'bank_model.dart';
 
 class BankInfoAdapter extends TypeAdapter<BankInfo> {
   @override
-  final int typeId = 5;
+  final typeId = 5;
 
   @override
   BankInfo read(BinaryReader reader) {
@@ -18,7 +18,7 @@ class BankInfoAdapter extends TypeAdapter<BankInfo> {
     };
     return BankInfo(
       productType: fields[0] as BankingCategory,
-      id: fields[1] as int,
+      id: (fields[1] as num).toInt(),
       bankName: fields[3] as String,
       fullName: fields[2] as String,
       registrationDate: fields[4] as String,

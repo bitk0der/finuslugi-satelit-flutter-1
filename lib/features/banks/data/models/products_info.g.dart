@@ -8,7 +8,7 @@ part of 'products_info.dart';
 
 class ProductsInfoAdapter extends TypeAdapter<ProductsInfo> {
   @override
-  final int typeId = 6;
+  final typeId = 6;
 
   @override
   ProductsInfo read(BinaryReader reader) {
@@ -17,11 +17,11 @@ class ProductsInfoAdapter extends TypeAdapter<ProductsInfo> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ProductsInfo(
-      kredityCount: fields[0] as int,
-      kreditnieKartyCount: fields[1] as int,
-      debetovieKartyCount: fields[2] as int,
-      vkladyCountCount: fields[3] as int,
-      ipotekaCount: fields[4] as int,
+      kredityCount: (fields[0] as num).toInt(),
+      kreditnieKartyCount: (fields[1] as num).toInt(),
+      debetovieKartyCount: (fields[2] as num).toInt(),
+      vkladyCountCount: (fields[3] as num).toInt(),
+      ipotekaCount: (fields[4] as num).toInt(),
     );
   }
 

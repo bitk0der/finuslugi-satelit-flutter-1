@@ -3,6 +3,8 @@
 // Check in to version control
 
 import 'package:hive_ce/hive.dart';
+import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
+import 'package:fin_uslugi/features/banks/data/models/products_info.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_card_response.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_response.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/debit_card_response.dart';
@@ -25,6 +27,7 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(ArticleCategoriesAdapter());
     registerAdapter(ArticleCategoryAdapter());
     registerAdapter(ArticleDataAdapter());
+    registerAdapter(BankInfoAdapter());
     registerAdapter(BankingCategoryAdapter());
     registerAdapter(ContentBlockAdapter());
     registerAdapter(CreditCardResponseAdapter());
@@ -36,6 +39,7 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(ProductItemModelAdapter());
     registerAdapter(ProductModelAdapter());
     registerAdapter(ProductTypeAdapter());
+    registerAdapter(ProductsInfoAdapter());
   }
 }
 
@@ -45,6 +49,7 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(ArticleCategoriesAdapter());
     registerAdapter(ArticleCategoryAdapter());
     registerAdapter(ArticleDataAdapter());
+    registerAdapter(BankInfoAdapter());
     registerAdapter(BankingCategoryAdapter());
     registerAdapter(ContentBlockAdapter());
     registerAdapter(CreditCardResponseAdapter());
@@ -56,5 +61,6 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(ProductItemModelAdapter());
     registerAdapter(ProductModelAdapter());
     registerAdapter(ProductTypeAdapter());
+    registerAdapter(ProductsInfoAdapter());
   }
 }

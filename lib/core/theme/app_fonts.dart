@@ -8,8 +8,30 @@ class TextStyles {
   static double textHeight = 1.2;
 
   static TextStyle h2 = TextStyle(
-    color: ColorStyles.white,
-    fontWeight: FontWeight.w600,
-    fontSize: 18.sp,
-  );
+      fontFamily: fontFamily,
+      color: ColorStyles.white,
+      fontWeight: FontWeight.w600,
+      height: textHeight,
+      fontSize: 18.sp);
+
+  static TextStyle h1 = TextStyle(
+      fontFamily: fontFamily,
+      color: ColorStyles.white,
+      fontWeight: FontWeight.w900,
+      height: textHeight,
+      fontSize: 20.sp);
+
+  static TextStyle h3 = TextStyle(
+      fontFamily: fontFamily,
+      color: ColorStyles.white,
+      fontWeight: FontWeight.w400,
+      height: textHeight,
+      fontSize: 16.sp);
+
+  static TextStyle h4 = TextStyle(
+      fontFamily: fontFamily,
+      color: ColorStyles.white,
+      fontWeight: FontWeight.w400,
+      height: textHeight,
+      fontSize: 15.sp);
 }
