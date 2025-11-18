@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CardLayout extends StatelessWidget {
+class AppCardLayout extends StatelessWidget {
   final Widget child;
   final Color? color;
   final EdgeInsets? padding;
@@ -11,7 +11,7 @@ class CardLayout extends StatelessWidget {
   final bool isNeedShadow;
   final BoxShadow? shadow;
 
-  const CardLayout(
+  const AppCardLayout(
       {required this.child,
       this.isNeedBorder = false,
       this.isNeedShadow = false,

@@ -61,6 +61,9 @@ dependencies:
   mask_text_input_formatter: ^2.9.0
   flutter_staggered_grid_view: ^0.7.0
   connectivity_plus: ^7.0.0
+  equatable: ^2.0.7
+  dio_smart_retry: ^7.0.1
+  dotted_decoration: ^2.0.0
 
 dev_dependencies:
   flutter_test:

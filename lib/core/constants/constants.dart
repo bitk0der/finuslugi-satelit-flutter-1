@@ -21,3 +21,23 @@ Map<int, String> documents = {
   4: 'Постоянная регистрация',
   8: 'Временная регистрация'
 };
+final Map<String, String> categoryCodeToRussian = {
+  'travel': 'Путешествия',
+  'fooddelivery': 'Доставка еды',
+  'avia': 'Авиабилеты',
+  'construction': 'Строительство и ремонт',
+  'grocery': 'Продукты питания',
+  'clothes': 'Одежда и обувь',
+  'beauty': 'Красота',
+  'jewelry': 'Украшения',
+  'flowers': 'Цветы',
+  'insurance': 'Страхование',
+  'garden': 'Дача и сад',
+  'car': 'Автомобиль',
+  'kids': 'Детские товары',
+  'electronics': 'Электроника',
+  'appliances': 'Бытовая техника',
+  'pet': 'Зоотовары',
+  'sport': 'Спорт',
+  'books': 'Книги'
+};

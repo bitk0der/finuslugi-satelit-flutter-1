@@ -12,4 +12,15 @@ class Routes {
 
   static String searchBank(int id) =>
       'https://xn--80ajroeecv.xn--p1ai/api/bk/searchbanki.php?id=$id';
+
+  static String domain = 'https://xn--80a2acagecfl.xn--p1acf';
+
+  static String getConfig() => "$domain/configiosv2.php";
+
+  static String searchCoupons(
+          String searchString, String? nextPage, String? category) =>
+      "$domain/searchiosv2.php?search=$searchString${nextPage != null ? '&page=$nextPage' : ''}${category != null ? '&category=$category' : ''}";
+
+  static String getMarketCoupons(String website) =>
+      "$domain/searchdetailsiosv2.php?store=$website";
 }

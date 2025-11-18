@@ -49,12 +49,30 @@ class $AssetsIconsGen {
   $AssetsIconsButtonsIconGen get buttonsIcon =>
       const $AssetsIconsButtonsIconGen();
 
+  /// File path: assets/icons/close_icon.svg
+  SvgGenImage get closeIcon => const SvgGenImage('assets/icons/close_icon.svg');
+
+  /// File path: assets/icons/favourite_icon.svg
+  SvgGenImage get favouriteIcon =>
+      const SvgGenImage('assets/icons/favourite_icon.svg');
+
+  /// File path: assets/icons/filled_favourite_icon.svg
+  SvgGenImage get filledFavouriteIcon =>
+      const SvgGenImage('assets/icons/filled_favourite_icon.svg');
+
   /// Directory path: assets/icons/nav_bar_icons
   $AssetsIconsNavBarIconsGen get navBarIcons =>
       const $AssetsIconsNavBarIconsGen();
 
+  /// File path: assets/icons/procent_icon.svg
+  SvgGenImage get procentIcon =>
+      const SvgGenImage('assets/icons/procent_icon.svg');
+
   /// File path: assets/icons/safe_icon.svg
   SvgGenImage get safeIcon => const SvgGenImage('assets/icons/safe_icon.svg');
+
+  /// File path: assets/icons/share_icon.svg
+  SvgGenImage get shareIcon => const SvgGenImage('assets/icons/share_icon.svg');
 
   /// File path: assets/icons/verify_icon.svg
   SvgGenImage get verifyIcon =>
@@ -65,8 +83,17 @@ class $AssetsIconsGen {
       const SvgGenImage('assets/icons/yellow_star.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values =>
-      [arrowRight, safeIcon, verifyIcon, yellowStar];
+  List<SvgGenImage> get values => [
+        arrowRight,
+        closeIcon,
+        favouriteIcon,
+        filledFavouriteIcon,
+        procentIcon,
+        safeIcon,
+        shareIcon,
+        verifyIcon,
+        yellowStar
+      ];
 }
 
 class $AssetsImagesGen {
@@ -75,6 +102,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/background_for_appbar.png
   AssetGenImage get backgroundForAppbar =>
       const AssetGenImage('assets/images/background_for_appbar.png');
+
+  /// File path: assets/images/bag_Image.png
+  AssetGenImage get bagImage =>
+      const AssetGenImage('assets/images/bag_Image.png');
+
+  /// File path: assets/images/coupon_discount.png
+  AssetGenImage get couponDiscount =>
+      const AssetGenImage('assets/images/coupon_discount.png');
 
   /// File path: assets/images/edit_profile_image.png
   AssetGenImage get editProfileImage =>
@@ -91,6 +126,8 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
         backgroundForAppbar,
+        bagImage,
+        couponDiscount,
         editProfileImage,
         emptyPageStar,
         homeBackgroundTopWidget
