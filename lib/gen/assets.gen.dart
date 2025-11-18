@@ -84,9 +84,17 @@ class $AssetsImagesGen {
   AssetGenImage get emptyPageStar =>
       const AssetGenImage('assets/images/empty_page_star.png');
 
+  /// File path: assets/images/home_background_top_widget.png
+  AssetGenImage get homeBackgroundTopWidget =>
+      const AssetGenImage('assets/images/home_background_top_widget.png');
+
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [backgroundForAppbar, editProfileImage, emptyPageStar];
+  List<AssetGenImage> get values => [
+        backgroundForAppbar,
+        editProfileImage,
+        emptyPageStar,
+        homeBackgroundTopWidget
+      ];
 }
 
 class $AssetsTranslationsGen {

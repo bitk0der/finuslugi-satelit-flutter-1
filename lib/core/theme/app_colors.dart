@@ -24,6 +24,7 @@ class ColorStyles {
   ];
 
   //cards colors
+  static const violetColor = Color.fromRGBO(103, 39, 204, 1);
   static const activeNavBarItemColor = Color.fromRGBO(66, 139, 249, 1);
   static const inactiveNavBarItemColor = Color.fromRGBO(0, 0, 0, 0.4);
   static const yellowLight = Color.fromRGBO(255, 247, 7, 1);

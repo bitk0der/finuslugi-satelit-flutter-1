@@ -1,8 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fin_uslugi/core/routes/app_router.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
+import 'package:fin_uslugi/core/theme/app_fonts.dart';
 import 'package:fin_uslugi/core/widgets/app_small_button.dart';
+import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
+import 'package:fin_uslugi/features/banks/presentation/blocs/banks_cubit.dart';
 import 'package:fin_uslugi/features/cards/presentation/blocs/filters_bloc.dart';
+import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
+import 'package:fin_uslugi/features/programms/presentation/bloc/comparison_mortgage_bloc/local/local_comparison_mortgage_bloc.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
@@ -45,7 +50,7 @@ class CustomAppBar {
     );
   }
 
-/*   static PreferredSize getAboutBank({
+  static PreferredSize getAboutBank({
     List<Widget>? actions,
     required BankInfo bank,
     bool isBackButton = false,
@@ -145,9 +150,9 @@ class CustomAppBar {
         ),
       ),
     );
-  } */
+  }
 
-  /* static PreferredSize getAbout({
+  static PreferredSize getAbout({
     required String title,
     List<Widget>? actions,
     required BuildContext context,
@@ -265,7 +270,7 @@ class CustomAppBar {
                                           child: AppImageNetwork(bankUrlLogo)),
                                       SizedBox(width: 10.w),
                                       Text(bankName,
-                                          style: TextStyles.h1.copyWith(
+                                          style: TextStyles.h2.copyWith(
                                               fontSize: 17.sp, height: 1.2)),
                                       const Spacer(),
                                       Assets.icons.arrowRight
@@ -281,7 +286,7 @@ class CustomAppBar {
           ),
         ));
   }
- */
+
   static bool checkInFavourite(int id) {
     List productsIds =
         GetIt.I<SharedPreferences>().getStringList('mortgagesIDS') ?? [];

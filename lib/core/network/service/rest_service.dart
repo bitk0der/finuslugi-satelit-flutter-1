@@ -79,7 +79,7 @@ class RestService {
     }
   } */
 
-/*   Future<List> getPhone() async {
+  Future<List> getPhone() async {
     try {
       final response = await _dio.get(
         "https://partners.bankrotgov.ru/api/phone",
@@ -103,7 +103,7 @@ class RestService {
     } catch (e) {
       Logger().i(e);
     }
-  } */
+  }
 
 /*   Future<Map<String, dynamic>?> getInitialMortgages(
       String searchtext, int page) async {

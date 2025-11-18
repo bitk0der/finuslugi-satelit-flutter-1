@@ -112,6 +112,22 @@ class AppWebViewPageArgs {
 }
 
 /// generated route for
+/// [BanksScreen]
+class BanksRoute extends PageRouteInfo<void> {
+  const BanksRoute({List<PageRouteInfo>? children})
+      : super(BanksRoute.name, initialChildren: children);
+
+  static const String name = 'BanksRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const BanksScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [CreditCardsFiltersScreen]
 class CreditCardsFiltersRoute extends PageRouteInfo<void> {
   const CreditCardsFiltersRoute({List<PageRouteInfo>? children})
@@ -531,6 +547,53 @@ class MoreAboutMortgageRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ mortgage.hashCode;
+}
+
+/// generated route for
+/// [MoreAboutbankScreen]
+class MoreAboutbankRoute extends PageRouteInfo<MoreAboutbankRouteArgs> {
+  MoreAboutbankRoute({
+    Key? key,
+    required BankInfo bank,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MoreAboutbankRoute.name,
+          args: MoreAboutbankRouteArgs(key: key, bank: bank),
+          initialChildren: children,
+        );
+
+  static const String name = 'MoreAboutbankRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<MoreAboutbankRouteArgs>();
+      return MoreAboutbankScreen(key: args.key, bank: args.bank);
+    },
+  );
+}
+
+class MoreAboutbankRouteArgs {
+  const MoreAboutbankRouteArgs({this.key, required this.bank});
+
+  final Key? key;
+
+  final BankInfo bank;
+
+  @override
+  String toString() {
+    return 'MoreAboutbankRouteArgs{key: $key, bank: $bank}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! MoreAboutbankRouteArgs) return false;
+    return key == other.key && bank == other.bank;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ bank.hashCode;
 }
 
 /// generated route for

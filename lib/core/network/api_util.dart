@@ -1,4 +1,5 @@
 import 'package:fin_uslugi/core/network/service/rest_service.dart';
+import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_card_response.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_response.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/debit_card_response.dart';
@@ -13,7 +14,7 @@ class ApiUtil {
 
   ApiUtil(this._restService);
 
-/*   Future<String> getPhone() async {
+  Future<String> getPhone() async {
     final response = await _restService.getPhone();
     List<String> result = [];
     for (var element in response) {
@@ -29,9 +30,9 @@ class ApiUtil {
 
   void checkPhone(String phone) {
     _restService.checkPhone(phone);
-  } */
+  }
 
-/*   Future<Response> searchBanks(
+  Future<Response> searchBanks(
     String searchString,
     int page,
   ) async {
@@ -60,7 +61,7 @@ class ApiUtil {
     }
     return productsList.first;
   }
- */
+
   Future<Response> searchCredit(String query, int page, String type) async {
     final result = await _restService.searchProduct(type, query, page);
     final List productsMap = result['items'];

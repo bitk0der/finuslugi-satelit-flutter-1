@@ -1,5 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fin_uslugi/features/app_banner/presentation/app_web_view.dart';
+import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
+import 'package:fin_uslugi/features/banks/presentation/pages/banks_screen.dart';
+import 'package:fin_uslugi/features/banks/presentation/pages/more_about_bank_screen.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_card_response.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_response.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/debit_card_response.dart';

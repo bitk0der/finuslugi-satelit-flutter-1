@@ -1,4 +1,4 @@
-/* import 'package:compare_banks/core/network/api_path.dart'; */
+/* import 'package:fin_uslugi/core/network/api_path.dart'; */
 
 class Routes {
 /*   https://xn--80ajroeecv.xn--p1ai/api/bk/searchproducts.php?type= */
