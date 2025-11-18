@@ -6,50 +6,54 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MortgageSearchBloc
     extends Bloc<MortgageSearchBlocEvent, MortgageSearchBlocState> {
-  MortgageSearchBloc({
-    required this.repository,
-  }) : super(MortgageSearchBlocInitialState()) {
-    add(MortgageSearchBlocSearchEvent(page: 1, query: ''));
-  }
-
   final CreditSearchRepository repository;
 
   Response _response = Response(products: [], page: 1, totalPages: 1, total: 0);
   int _page = 1;
 
-  @override
-  Stream<MortgageSearchBlocState> mapEventToState(
-      MortgageSearchBlocEvent event) async* {
-    if (event is MortgageSearchBlocSearchEvent) {
-      if (event.page == 1) yield MortgageSearchBlocLoadingState();
-      _page = 1;
-      try {
-        String queryStringFromList = '';
-        List<String> params = ['sum', 'rate', 'parent'];
-        List<String> queryList =
-            GetIt.I<SharedPreferences>().getStringList('mortgagesSettings') ??
-                [];
-        if (queryList.isEmpty) {
-          queryStringFromList = '';
-        } else {
-          for (var i = 0; i < queryList.length; i++) {
-            if (queryList[i].isNotEmpty) {
-              queryStringFromList +=
-                  '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
-            }
+  MortgageSearchBloc({
+    required this.repository,
+  }) : super(MortgageSearchBlocInitialState()) {
+    on<MortgageSearchBlocSearchEvent>(_onSearchEvent);
+    add(MortgageSearchBlocSearchEvent(page: 1, query: ''));
+  }
+
+  Future<void> _onSearchEvent(
+    MortgageSearchBlocSearchEvent event,
+    Emitter<MortgageSearchBlocState> emit,
+  ) async {
+    if (event.page == 1) emit(MortgageSearchBlocLoadingState());
+
+    _page = 1;
+
+    try {
+      String queryStringFromList = '';
+      List<String> params = ['sum', 'rate', 'parent'];
+      List<String> queryList =
+          GetIt.I<SharedPreferences>().getStringList('mortgagesSettings') ?? [];
+
+      if (queryList.isNotEmpty) {
+        for (var i = 0; i < queryList.length; i++) {
+          if (queryList[i].isNotEmpty) {
+            queryStringFromList +=
+                '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
           }
         }
-        _response = await repository.searchMortgages(
-            page: _page, query: event.query ?? queryStringFromList);
-        if (event.isForBank) {
-          yield MortgageSearchForBankBlocReadyState(_response);
-        } else {
-          yield MortgageSearchBlocReadyState(_response);
-        }
-      } catch (e) {
-        print("Mortgage search error: $e");
-        yield MortgageSearchBlocErrorState();
       }
+
+      _response = await repository.searchMortgages(
+        page: _page,
+        query: event.query ?? queryStringFromList,
+      );
+
+      if (event.isForBank) {
+        emit(MortgageSearchForBankBlocReadyState(_response));
+      } else {
+        emit(MortgageSearchBlocReadyState(_response));
+      }
+    } catch (e) {
+      print("Mortgage search error: $e");
+      emit(MortgageSearchBlocErrorState());
     }
   }
 }

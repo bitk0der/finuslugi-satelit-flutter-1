@@ -10,50 +10,52 @@ import 'package:shared_preferences/shared_preferences.dart';
 @injectable
 class CreditSearchBloc
     extends Bloc<CreditSearchBlocEvent, CreditSearchBlocState> {
+  final ProfileBloc profileBloc;
+  final CreditSearchRepository repository;
+  late Response _response;
+
   CreditSearchBloc({
     required this.profileBloc,
     required this.repository,
   }) : super(CreditSearchBlocInitialState()) {
+    on<CreditSearchBlocSearchEvent>(_onSearchEvent);
     add(CreditSearchBlocSearchEvent(page: 1));
   }
 
-  final ProfileBloc profileBloc;
-  final CreditSearchRepository repository;
+  Future<void> _onSearchEvent(
+    CreditSearchBlocSearchEvent event,
+    Emitter<CreditSearchBlocState> emit,
+  ) async {
+    if (event.page == 1) emit(CreditSearchBlocLoadingState());
 
-  late Response _response;
+    try {
+      String queryStringFromList = '';
+      List<String> params = ['sum', 'rate', 'parent'];
+      List<String> queryList =
+          GetIt.I<SharedPreferences>().getStringList('creditsSettings') ?? [];
 
-  @override
-  Stream<CreditSearchBlocState> mapEventToState(
-      CreditSearchBlocEvent event) async* {
-    if (event is CreditSearchBlocSearchEvent) {
-      if (event.page == 1) yield CreditSearchBlocLoadingState();
-
-      try {
-        String queryStringFromList = '';
-        List<String> params = ['sum', 'rate', 'parent'];
-        List<String> queryList =
-            GetIt.I<SharedPreferences>().getStringList('creditsSettings') ?? [];
-        if (queryList.isEmpty) {
-          queryStringFromList = '';
-        } else {
-          for (var i = 0; i < queryList.length; i++) {
-            if (queryList[i].isNotEmpty) {
-              queryStringFromList +=
-                  '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
-            }
+      if (queryList.isNotEmpty) {
+        for (var i = 0; i < queryList.length; i++) {
+          if (queryList[i].isNotEmpty) {
+            queryStringFromList +=
+                '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
           }
         }
-        _response = await repository.searchCredit(
-            page: event.page, query: event.query ?? queryStringFromList);
-        if (event.isForBank) {
-          yield CreditSearchForBankBlocReadyState(_response);
-        } else {
-          yield CreditSearchBlocReadyState(_response);
-        }
-      } catch (e) {
-        print("Credit search error: $e");
-        yield CreditSearchBlocErrorState();
       }
+
+      _response = await repository.searchCredit(
+        page: event.page,
+        query: event.query ?? queryStringFromList,
+      );
+
+      if (event.isForBank) {
+        emit(CreditSearchForBankBlocReadyState(_response));
+      } else {
+        emit(CreditSearchBlocReadyState(_response));
+      }
+    } catch (e) {
+      print("Credit search error: $e");
+      emit(CreditSearchBlocErrorState());
     }
   }
 }

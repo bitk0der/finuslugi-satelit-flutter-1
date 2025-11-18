@@ -10,52 +10,54 @@ import 'package:shared_preferences/shared_preferences.dart';
 @injectable
 class DebitCardSearchBloc
     extends Bloc<DebitCardSearchBlocEvent, DebitCardSearchBlocState> {
-  DebitCardSearchBloc({
-    required this.profileBloc,
-    required this.repository,
-  }) : super(DebitCardSearchBlocInitialState()) {
-    add(DebitCardSearchBlocSearchEvent(page: 1));
-  }
-
   final ProfileBloc profileBloc;
   final CreditSearchRepository repository;
 
   Response _response = Response(products: [], page: 1, totalPages: 1, total: 0);
 
-  @override
-  Stream<DebitCardSearchBlocState> mapEventToState(
-      DebitCardSearchBlocEvent event) async* {
-    if (event is DebitCardSearchBlocSearchEvent) {
-      if (event.page == 1) yield DebitCardSearchBlocLoadingState();
+  DebitCardSearchBloc({
+    required this.profileBloc,
+    required this.repository,
+  }) : super(DebitCardSearchBlocInitialState()) {
+    on<DebitCardSearchBlocSearchEvent>(_onSearchEvent);
+    add(DebitCardSearchBlocSearchEvent(page: 1));
+  }
 
-      try {
-        String queryStringFromList = '';
-        List<String> params = ['benefits', 'feature', 'parent'];
-        List<String> queryList =
-            GetIt.I<SharedPreferences>().getStringList('debitCardsSettings') ??
-                [];
-        if (queryList.isEmpty) {
-          queryStringFromList = '';
-        } else {
-          for (var i = 0; i < queryList.length; i++) {
-            if (queryList[i].isNotEmpty) {
-              queryStringFromList +=
-                  '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
-            }
+  Future<void> _onSearchEvent(
+    DebitCardSearchBlocSearchEvent event,
+    Emitter<DebitCardSearchBlocState> emit,
+  ) async {
+    if (event.page == 1) emit(DebitCardSearchBlocLoadingState());
+
+    try {
+      String queryStringFromList = '';
+      List<String> params = ['benefits', 'feature', 'parent'];
+      List<String> queryList =
+          GetIt.I<SharedPreferences>().getStringList('debitCardsSettings') ??
+              [];
+
+      if (queryList.isNotEmpty) {
+        for (var i = 0; i < queryList.length; i++) {
+          if (queryList[i].isNotEmpty) {
+            queryStringFromList +=
+                '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
           }
         }
-
-        _response = await repository.searchDebitCard(
-            page: event.page, query: event.query ?? queryStringFromList);
-        if (event.isForBank) {
-          yield DebitCardForBankSearchBlocReadyState(_response);
-        } else {
-          yield DebitCardSearchBlocReadyState(_response);
-        }
-      } catch (e) {
-        print("Credit search error: $e");
-        yield DebitCardSearchBlocErrorState();
       }
+
+      _response = await repository.searchDebitCard(
+        page: event.page,
+        query: event.query ?? queryStringFromList,
+      );
+
+      if (event.isForBank) {
+        emit(DebitCardForBankSearchBlocReadyState(_response));
+      } else {
+        emit(DebitCardSearchBlocReadyState(_response));
+      }
+    } catch (e) {
+      print("Credit search error: $e");
+      emit(DebitCardSearchBlocErrorState());
     }
   }
 }

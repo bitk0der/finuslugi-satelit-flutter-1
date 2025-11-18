@@ -8,11 +8,6 @@ import 'package:injectable/injectable.dart';
 
 @singleton
 class ProfileBloc extends Bloc<ProfileBlocEvent, ProfileBlocState> {
-  ProfileBloc({required this.storageRepository})
-      : super(ProfileBlocInitialState()) {
-    add(ProfileBlocLoadEvent());
-  }
-
   final StorageRepository storageRepository;
 
   User user = User(
@@ -22,21 +17,39 @@ class ProfileBloc extends Bloc<ProfileBlocEvent, ProfileBlocState> {
     creditRating: 0,
   );
 
-  @override
-  Stream<ProfileBlocState> mapEventToState(ProfileBlocEvent event) async* {
-    if (event is ProfileBlocLoadEvent) {
-      user = await storageRepository.loadUser();
-      yield ProfileBlocUserReadyState(user);
-    } else if (event is ProfileBlocSaveAndCacheEvent) {
-      user = event.user;
-      await storageRepository.saveUser(user: user);
-      yield ProfileBlocUserReadyState(user);
-    } else if (event is ProfileBlocCacheEvent) {
-      user = event.user;
-    } else if (event is ProfileBlocSaveEvent) {
-      await storageRepository.saveUser(user: user);
-      yield ProfileBlocUserReadyState(user);
-    }
+  ProfileBloc({required this.storageRepository})
+      : super(ProfileBlocInitialState()) {
+    on<ProfileBlocLoadEvent>(_onLoadEvent);
+    on<ProfileBlocSaveAndCacheEvent>(_onSaveAndCacheEvent);
+    on<ProfileBlocCacheEvent>(_onCacheEvent);
+    on<ProfileBlocSaveEvent>(_onSaveEvent);
+
+    add(ProfileBlocLoadEvent());
+  }
+
+  Future<void> _onLoadEvent(
+      ProfileBlocLoadEvent event, Emitter<ProfileBlocState> emit) async {
+    user = await storageRepository.loadUser();
+    emit(ProfileBlocUserReadyState(user));
+  }
+
+  Future<void> _onSaveAndCacheEvent(ProfileBlocSaveAndCacheEvent event,
+      Emitter<ProfileBlocState> emit) async {
+    user = event.user;
+    await storageRepository.saveUser(user: user);
+    emit(ProfileBlocUserReadyState(user));
+  }
+
+  void _onCacheEvent(
+      ProfileBlocCacheEvent event, Emitter<ProfileBlocState> emit) {
+    user = event.user;
+    // No state emitted, as original does not yield here
+  }
+
+  Future<void> _onSaveEvent(
+      ProfileBlocSaveEvent event, Emitter<ProfileBlocState> emit) async {
+    await storageRepository.saveUser(user: user);
+    emit(ProfileBlocUserReadyState(user));
   }
 }
 

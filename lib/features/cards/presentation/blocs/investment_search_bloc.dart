@@ -6,50 +6,55 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class InvestmentSearchBloc
     extends Bloc<InvestmentSearchBlocEvent, InvestmentSearchBlocState> {
-  InvestmentSearchBloc({
-    required this.repository,
-  }) : super(InvestmentSearchBlocInitialState()) {
-    add(InvestmentSearchBlocSearchEvent(page: 1, query: ''));
-  }
-
   final CreditSearchRepository repository;
 
   Response _response = Response(products: [], page: 1, totalPages: 1, total: 0);
   int _page = 1;
 
-  @override
-  Stream<InvestmentSearchBlocState> mapEventToState(
-      InvestmentSearchBlocEvent event) async* {
-    if (event is InvestmentSearchBlocSearchEvent) {
-      if (event.page == 1) yield InvestmentSearchBlocLoadingState();
-      _page = 1;
-      try {
-        String queryStringFromList = '';
-        List<String> params = ['sum', 'rate', 'parent'];
-        List<String> queryList =
-            GetIt.I<SharedPreferences>().getStringList('investmentSettings') ??
-                [];
-        if (queryList.isEmpty) {
-          queryStringFromList = '';
-        } else {
-          for (var i = 0; i < queryList.length; i++) {
-            if (queryList[i].isNotEmpty) {
-              queryStringFromList +=
-                  '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
-            }
+  InvestmentSearchBloc({
+    required this.repository,
+  }) : super(InvestmentSearchBlocInitialState()) {
+    on<InvestmentSearchBlocSearchEvent>(_onSearchEvent);
+    add(InvestmentSearchBlocSearchEvent(page: 1, query: ''));
+  }
+
+  Future<void> _onSearchEvent(
+    InvestmentSearchBlocSearchEvent event,
+    Emitter<InvestmentSearchBlocState> emit,
+  ) async {
+    if (event.page == 1) emit(InvestmentSearchBlocLoadingState());
+
+    _page = 1; // reset page
+
+    try {
+      String queryStringFromList = '';
+      List<String> params = ['sum', 'rate', 'parent'];
+      List<String> queryList =
+          GetIt.I<SharedPreferences>().getStringList('investmentSettings') ??
+              [];
+
+      if (queryList.isNotEmpty) {
+        for (var i = 0; i < queryList.length; i++) {
+          if (queryList[i].isNotEmpty) {
+            queryStringFromList +=
+                '&${params[i]}=${queryList[i].replaceAll(' ', '')}';
           }
         }
-        _response = await repository.searchInvestements(
-            page: _page, query: event.query ?? queryStringFromList);
-        if (event.isForBank) {
-          yield InvestmentSearchForBankBlocReadyState(_response);
-        } else {
-          yield InvestmentSearchBlocReadyState(_response);
-        }
-      } catch (e) {
-        print("Investment search error: $e");
-        yield InvestmentSearchBlocErrorState();
       }
+
+      _response = await repository.searchInvestements(
+        page: _page,
+        query: event.query ?? queryStringFromList,
+      );
+
+      if (event.isForBank) {
+        emit(InvestmentSearchForBankBlocReadyState(_response));
+      } else {
+        emit(InvestmentSearchBlocReadyState(_response));
+      }
+    } catch (e) {
+      print("Investment search error: $e");
+      emit(InvestmentSearchBlocErrorState());
     }
   }
 }
