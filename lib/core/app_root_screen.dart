@@ -21,21 +21,18 @@ class AppRootScreen extends StatefulWidget {
 class _AppRootScreenState extends State<AppRootScreen> {
   final routes = [
     const HomeRouter(),
-    const HomeRouter(),
-    const HomeRouter(),
-    const HomeRouter(),
+    const SelectionRouter(),
+    const ServiceRouter(),
   ];
   final _icons = [
-    Assets.icons.navBarIcons.mapNavBarIcon,
-    Assets.icons.navBarIcons.mapNavBarIcon,
-    Assets.icons.navBarIcons.mapNavBarIcon,
-    Assets.icons.navBarIcons.mapNavBarIcon,
+    Assets.icons.navBarIcons.home,
+    Assets.icons.navBarIcons.selection,
+    Assets.icons.navBarIcons.service,
   ];
   late final _labels = [
-    'navbar_home',
-    'navbar_selection',
-    'navbar_debts',
-    'navbar_assistent',
+    'Главная',
+    'Подбор',
+    'Сервис',
   ];
 
   @override
@@ -121,7 +118,7 @@ class _AppRootScreenState extends State<AppRootScreen> {
       child: Column(
         children: [
           AnimatedCrossFade(
-            firstChild: getIcon(icon, ColorStyles.blue),
+            firstChild: getIcon(icon, ColorStyles.red),
             secondChild: getIcon(
               icon,
               ColorStyles.black.withValues(alpha: 0.4),

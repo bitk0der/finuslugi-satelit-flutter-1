@@ -48,6 +48,16 @@ class AppRouter extends RootStackRouter {
             path: 'home',
             children: [AutoRoute(page: HomeRoute.page, path: '')],
           ),
+          AutoRoute(
+            page: SelectionRouter.page,
+            path: 'home',
+            children: [AutoRoute(page: HomeRoute.page, path: '')],
+          ),
+          AutoRoute(
+            page: ServiceRouter.page,
+            path: 'home',
+            children: [AutoRoute(page: HomeRoute.page, path: '')],
+          ),
         ],
       ),
     ];
@@ -59,7 +69,12 @@ class HomeRouterPage extends AutoRouter {
   const HomeRouterPage({super.key});
 }
 
-@RoutePage(name: 'FinServiceMainRouter')
-class FinServiceMainRouterPage extends AutoRouter {
-  const FinServiceMainRouterPage({super.key});
+@RoutePage(name: 'SelectionRouter')
+class SelectionRouterPage extends AutoRouter {
+  const SelectionRouterPage({super.key});
+}
+
+@RoutePage(name: 'ServiceRouter')
+class ServiceRouterPage extends AutoRouter {
+  const ServiceRouterPage({super.key});
 }

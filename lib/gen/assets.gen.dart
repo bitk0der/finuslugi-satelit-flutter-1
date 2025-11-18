@@ -259,6 +259,10 @@ class $AssetsIconsNavBarIconsGen {
   SvgGenImage get finServices =>
       const SvgGenImage('assets/icons/nav_bar_icons/fin_services.svg');
 
+  /// File path: assets/icons/nav_bar_icons/home.svg
+  SvgGenImage get home =>
+      const SvgGenImage('assets/icons/nav_bar_icons/home.svg');
+
   /// File path: assets/icons/nav_bar_icons/home_nav_bar_icon.svg
   SvgGenImage get homeNavBarIcon =>
       const SvgGenImage('assets/icons/nav_bar_icons/home_nav_bar_icon.svg');
@@ -271,13 +275,24 @@ class $AssetsIconsNavBarIconsGen {
   SvgGenImage get profileNavBarIcon =>
       const SvgGenImage('assets/icons/nav_bar_icons/profile_nav_bar_icon.svg');
 
+  /// File path: assets/icons/nav_bar_icons/selection.svg
+  SvgGenImage get selection =>
+      const SvgGenImage('assets/icons/nav_bar_icons/selection.svg');
+
+  /// File path: assets/icons/nav_bar_icons/service.svg
+  SvgGenImage get service =>
+      const SvgGenImage('assets/icons/nav_bar_icons/service.svg');
+
   /// List of all assets
   List<SvgGenImage> get values => [
         comparisonIcon,
         finServices,
+        home,
         homeNavBarIcon,
         mapNavBarIcon,
-        profileNavBarIcon
+        profileNavBarIcon,
+        selection,
+        service
       ];
 }
 

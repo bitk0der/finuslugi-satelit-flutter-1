@@ -47,7 +47,7 @@ class EmptyWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
         child: AppButton(
           onTap: () {
-            context.navigateTo(const FinServiceMainRouter());
+            /* context.navigateTo(const FinServiceMainRouter()); */
           },
           title:
               'На страницу ${title.contains('банк') ? 'банков' : 'финуслуг'}',

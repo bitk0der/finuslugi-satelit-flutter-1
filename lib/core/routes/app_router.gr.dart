@@ -254,22 +254,6 @@ class FavouritesRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [FinServiceMainRouterPage]
-class FinServiceMainRouter extends PageRouteInfo<void> {
-  const FinServiceMainRouter({List<PageRouteInfo>? children})
-      : super(FinServiceMainRouter.name, initialChildren: children);
-
-  static const String name = 'FinServiceMainRouter';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const FinServiceMainRouterPage();
-    },
-  );
-}
-
-/// generated route for
 /// [FsinServiceScreen]
 class FsinServiceRoute extends PageRouteInfo<FsinServiceRouteArgs> {
   FsinServiceRoute({int? initPage, Key? key, List<PageRouteInfo>? children})
@@ -794,4 +778,36 @@ class NotificationDetailsRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ messageResponse.hashCode;
+}
+
+/// generated route for
+/// [SelectionRouterPage]
+class SelectionRouter extends PageRouteInfo<void> {
+  const SelectionRouter({List<PageRouteInfo>? children})
+      : super(SelectionRouter.name, initialChildren: children);
+
+  static const String name = 'SelectionRouter';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SelectionRouterPage();
+    },
+  );
+}
+
+/// generated route for
+/// [ServiceRouterPage]
+class ServiceRouter extends PageRouteInfo<void> {
+  const ServiceRouter({List<PageRouteInfo>? children})
+      : super(ServiceRouter.name, initialChildren: children);
+
+  static const String name = 'ServiceRouter';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ServiceRouterPage();
+    },
+  );
 }
