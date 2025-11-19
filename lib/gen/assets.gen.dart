@@ -17,21 +17,29 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class $AssetsFontsGen {
   const $AssetsFontsGen();
 
-  /// File path: assets/fonts/Montserrat-Black.ttf
-  String get montserratBlack => 'assets/fonts/Montserrat-Black.ttf';
+  /// File path: assets/fonts/SF-Pro-Display-Black.ttf
+  String get sFProDisplayBlack => 'assets/fonts/SF-Pro-Display-Black.ttf';
 
-  /// File path: assets/fonts/Montserrat-Bold.ttf
-  String get montserratBold => 'assets/fonts/Montserrat-Bold.ttf';
+  /// File path: assets/fonts/SF-Pro-Display-Bold.ttf
+  String get sFProDisplayBold => 'assets/fonts/SF-Pro-Display-Bold.ttf';
 
-  /// File path: assets/fonts/Montserrat-Medium.ttf
-  String get montserratMedium => 'assets/fonts/Montserrat-Medium.ttf';
+  /// File path: assets/fonts/SF-Pro-Display-Italic.ttf
+  String get sFProDisplayItalic => 'assets/fonts/SF-Pro-Display-Italic.ttf';
 
-  /// File path: assets/fonts/Montserrat-Regular.ttf
-  String get montserratRegular => 'assets/fonts/Montserrat-Regular.ttf';
+  /// File path: assets/fonts/SF-Pro-Display-Medium.ttf
+  String get sFProDisplayMedium => 'assets/fonts/SF-Pro-Display-Medium.ttf';
+
+  /// File path: assets/fonts/SF-Pro-Display-Regular.ttf
+  String get sFProDisplayRegular => 'assets/fonts/SF-Pro-Display-Regular.ttf';
 
   /// List of all assets
-  List<String> get values =>
-      [montserratBlack, montserratBold, montserratMedium, montserratRegular];
+  List<String> get values => [
+        sFProDisplayBlack,
+        sFProDisplayBold,
+        sFProDisplayItalic,
+        sFProDisplayMedium,
+        sFProDisplayRegular
+      ];
 }
 
 class $AssetsIconsGen {
@@ -44,6 +52,9 @@ class $AssetsIconsGen {
   /// Directory path: assets/icons/bank_categories_icons
   $AssetsIconsBankCategoriesIconsGen get bankCategoriesIcons =>
       const $AssetsIconsBankCategoriesIconsGen();
+
+  /// File path: assets/icons/banks.svg
+  SvgGenImage get banks => const SvgGenImage('assets/icons/banks.svg');
 
   /// Directory path: assets/icons/buttons_icon
   $AssetsIconsButtonsIconGen get buttonsIcon =>
@@ -59,6 +70,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/filled_favourite_icon.svg
   SvgGenImage get filledFavouriteIcon =>
       const SvgGenImage('assets/icons/filled_favourite_icon.svg');
+
+  /// File path: assets/icons/mfos.svg
+  SvgGenImage get mfos => const SvgGenImage('assets/icons/mfos.svg');
 
   /// Directory path: assets/icons/nav_bar_icons
   $AssetsIconsNavBarIconsGen get navBarIcons =>
@@ -85,9 +99,11 @@ class $AssetsIconsGen {
   /// List of all assets
   List<SvgGenImage> get values => [
         arrowRight,
+        banks,
         closeIcon,
         favouriteIcon,
         filledFavouriteIcon,
+        mfos,
         procentIcon,
         safeIcon,
         shareIcon,

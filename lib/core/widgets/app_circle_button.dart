@@ -23,7 +23,7 @@ class AppCircleButton extends StatefulWidget {
     this.radius = 12,
     this.backgroundColor = ColorStyles.white,
     required this.icon,
-    this.padding = 9,
+    this.padding = 8,
     this.borderColor,
     this.buttonSize = 36,
     this.quarterTurns = 0,

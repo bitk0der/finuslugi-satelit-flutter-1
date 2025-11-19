@@ -11,6 +11,6 @@
 class FontFamily {
   FontFamily._();
 
-  /// Font family: Montserrat
-  static const String montserrat = 'Montserrat';
+  /// Font family: SF-Pro-Display
+  static const String sFProDisplay = 'SF-Pro-Display';
 }

@@ -10,16 +10,16 @@ class TextStyles {
   static TextStyle h2 = TextStyle(
       fontFamily: fontFamily,
       color: ColorStyles.white,
-      fontWeight: FontWeight.w600,
+      fontWeight: FontWeight.w500,
       height: textHeight,
       fontSize: 18.sp);
 
   static TextStyle h1 = TextStyle(
       fontFamily: fontFamily,
-      color: ColorStyles.white,
-      fontWeight: FontWeight.w900,
+      color: ColorStyles.black,
+      fontWeight: FontWeight.w600,
       height: textHeight,
-      fontSize: 20.sp);
+      fontSize: 24.sp);
 
   static TextStyle h3 = TextStyle(
       fontFamily: fontFamily,
@@ -34,4 +34,11 @@ class TextStyles {
       fontWeight: FontWeight.w400,
       height: textHeight,
       fontSize: 15.sp);
+
+  static TextStyle h5 = TextStyle(
+      fontFamily: fontFamily,
+      color: ColorStyles.white,
+      fontWeight: FontWeight.w400,
+      height: textHeight,
+      fontSize: 14.sp);
 }

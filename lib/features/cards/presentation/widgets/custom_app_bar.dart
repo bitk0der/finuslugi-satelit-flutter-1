@@ -6,8 +6,9 @@ import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/core/widgets/app_small_button.dart';
 import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
 import 'package:fin_uslugi/features/banks/presentation/blocs/banks_cubit.dart';
-import 'package:fin_uslugi/features/cards/presentation/blocs/filters_bloc.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
+import 'package:fin_uslugi/features/cards/presentation/widgets/favourite_button.dart';
+import 'package:fin_uslugi/features/cards/presentation/widgets/filter_button.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/comparison_mortgage_bloc/local/local_comparison_mortgage_bloc.dart';
@@ -438,85 +439,10 @@ class CustomAppBar {
                     ),
                     Row(
                       children: [
-                        BlocBuilder(
-                            bloc: GetIt.I<LocalMortgageBloc>(),
-                            builder: (context, state) {
-                              List<String> productsIds =
-                                  GetIt.I<SharedPreferences>()
-                                          .getStringList('mortgagesIDS') ??
-                                      [];
-                              return Stack(children: [
-                                Container(
-                                  height: 40.h,
-                                  width: 40.h,
-                                  padding: EdgeInsets.all(2.w),
-                                  child: AppSmallButton(
-                                    size: 38.w,
-                                    onTap: () {
-                                      context.router
-                                          .push(const FavouritesRoute());
-                                    },
-                                    icon: Assets.icons.buttonsIcon.star,
-                                  ),
-                                ),
-                                if (productsIds.isNotEmpty)
-                                  Positioned(
-                                    right: 0,
-                                    child: Container(
-                                      width: 18.w,
-                                      height: 18.w,
-                                      alignment: Alignment.center,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                              color: ColorStyles.grayBorder),
-                                          color: ColorStyles.greenStar),
-                                      child: Text(
-                                        productsIds.length.toString(),
-                                        style: const TextStyle(fontSize: 10),
-                                      ),
-                                    ),
-                                  )
-                              ]);
-                            }),
+                        FavouriteButton(),
                         if (!title.contains('Банки')) SizedBox(width: 12.w),
                         if (!title.contains('Банки'))
-                          BlocBuilder(
-                              bloc: GetIt.I<FiltersBloc>(),
-                              builder: (context, state) {
-                                return Stack(children: [
-                                  Container(
-                                      height: 40.h,
-                                      width: 40.h,
-                                      padding: EdgeInsets.all(2.w),
-                                      child: AppSmallButton(
-                                          onTap: onTap,
-                                          padding: 10,
-                                          icon: Assets
-                                              .icons.buttonsIcon.settings)),
-                                  if (appliedFiltersCount(tabBarIndex) !=
-                                          null &&
-                                      appliedFiltersCount(tabBarIndex) != 0)
-                                    Positioned(
-                                      right: 0,
-                                      child: Container(
-                                        width: 18.w,
-                                        height: 18.w,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            border: Border.all(
-                                                color: ColorStyles.grayBorder),
-                                            color: ColorStyles.greenStar),
-                                        child: Text(
-                                          appliedFiltersCount(tabBarIndex)
-                                              .toString(),
-                                          style: const TextStyle(fontSize: 10),
-                                        ),
-                                      ),
-                                    )
-                                ]);
-                              }),
+                          FilterButton(onTap: onTap),
                       ],
                     ),
                   ],
