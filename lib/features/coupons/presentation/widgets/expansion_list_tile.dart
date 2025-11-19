@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/features/coupons/data/models/coupon_model.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
+import 'package:get_it/get_it.dart';
 
 class AppExpansionListTile extends StatefulWidget {
   final CouponModel coupon;
@@ -25,7 +26,7 @@ class _AppExpansionListTileState extends State<AppExpansionListTile> {
   @override
   void initState() {
     checkInCache();
-    _localFootballBloc = BlocProvider.of<LocalCouponsBloc>(context);
+    _localFootballBloc = GetIt.I<LocalCouponsBloc>();
     super.initState();
   }
 

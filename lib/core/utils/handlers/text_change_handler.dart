@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:fin_uslugi/features/coupons/presentation/bloc/coupons_bloc/remote/remote_coupons_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 
 class TextChangeHandler {
   static Timer? _debounce;
@@ -13,7 +13,7 @@ class TextChangeHandler {
       Function(String)? onTextChanged}) {
     if (_debounce?.isActive ?? false) _debounce?.cancel();
     _debounce = Timer(const Duration(milliseconds: 750), () {
-      BlocProvider.of<RemoteCouponsBloc>(context)
+      GetIt.I<RemoteCouponsBloc>()
           .add(SearchCoupons(searchText: searchText, category: category));
       onTextChanged != null ? onTextChanged(searchText) : null;
       _debounce?.cancel();

@@ -11,6 +11,7 @@ import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 class FavouriteHomePage extends StatefulWidget {
   const FavouriteHomePage({super.key});
@@ -27,7 +28,7 @@ class _FavouriteHomePageState extends State<FavouriteHomePage>
   @override
   void initState() {
     tabController = TabController(length: 2, vsync: this);
-    _localFootballBloc = BlocProvider.of<LocalCouponsBloc>(context);
+    _localFootballBloc = GetIt.I<LocalCouponsBloc>();
     _localFootballBloc.add(GetFavouritesCoupons());
     super.initState();
   }

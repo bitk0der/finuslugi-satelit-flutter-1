@@ -11,6 +11,8 @@ import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/searc
 import 'package:fin_uslugi/features/cards/presentation/widgets/bottom_sheet/credit_card_data_bottom_sheet.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_dialog.dart';
+import 'package:fin_uslugi/features/coupons/presentation/pages/category_page.dart';
+import 'package:fin_uslugi/features/loans/presentation/pages/loans_main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -36,7 +38,7 @@ class _FsinServiceScreenState extends State<FsinServiceScreen>
   @override
   void initState() {
     tabController = TabController(
-        length: 5, vsync: this, initialIndex: GetIt.I<FiltersBloc>().index);
+        length: 7, vsync: this, initialIndex: GetIt.I<FiltersBloc>().index);
     tabController.addListener(() {
       setState(() {});
     });
@@ -115,15 +117,17 @@ class _FsinServiceScreenState extends State<FsinServiceScreen>
             ),
             body: Stack(alignment: Alignment.bottomCenter, children: [
               TabBarView(controller: tabController, children: const [
+                LoansScreen(),
                 CreditCardSearchScreen(),
                 DebitCardSearchScreen(),
                 CreditSearchScreen(),
                 InvestmentSearchScreen(),
-                MortgageSearchScreen()
+                MortgageSearchScreen(),
+                CategoryPage(),
               ]),
               Container(
                 decoration: BoxDecoration(
-                    color: ColorStyles.blue,
+                    color: ColorStyles.lightViolet,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(12.r),
                         topRight: Radius.circular(12.r))),
@@ -150,25 +154,28 @@ class _FsinServiceScreenState extends State<FsinServiceScreen>
   }
 
   List<String> tabsUpper = [
-    'Кредитные карты',
+    "Займы",
+    "Кредитные карты",
     "Дебетовые карты",
-    'Кредиты',
+    "Кредиты",
     "Вклады",
-    'Ипотека'
+    "Ипотека",
+    "Промокоды"
   ];
   Widget upperTab(int index) {
     return Tab(
       child: Container(
         padding: EdgeInsets.all(12.w),
         decoration: BoxDecoration(
-            color: tabController.index == index ? Colors.blue : Colors.white,
+            color:
+                tabController.index == index ? ColorStyles.black : Colors.white,
             borderRadius: BorderRadius.circular(12.r)),
         child: Text(
           tabsUpper[index],
           style: TextStyle(
               color: tabController.index != index
-                  ? Colors.black.withOpacity(0.4)
-                  : ColorStyles.blue),
+                  ? Colors.black
+                  : ColorStyles.white),
         ),
       ),
     );

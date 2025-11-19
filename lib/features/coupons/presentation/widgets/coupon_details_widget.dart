@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 import 'package:intl/intl.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
@@ -34,7 +35,7 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
   @override
   void initState() {
     checkInCache();
-    _localFootballBloc = BlocProvider.of<LocalCouponsBloc>(context);
+    _localFootballBloc = GetIt.I<LocalCouponsBloc>();
     super.initState();
   }
 

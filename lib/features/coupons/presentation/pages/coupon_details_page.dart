@@ -10,6 +10,7 @@ import 'package:fin_uslugi/features/coupons/presentation/widgets/coupon_details_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 class CouponDetailsPage extends StatefulWidget {
   final RetailerModel retailerModel;
@@ -35,8 +36,8 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
   @override
   void initState() {
     checkInCache();
-    _localFootballBloc = BlocProvider.of<LocalCouponsBloc>(context);
-    _remoteCouponsBloc = BlocProvider.of<RemoteCouponsBloc>(context);
+    _localFootballBloc = GetIt.I<LocalCouponsBloc>();
+    _remoteCouponsBloc = GetIt.I<RemoteCouponsBloc>();
     widget.couponFavouriteModel != null
         ? null
         : _remoteCouponsBloc
@@ -48,64 +49,72 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocalCouponsBloc, LocalCouponsState>(
+    return BlocBuilder(
+        bloc: _localFootballBloc,
         builder: (context, state) {
-      checkInCache();
-      return BlocListener<RemoteCouponsBloc, RemoteCouponsState>(
-          listener: (context, RemoteCouponsState state) async {
-        if (state is GetAllMarketCouponsSuccessfull) {
-          couponItems = state.couponItems;
-        }
-      }, child: BlocBuilder<RemoteCouponsBloc, RemoteCouponsState>(
-              builder: (context, state) {
-        return SafeArea(
-            child: Scaffold(
-          backgroundColor: ColorStyles.white,
-          appBar: DefaultAppBar(retailer: widget.retailerModel),
-          body: state is Loading
-              ? const Center(
-                  child: CircularProgressIndicator(color: ColorStyles.black))
-              : widget.couponFavouriteModel != null
-                  ? Padding(
-                      padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 82.h),
-                      child: CouponDetailsWidget(
-                          couponWithRetailer: widget.couponFavouriteModel!),
-                    )
-                  : ListView.separated(
-                      itemCount: couponItems.length,
-                      padding: EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 82.h),
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => CouponDetailsWidget(
-                          couponWithRetailer: CouponFavouriteModel(
-                              coupon: couponItems[index],
-                              retailer: widget.retailerModel)),
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(height: 12.h),
-                    ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Padding(
-            padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 10.h),
-            child: AppButton(
-              backgroundColor: _isInFavourites
-                  ? ColorStyles.yellowLight
-                  : ColorStyles.yellowColor,
-              onTap: () {
-                if (_isInFavourites) {
-                  _localFootballBloc.add(DeleteRetailerFromFavourite(
-                      retailer: widget.retailerModel));
-                } else {
-                  _localFootballBloc.add(
-                      AddRatailerToFavourite(retailer: widget.retailerModel));
+          checkInCache();
+          return BlocConsumer(
+              bloc: _remoteCouponsBloc,
+              listener: (context, RemoteCouponsState state) async {
+                if (state is GetAllMarketCouponsSuccessfull) {
+                  couponItems = state.couponItems;
                 }
               },
-              title: _isInFavourites
-                  ? 'Убрать из избранного'
-                  : 'Добавить магазин в избранное',
-            ),
-          ),
-        ));
-      }));
-    });
+              builder: (context, state) {
+                return SafeArea(
+                    child: Scaffold(
+                  backgroundColor: ColorStyles.white,
+                  appBar: DefaultAppBar(retailer: widget.retailerModel),
+                  body: state is Loading
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                              color: ColorStyles.black))
+                      : widget.couponFavouriteModel != null
+                          ? Padding(
+                              padding:
+                                  EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 82.h),
+                              child: CouponDetailsWidget(
+                                  couponWithRetailer:
+                                      widget.couponFavouriteModel!),
+                            )
+                          : ListView.separated(
+                              itemCount: couponItems.length,
+                              padding:
+                                  EdgeInsets.fromLTRB(20.w, 12.h, 20.w, 82.h),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) =>
+                                  CouponDetailsWidget(
+                                      couponWithRetailer: CouponFavouriteModel(
+                                          coupon: couponItems[index],
+                                          retailer: widget.retailerModel)),
+                              separatorBuilder:
+                                  (BuildContext context, int index) =>
+                                      SizedBox(height: 12.h),
+                            ),
+                  floatingActionButtonLocation:
+                      FloatingActionButtonLocation.centerDocked,
+                  floatingActionButton: Padding(
+                    padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 10.h),
+                    child: AppButton(
+                      backgroundColor: _isInFavourites
+                          ? ColorStyles.yellowLight
+                          : ColorStyles.yellowColor,
+                      onTap: () {
+                        if (_isInFavourites) {
+                          _localFootballBloc.add(DeleteRetailerFromFavourite(
+                              retailer: widget.retailerModel));
+                        } else {
+                          _localFootballBloc.add(AddRatailerToFavourite(
+                              retailer: widget.retailerModel));
+                        }
+                      },
+                      title: _isInFavourites
+                          ? 'Убрать из избранного'
+                          : 'Добавить магазин в избранное',
+                    ),
+                  ),
+                ));
+              });
+        });
   }
 }

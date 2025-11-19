@@ -6,9 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fin_uslugi/features/coupons/data/models/config_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/coupon_item_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/coupon_model.dart';
+import 'package:injectable/injectable.dart';
 part 'remote_coupons_event.dart';
 part 'remote_coupons_state.dart';
 
+@singleton
 class RemoteCouponsBloc extends Bloc<RemoteCouponsEvent, RemoteCouponsState> {
   RemoteCouponsBloc() : super(RemoteCouponsBlocStateInitial()) {
     on<SearchCoupons>(_onSearchCoupons);

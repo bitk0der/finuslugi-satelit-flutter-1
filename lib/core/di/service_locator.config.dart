@@ -37,6 +37,8 @@ import 'package:fin_uslugi/features/cards/presentation/blocs/mortgage_search_blo
     as _i32;
 import 'package:fin_uslugi/features/cards/presentation/blocs/profile_bloc.dart'
     as _i1010;
+import 'package:fin_uslugi/features/coupons/presentation/bloc/coupons_bloc/remote/remote_coupons_bloc.dart'
+    as _i408;
 import 'package:fin_uslugi/features/loans/data/repositories/credit_search_repository.dart'
     as _i796;
 import 'package:fin_uslugi/features/loans/domain/repositories/credit_search_data_repository.dart'
@@ -74,6 +76,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i974.Logger>(() => loggerModule.logger());
     gh.singleton<_i649.FiltersBloc>(() => _i649.FiltersBloc());
+    gh.singleton<_i408.RemoteCouponsBloc>(() => _i408.RemoteCouponsBloc());
     gh.singleton<_i282.LocalMortgageBloc>(() => _i282.LocalMortgageBloc());
     gh.lazySingleton<_i361.Dio>(() => dioModule.dio());
     gh.factory<_i102.StorageRepository>(

@@ -10,6 +10,7 @@ import 'package:fin_uslugi/features/programms/presentation/widgets/app_textfield
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:fin_uslugi/features/coupons/data/models/config_item_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/coupon_model.dart';
@@ -36,7 +37,7 @@ class _MainPageState extends State<MainPage> {
   String searchString = '';
   @override
   void initState() {
-    _remoteCouponsBloc = BlocProvider.of<RemoteCouponsBloc>(context);
+    _remoteCouponsBloc = GetIt.I<RemoteCouponsBloc>();
     _pagingController.addPageRequestListener((pageKey) {
       if (nextPageKey != null) {
         _remoteCouponsBloc.add(SearchCoupons(

@@ -6,8 +6,8 @@ import 'package:fin_uslugi/features/coupons/data/models/retailer_model.dart';
 import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/presentation/bloc/local/local_coupons_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 
 class FavouriteRetailerCardWidget extends StatelessWidget {
   final RetailerModel retailerModel;
@@ -46,7 +46,7 @@ class FavouriteRetailerCardWidget extends StatelessWidget {
               GestureDetector(
                 behavior: HitTestBehavior.opaque,
                 onTap: () {
-                  BlocProvider.of<LocalCouponsBloc>(context).add(
+                  GetIt.I<LocalCouponsBloc>().add(
                       DeleteRetailerFromFavourite(retailer: retailerModel));
                 },
                 child: Container(

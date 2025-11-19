@@ -11,6 +11,7 @@ class ColorStyles {
   static const Color lightOrange = Color(0xffFFD600);
   static const Color green = Color(0xff2EA36E);
   static const Color blue = Color(0xff1BE2EF);
+  static const Color lightViolet = Color(0xffC4C8F6);
   static const Color red = Color(0xffFF0508);
   static const grayBorder = Color(0xff797979);
   static const List<Color> detailsGradient = [

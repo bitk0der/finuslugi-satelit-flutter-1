@@ -1,13 +1,14 @@
-import 'package:fin_uslugi/features/coupons/data/models/coupon_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/retailer_model.dart';
 import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/data/models/coupon_favourite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_ce_flutter/adapters.dart';
+import 'package:injectable/injectable.dart';
 part 'local_coupons_event.dart';
 part 'local_coupons_state.dart';
 
+@singleton
 class LocalCouponsBloc extends Bloc<LocalCouponsEvent, LocalCouponsState> {
   LocalCouponsBloc() : super(LocalMortgageBlocStateInitial()) {
     on<AddCouponToFavourite>(_onAddCouponToFavourite);

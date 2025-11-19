@@ -1,7 +1,7 @@
 import 'package:fin_uslugi/features/coupons/data/models/config_item_model.dart';
 import 'package:fin_uslugi/features/coupons/presentation/bloc/coupons_bloc/remote/remote_coupons_bloc.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ConfigItemClickHandler {
@@ -13,7 +13,7 @@ class ConfigItemClickHandler {
         mode: LaunchMode.externalApplication,
       );
     } else {
-      BlocProvider.of<RemoteCouponsBloc>(context)
+      GetIt.I<RemoteCouponsBloc>()
           .add(SearchCoupons(searchText: '', category: config.category));
       /* context.push('/home/main', extra: config); */
     }
