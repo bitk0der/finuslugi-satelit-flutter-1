@@ -15,6 +15,12 @@ import 'package:fin_uslugi/core/network/api_client.dart' as _i623;
 import 'package:fin_uslugi/core/network/api_util.dart' as _i597;
 import 'package:fin_uslugi/core/network/service/rest_service.dart' as _i1048;
 import 'package:fin_uslugi/core/utils/storage_util.dart' as _i124;
+import 'package:fin_uslugi/features/banks/data/repositories/banks_data_repository.dart'
+    as _i544;
+import 'package:fin_uslugi/features/banks/domain/repositories/banks_repository.dart'
+    as _i270;
+import 'package:fin_uslugi/features/banks/presentation/blocs/banks_cubit.dart'
+    as _i759;
 import 'package:fin_uslugi/features/cards/data/repositories/credit_search_repository.dart'
     as _i3;
 import 'package:fin_uslugi/features/cards/data/repositories/storage_repository.dart'
@@ -39,6 +45,8 @@ import 'package:fin_uslugi/features/cards/presentation/blocs/profile_bloc.dart'
     as _i1010;
 import 'package:fin_uslugi/features/coupons/presentation/bloc/coupons_bloc/remote/remote_coupons_bloc.dart'
     as _i408;
+import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/presentation/bloc/local/local_coupons_bloc.dart'
+    as _i806;
 import 'package:fin_uslugi/features/loans/data/repositories/credit_search_repository.dart'
     as _i796;
 import 'package:fin_uslugi/features/loans/domain/repositories/credit_search_data_repository.dart'
@@ -77,6 +85,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i974.Logger>(() => loggerModule.logger());
     gh.singleton<_i649.FiltersBloc>(() => _i649.FiltersBloc());
     gh.singleton<_i408.RemoteCouponsBloc>(() => _i408.RemoteCouponsBloc());
+    gh.singleton<_i806.LocalCouponsBloc>(() => _i806.LocalCouponsBloc());
     gh.singleton<_i282.LocalMortgageBloc>(() => _i282.LocalMortgageBloc());
     gh.lazySingleton<_i361.Dio>(() => dioModule.dio());
     gh.factory<_i102.StorageRepository>(
@@ -95,6 +104,8 @@ extension GetItInjectableX on _i174.GetIt {
         _i1010.ProfileBloc(storageRepository: gh<_i102.StorageRepository>()));
     gh.factory<_i3.CreditSearchRepository>(
         () => _i779.SearchDataRepository(gh<_i597.ApiUtil>()));
+    gh.factory<_i270.BanksRepository>(
+        () => _i544.BanksDataRepository(gh<_i597.ApiUtil>()));
     gh.factory<_i930.CreditSearchBloc>(() => _i930.CreditSearchBloc(
           profileBloc: gh<_i1010.ProfileBloc>(),
           repository: gh<_i3.CreditSearchRepository>(),
@@ -107,6 +118,8 @@ extension GetItInjectableX on _i174.GetIt {
           profileBloc: gh<_i1010.ProfileBloc>(),
           repository: gh<_i3.CreditSearchRepository>(),
         ));
+    gh.singleton<_i759.BanksCubit>(
+        () => _i759.BanksCubit(gh<_i270.BanksRepository>()));
     gh.singleton<_i932.InvestmentSearchBloc>(() => _i932.InvestmentSearchBloc(
         repository: gh<_i3.CreditSearchRepository>()));
     gh.singleton<_i32.MortgageSearchBloc>(() =>

@@ -144,6 +144,71 @@ class BanksRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [CouponDetailsPage]
+class CouponDetailsRoute extends PageRouteInfo<CouponDetailsRouteArgs> {
+  CouponDetailsRoute({
+    required RetailerModel retailerModel,
+    CouponFavouriteModel? couponFavouriteModel,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CouponDetailsRoute.name,
+          args: CouponDetailsRouteArgs(
+            retailerModel: retailerModel,
+            couponFavouriteModel: couponFavouriteModel,
+            key: key,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CouponDetailsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CouponDetailsRouteArgs>();
+      return CouponDetailsPage(
+        retailerModel: args.retailerModel,
+        couponFavouriteModel: args.couponFavouriteModel,
+        key: args.key,
+      );
+    },
+  );
+}
+
+class CouponDetailsRouteArgs {
+  const CouponDetailsRouteArgs({
+    required this.retailerModel,
+    this.couponFavouriteModel,
+    this.key,
+  });
+
+  final RetailerModel retailerModel;
+
+  final CouponFavouriteModel? couponFavouriteModel;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CouponDetailsRouteArgs{retailerModel: $retailerModel, couponFavouriteModel: $couponFavouriteModel, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CouponDetailsRouteArgs) return false;
+    return retailerModel == other.retailerModel &&
+        couponFavouriteModel == other.couponFavouriteModel &&
+        key == other.key;
+  }
+
+  @override
+  int get hashCode =>
+      retailerModel.hashCode ^ couponFavouriteModel.hashCode ^ key.hashCode;
+}
+
+/// generated route for
 /// [CreditCardsFiltersScreen]
 class CreditCardsFiltersRoute extends PageRouteInfo<void> {
   const CreditCardsFiltersRoute({List<PageRouteInfo>? children})
@@ -406,6 +471,22 @@ class LoansRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const LoansScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [MainServicePage]
+class MainServiceRoute extends PageRouteInfo<void> {
+  const MainServiceRoute({List<PageRouteInfo>? children})
+      : super(MainServiceRoute.name, initialChildren: children);
+
+  static const String name = 'MainServiceRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MainServicePage();
     },
   );
 }

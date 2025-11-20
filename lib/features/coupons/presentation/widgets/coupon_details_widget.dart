@@ -54,195 +54,202 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
   @override
   Widget build(BuildContext context) {
     checkInCacheNotification();
-    return BlocBuilder<LocalCouponsBloc, LocalCouponsState>(
+    return BlocBuilder(
+        bloc: _localFootballBloc,
         builder: (context, state) {
-      checkInCache();
-      return Container(
-        decoration: BoxDecoration(
-            color: ColorStyles.white,
-            borderRadius: BorderRadius.circular(16.r)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          checkInCache();
+          return Container(
+            decoration: BoxDecoration(
+                color: ColorStyles.white,
+                borderRadius: BorderRadius.circular(16.r)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(16.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Flexible(
-                          child: Text(
-                        widget.couponWithRetailer.coupon.description,
-                        style: UIFonts.bodyMedium,
-                      )),
-                      SizedBox(width: 10.w),
-                      GestureDetector(
-                        behavior: HitTestBehavior.opaque,
-                        onTap: () async {
-                          if (_isInFavourites) {
-                            _localFootballBloc.add(DeleteCouponFromFavourite(
-                                coupon: widget.couponWithRetailer));
-                          } else {
-                            _localFootballBloc.add(AddCouponToFavourite(
-                                coupon: widget.couponWithRetailer));
-                          }
-                        },
-                        child: Container(
-                          width: 42.w,
-                          height: 42.w,
-                          padding: EdgeInsets.all(9.w),
-                          decoration: BoxDecoration(
-                              color: _isInFavourites
-                                  ? ColorStyles.yellowColor
-                                  : ColorStyles.grayBorder,
-                              border:
-                                  Border.all(color: ColorStyles.yellowColor),
-                              shape: BoxShape.circle),
-                          child: _isInFavourites
-                              ? Assets.icons.filledFavouriteIcon.svg()
-                              : Assets.icons.favouriteIcon.svg(),
-                        ),
-                      )
-                    ],
-                  ),
-                  widget.couponWithRetailer.coupon.features.forNewUser
-                      ? Padding(
-                          padding: EdgeInsets.symmetric(vertical: 8.h),
-                          child: AppCardLayout(
-                              color: ColorStyles.green,
-                              padding: EdgeInsets.all(8.w),
-                              radius: 10.r,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Assets.icons.procentIcon.svg(),
-                                  SizedBox(width: 8.w),
-                                  Text(
-                                    'На первый заказ',
-                                    style: UIFonts.cardSmallText
-                                        .copyWith(fontSize: 13.sp),
-                                  ),
-                                ],
-                              )),
-                        )
-                      : SizedBox(height: 10.h),
-                  Container(
-                    padding: EdgeInsets.all(16.w),
-                    decoration: BoxDecoration(
-                        color: ColorStyles.blueButton,
-                        borderRadius: BorderRadius.circular(16.r)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Flexible(
-                          child: Text(
-                              widget.couponWithRetailer.coupon.value
-                                  .toUpperCase(),
-                              overflow: TextOverflow.ellipsis,
-                              style: UIFonts.couponText),
-                        ),
-                        SizedBox(width: 10.w),
-                        GestureDetector(
-                            onTap: () {
-                              Clipboard.setData(ClipboardData(
-                                  text: widget.couponWithRetailer.coupon.value
-                                      .toUpperCase()));
-                              var snack = SnackBar(
-                                content: Text(
-                                    "Промокод ${widget.couponWithRetailer.coupon.value.toUpperCase()} успешно скопирован"),
-                              );
-                              ScaffoldMessenger.of(context).showSnackBar(snack);
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                              child: Text(
+                            widget.couponWithRetailer.coupon.description,
+                            style: UIFonts.bodyMedium,
+                          )),
+                          SizedBox(width: 10.w),
+                          GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTap: () async {
+                              if (_isInFavourites) {
+                                _localFootballBloc.add(
+                                    DeleteCouponFromFavourite(
+                                        coupon: widget.couponWithRetailer));
+                              } else {
+                                _localFootballBloc.add(AddCouponToFavourite(
+                                    coupon: widget.couponWithRetailer));
+                              }
                             },
-                            child: Text('Копировать', style: UIFonts.blueText))
-                      ],
-                    ),
-                  ),
-                  widget.couponWithRetailer.coupon.condition != null
-                      ? LayoutBuilder(builder: (context, constraints) {
-                          final span = TextSpan(
-                              text: widget.couponWithRetailer.coupon.condition,
-                              style: UIFonts.bodySmall);
-                          final tp = TextPainter(
-                              text: span, textDirection: ui.TextDirection.ltr);
-                          tp.layout(
-                              maxWidth:
-                                  MediaQuery.of(context).size.width - 100.w);
-                          final numLines = tp.computeLineMetrics().length;
-                          if (numLines > 3) {
-                            return conditionText(numLines);
-                          } else {
-                            return conditionText(1);
-                          }
-                        })
-                      : SizedBox(height: 16.h),
-                  Row(
-                    children: [
-                      Flexible(
-                        child: Container(
-                          alignment: Alignment.center,
-                          padding: EdgeInsets.symmetric(vertical: 8.h),
-                          decoration: BoxDecoration(
-                              color: ColorStyles.grayBorder,
-                              borderRadius: BorderRadius.circular(10.r)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Assets.icons.closeIcon.svg(),
-                              SizedBox(width: 6.w),
-                              Text(
-                                'До ${DateFormat('d MMMM', 'ru').format(DateTime.fromMillisecondsSinceEpoch(widget.couponWithRetailer.coupon.dateEnd))}',
-                                style: UIFonts.cardSmallText,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 10.w),
-                      Flexible(
-                          child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 8.h),
-                        decoration: BoxDecoration(
-                            color: ColorStyles.grayBorder,
-                            borderRadius: BorderRadius.circular(10.r)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Assets.icons.yellowStar.svg(),
-                            SizedBox(width: 6.w),
-                            Text(
-                              '${widget.couponWithRetailer.coupon.meta.activationsCount} активации',
-                              style: UIFonts.cardSmallText,
+                            child: Container(
+                              width: 42.w,
+                              height: 42.w,
+                              padding: EdgeInsets.all(9.w),
+                              decoration: BoxDecoration(
+                                  color: _isInFavourites
+                                      ? ColorStyles.yellowColor
+                                      : ColorStyles.grayBorder,
+                                  border: Border.all(
+                                      color: ColorStyles.yellowColor),
+                                  shape: BoxShape.circle),
+                              child: _isInFavourites
+                                  ? Assets.icons.filledFavouriteIcon.svg()
+                                  : Assets.icons.favouriteIcon.svg(),
                             ),
-                          ],
-                        ),
-                      )),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            !widget.isInFavoutrite
-                ? const SizedBox.shrink()
-                : Padding(
-                    padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
-                    child: AppCardLayout(
-                        radius: 14.r,
-                        color: ColorStyles.grayBorder,
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 16.w, vertical: 10.h),
+                          )
+                        ],
+                      ),
+                      widget.couponWithRetailer.coupon.features.forNewUser
+                          ? Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.h),
+                              child: AppCardLayout(
+                                  color: ColorStyles.green,
+                                  padding: EdgeInsets.all(8.w),
+                                  radius: 10.r,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Assets.icons.procentIcon.svg(),
+                                      SizedBox(width: 8.w),
+                                      Text(
+                                        'На первый заказ',
+                                        style: UIFonts.cardSmallText
+                                            .copyWith(fontSize: 13.sp),
+                                      ),
+                                    ],
+                                  )),
+                            )
+                          : SizedBox(height: 10.h),
+                      Container(
+                        padding: EdgeInsets.all(16.w),
+                        decoration: BoxDecoration(
+                            color: ColorStyles.blueButton,
+                            borderRadius: BorderRadius.circular(16.r)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Напомнить об окончании',
-                                style: UIFonts.hint
-                                    .copyWith(color: ColorStyles.black)),
-                            CupertinoSwitch(
-                                value: _isActiveNotification,
-                                onChanged: (val) async {
-                                  /*     List notificationsIds =
+                            Flexible(
+                              child: Text(
+                                  widget.couponWithRetailer.coupon.value
+                                      .toUpperCase(),
+                                  overflow: TextOverflow.ellipsis,
+                                  style: UIFonts.couponText),
+                            ),
+                            SizedBox(width: 10.w),
+                            GestureDetector(
+                                onTap: () {
+                                  Clipboard.setData(ClipboardData(
+                                      text: widget
+                                          .couponWithRetailer.coupon.value
+                                          .toUpperCase()));
+                                  var snack = SnackBar(
+                                    content: Text(
+                                        "Промокод ${widget.couponWithRetailer.coupon.value.toUpperCase()} успешно скопирован"),
+                                  );
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snack);
+                                },
+                                child:
+                                    Text('Копировать', style: UIFonts.blueText))
+                          ],
+                        ),
+                      ),
+                      widget.couponWithRetailer.coupon.condition != null
+                          ? LayoutBuilder(builder: (context, constraints) {
+                              final span = TextSpan(
+                                  text: widget
+                                      .couponWithRetailer.coupon.condition,
+                                  style: UIFonts.bodySmall);
+                              final tp = TextPainter(
+                                  text: span,
+                                  textDirection: ui.TextDirection.ltr);
+                              tp.layout(
+                                  maxWidth: MediaQuery.of(context).size.width -
+                                      100.w);
+                              final numLines = tp.computeLineMetrics().length;
+                              if (numLines > 3) {
+                                return conditionText(numLines);
+                              } else {
+                                return conditionText(1);
+                              }
+                            })
+                          : SizedBox(height: 16.h),
+                      Row(
+                        children: [
+                          Flexible(
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.symmetric(vertical: 8.h),
+                              decoration: BoxDecoration(
+                                  color: ColorStyles.grayBorder,
+                                  borderRadius: BorderRadius.circular(10.r)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Assets.icons.closeIcon.svg(),
+                                  SizedBox(width: 6.w),
+                                  Text(
+                                    'До ${DateFormat('d MMMM', 'ru').format(DateTime.fromMillisecondsSinceEpoch(widget.couponWithRetailer.coupon.dateEnd))}',
+                                    style: UIFonts.cardSmallText,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10.w),
+                          Flexible(
+                              child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8.h),
+                            decoration: BoxDecoration(
+                                color: ColorStyles.grayBorder,
+                                borderRadius: BorderRadius.circular(10.r)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Assets.icons.yellowStar.svg(),
+                                SizedBox(width: 6.w),
+                                Text(
+                                  '${widget.couponWithRetailer.coupon.meta.activationsCount} активации',
+                                  style: UIFonts.cardSmallText,
+                                ),
+                              ],
+                            ),
+                          )),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                !widget.isInFavoutrite
+                    ? const SizedBox.shrink()
+                    : Padding(
+                        padding: EdgeInsets.fromLTRB(16.w, 0, 16.w, 16.h),
+                        child: AppCardLayout(
+                            radius: 14.r,
+                            color: ColorStyles.grayBorder,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 16.w, vertical: 10.h),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Напомнить об окончании',
+                                    style: UIFonts.hint
+                                        .copyWith(color: ColorStyles.black)),
+                                CupertinoSwitch(
+                                    value: _isActiveNotification,
+                                    onChanged: (val) async {
+                                      /*     List notificationsIds =
                                       box.read('notificationsIds') ?? [];
                                   if (_isActiveNotification) {
                                     await AwesomeNotifications().cancel(widget
@@ -268,56 +275,62 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                                   await box.write(
                                       'notificationsIds', notificationsIds);
                                   setState(() {}); */
-                                })
-                          ],
-                        )),
-                  ),
-            !widget.isInFavoutrite
-                ? const SizedBox.shrink()
-                : Column(
-                    children: [
-                      Container(
-                          decoration: DottedDecoration(
-                              color: ColorStyles.black.withValues(alpha: 0.1))),
-                      Padding(
-                        padding: EdgeInsets.all(16.w),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(11.r),
-                              child: SizedBox(
-                                  width: 46.w,
-                                  height: 46.w,
-                                  child: Image.network(widget
-                                      .couponWithRetailer.retailer.imageUrl)),
-                            ),
-                            SizedBox(width: 12.w),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(widget.couponWithRetailer.retailer.name,
-                                      style: UIFonts.titleMedium),
-                                  SizedBox(height: 4.h),
-                                  widget.couponWithRetailer.retailer.website
-                                          .isNotEmpty
-                                      ? Text(
-                                          widget.couponWithRetailer.retailer
-                                              .website,
-                                          style: UIFonts.bodySmall)
-                                      : const SizedBox.shrink(),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
+                                    })
+                              ],
+                            )),
                       ),
-                    ],
-                  ),
-          ],
-        ),
-      );
-    });
+                !widget.isInFavoutrite
+                    ? const SizedBox.shrink()
+                    : Column(
+                        children: [
+                          Container(
+                              decoration: DottedDecoration(
+                                  color: ColorStyles.black
+                                      .withValues(alpha: 0.1))),
+                          Padding(
+                            padding: EdgeInsets.all(16.w),
+                            child: Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(11.r),
+                                  child: SizedBox(
+                                      width: 46.w,
+                                      height: 46.w,
+                                      child: Image.network(widget
+                                          .couponWithRetailer
+                                          .retailer
+                                          .imageUrl)),
+                                ),
+                                SizedBox(width: 12.w),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          widget
+                                              .couponWithRetailer.retailer.name,
+                                          style: UIFonts.titleMedium),
+                                      SizedBox(height: 4.h),
+                                      widget.couponWithRetailer.retailer.website
+                                              .isNotEmpty
+                                          ? Text(
+                                              widget.couponWithRetailer.retailer
+                                                  .website,
+                                              style: UIFonts.bodySmall)
+                                          : const SizedBox.shrink(),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+              ],
+            ),
+          );
+        });
   }
 
   Widget conditionText(int maxLines) {

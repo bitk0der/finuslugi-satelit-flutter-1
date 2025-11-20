@@ -12,6 +12,7 @@ import 'package:fin_uslugi/features/cards/presentation/widgets/bottom_sheet/cred
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_dialog.dart';
 import 'package:fin_uslugi/features/coupons/presentation/pages/category_page.dart';
+import 'package:fin_uslugi/features/coupons/presentation/pages/home/main_page.dart';
 import 'package:fin_uslugi/features/loans/presentation/pages/loans_main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class FsinServiceScreen extends StatefulWidget {
 class _FsinServiceScreenState extends State<FsinServiceScreen>
     with TickerProviderStateMixin {
   late TabController tabController;
+  String? isCategoryPage;
   final prefs = GetIt.I<SharedPreferences>();
   final filtersBloc = GetIt.I<FiltersBloc>();
   @override
@@ -116,14 +118,18 @@ class _FsinServiceScreenState extends State<FsinServiceScreen>
               ],
             ),
             body: Stack(alignment: Alignment.bottomCenter, children: [
-              TabBarView(controller: tabController, children: const [
+              TabBarView(controller: tabController, children: [
                 LoansScreen(),
                 CreditCardSearchScreen(),
                 DebitCardSearchScreen(),
                 CreditSearchScreen(),
                 InvestmentSearchScreen(),
                 MortgageSearchScreen(),
-                CategoryPage(),
+                isCategoryPage == null
+                    ? CategoryPage(
+                        onCategorySelected: (v) =>
+                            setState(() => isCategoryPage = v))
+                    : CouponsMainPage(category: isCategoryPage),
               ]),
               Container(
                 decoration: BoxDecoration(

@@ -2,7 +2,9 @@ import 'package:fin_uslugi/core/network/api_util.dart';
 import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
 import 'package:fin_uslugi/features/banks/domain/repositories/banks_repository.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/response.dart';
+import 'package:injectable/injectable.dart';
 
+@Injectable(as: BanksRepository)
 class BanksDataRepository extends BanksRepository {
   final ApiUtil apiUtil;
   BanksDataRepository(this.apiUtil);

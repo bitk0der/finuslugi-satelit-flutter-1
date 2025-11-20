@@ -5,7 +5,9 @@ import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/re
 import 'package:dio/dio.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class BanksCubit extends Cubit<BanksState> {
   BanksCubit(this.repository) : super(BanksInitialState());
   final BanksRepository repository;

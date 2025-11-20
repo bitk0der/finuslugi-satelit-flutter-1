@@ -142,9 +142,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       Flexible(
                         child: InkWell(
                             onTap: () {
-                              GetIt.I<FiltersBloc>()
-                                  .add(ChangeTabIndex(index: 4));
-                              context.navigateTo(const SelectionRouter());
+                              /*    GetIt.I<FiltersBloc>()
+                                  .add(ChangeTabIndex(index: 4)); */
+                              context.router.navigate(const BanksRoute());
                             },
                             child: grayCard(
                                 Assets.icons.banks,

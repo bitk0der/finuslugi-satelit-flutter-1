@@ -1,25 +1,12 @@
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:fin_uslugi/core/constants/constants.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/theme/app_font.dart';
 import 'package:fin_uslugi/core/utils/handlers/text_change_handler.dart';
-import 'package:fin_uslugi/core/widgets/app_card_layout.dart';
-import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/presentation/bloc/local/local_coupons_bloc.dart';
-import 'package:fin_uslugi/features/coupons/presentation/widgets/app_sliver_appbar.dart';
 import 'package:fin_uslugi/features/programms/presentation/widgets/app_textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:fin_uslugi/features/coupons/data/models/config_item_model.dart';
-import 'package:fin_uslugi/features/coupons/data/models/coupon_model.dart';
-import 'package:fin_uslugi/features/coupons/presentation/bloc/coupons_bloc/remote/remote_coupons_bloc.dart';
-import 'package:fin_uslugi/features/coupons/presentation/widgets/alert_widget.dart';
-import 'package:fin_uslugi/features/coupons/presentation/widgets/expansion_list_tile.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DefaultSliverAppBar extends StatefulWidget {
   final Function(String) onTextChanged;

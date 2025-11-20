@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/widgets/app_button.dart';
 import 'package:fin_uslugi/features/coupons/data/models/coupon_item_model.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 
+@RoutePage()
 class CouponDetailsPage extends StatefulWidget {
   final RetailerModel retailerModel;
   final CouponFavouriteModel? couponFavouriteModel;

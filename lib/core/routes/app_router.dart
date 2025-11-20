@@ -16,6 +16,9 @@ import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/searc
 import 'package:fin_uslugi/features/cards/presentation/pages/filters/credit_cards_filters_screen.dart';
 import 'package:fin_uslugi/features/cards/presentation/pages/filters/credits_filters_screen.dart';
 import 'package:fin_uslugi/features/cards/presentation/pages/filters/debit_cards_filters_screen.dart';
+import 'package:fin_uslugi/features/coupons/data/models/retailer_model.dart';
+import 'package:fin_uslugi/features/coupons/presentation/pages/coupon_details_page.dart';
+import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/data/models/coupon_favourite_model.dart';
 import 'package:fin_uslugi/features/favourites/presentation/pages/home/favourites_page.dart';
 import 'package:fin_uslugi/features/fin_service/presentation/pages/fin_service_screen.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
@@ -25,6 +28,7 @@ import 'package:fin_uslugi/features/loans/presentation/pages/loans_main_screen.d
 import 'package:fin_uslugi/features/local_notifications/data/models/response_message_model.dart';
 import 'package:fin_uslugi/features/local_notifications/presentation/pages/background_notifications_screen.dart';
 import 'package:fin_uslugi/features/local_notifications/presentation/pages/notification_details_page.dart';
+import 'package:fin_uslugi/features/service/presentation/pages/main_service_page.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fin_uslugi/core/app_root_screen.dart';
 import 'package:fin_uslugi/features/home/presentation/pages/home_screen.dart';
@@ -48,6 +52,8 @@ class AppRouter extends RootStackRouter {
             path: 'home',
             children: [
               AutoRoute(page: HomeRoute.page, path: ''),
+              AutoRoute(page: BanksRoute.page, path: 'banks'),
+              AutoRoute(page: MoreAboutbankRoute.page, path: 'banks_details'),
             ],
           ),
           AutoRoute(
@@ -57,12 +63,33 @@ class AppRouter extends RootStackRouter {
               AutoRoute(page: FsinServiceRoute.page, path: ''),
               AutoRoute(page: LoanDetailsRoute.page, path: 'loan_details'),
               AutoRoute(page: LoansFiltersRoute.page, path: 'loans_filters'),
+              AutoRoute(page: CouponDetailsRoute.page, path: 'coupons_details'),
+              AutoRoute(
+                page: MoreAboutCreditCardRoute.page,
+                path: 'more_about_credit_card_route',
+              ),
+              AutoRoute(
+                page: MoreAboutCreditRoute.page,
+                path: 'more_about_credits_route',
+              ),
+              AutoRoute(
+                page: MoreAboutDebitCardRoute.page,
+                path: 'more_about_debit_card_route',
+              ),
+              AutoRoute(
+                page: MoreAboutMortgageRoute.page,
+                path: 'more_about_mortgage',
+              ),
+              AutoRoute(
+                page: MoreAboutinvestmentRoute.page,
+                path: 'more_about_investment',
+              ),
             ],
           ),
           AutoRoute(
             page: ServiceRouter.page,
             path: 'home',
-            children: [AutoRoute(page: HomeRoute.page, path: '')],
+            children: [AutoRoute(page: MainServiceRoute.page, path: '')],
           ),
         ],
       ),

@@ -106,42 +106,45 @@ class _FavouriteHomePageState extends State<FavouriteHomePage>
             ),
             BlocListener<LocalCouponsBloc, LocalCouponsState>(
                 listener: (context, LocalCouponsState state) async {
-              if (state is GetFavouritesCouponsSuccessfull) {
-                coupons = state.coupons;
-                _localFootballBloc.add(GetFavouritesRetailers());
-              }
-              if (state is GetFavouritesRetailersSuccessfull) {
-                retailers = state.retailers;
-              }
-              if (state is SuccessfullyAddedCouponToFavourite) {
-                _localFootballBloc.add(GetFavouritesCoupons());
-              }
-              if (state is SuccessfullyAddedToFavourite) {
-                _localFootballBloc.add(GetFavouritesRetailers());
-              }
-              if (state is SuccessfullyDeletedFromFavourite) {
-                _localFootballBloc.add(GetFavouritesCoupons());
-              }
-              if (state is LocalError) {
-                coupons = [];
-                retailers = [];
-              }
-            }, child: BlocBuilder<LocalCouponsBloc, LocalCouponsState>(
+                  if (state is GetFavouritesCouponsSuccessfull) {
+                    coupons = state.coupons;
+                    _localFootballBloc.add(GetFavouritesRetailers());
+                  }
+                  if (state is GetFavouritesRetailersSuccessfull) {
+                    retailers = state.retailers;
+                  }
+                  if (state is SuccessfullyAddedCouponToFavourite) {
+                    _localFootballBloc.add(GetFavouritesCoupons());
+                  }
+                  if (state is SuccessfullyAddedToFavourite) {
+                    _localFootballBloc.add(GetFavouritesRetailers());
+                  }
+                  if (state is SuccessfullyDeletedFromFavourite) {
+                    _localFootballBloc.add(GetFavouritesCoupons());
+                  }
+                  if (state is LocalError) {
+                    coupons = [];
+                    retailers = [];
+                  }
+                },
+                child: BlocBuilder(
+                    bloc: _localFootballBloc,
                     builder: (context, state) {
-              if (coupons == null || retailers == null) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              return Expanded(
-                  child: SafeArea(
-                child: TabBarView(
-                  controller: tabController,
-                  children: [
-                    listViewCoupons(searchCouponFavourite(searchString)),
-                    listViewRetailers(searchRetailers(searchString))
-                  ],
-                ),
-              ));
-            }))
+                      if (coupons == null || retailers == null) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return Expanded(
+                          child: SafeArea(
+                        child: TabBarView(
+                          controller: tabController,
+                          children: [
+                            listViewCoupons(
+                                searchCouponFavourite(searchString)),
+                            listViewRetailers(searchRetailers(searchString))
+                          ],
+                        ),
+                      ));
+                    }))
           ])),
     );
   }

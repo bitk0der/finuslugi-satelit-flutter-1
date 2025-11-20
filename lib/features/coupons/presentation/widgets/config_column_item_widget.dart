@@ -1,12 +1,14 @@
-import 'package:fin_uslugi/core/utils/handlers/config_item_click_handler.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fin_uslugi/features/coupons/data/models/config_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConfigColumnItemWidget extends StatelessWidget {
   final ConfigModel config;
-  const ConfigColumnItemWidget({required this.config, super.key});
+  final ValueChanged<String> onCategorySelected;
+  const ConfigColumnItemWidget(
+      {required this.config, super.key, required this.onCategorySelected});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +18,18 @@ class ConfigColumnItemWidget extends StatelessWidget {
       shrinkWrap: true,
       separatorBuilder: (context, index) => SizedBox(height: 3.h),
       itemBuilder: (context, index) => GestureDetector(
-        onTap: () async => ConfigItemClickHandler.configItemClickHandler(
-            context, config.items[index]),
+        onTap: () async {
+          if (config.items[index].url != null) {
+            await launchUrl(
+              Uri.parse(config.items[index].url!),
+              mode: LaunchMode.externalApplication,
+            );
+          } else {
+            onCategorySelected(config.items[index].category);
+          }
+        } /* ConfigItemClickHandler.configItemClickHandler(
+            context, config.items[index]) */
+        ,
         child: AppImageNetwork(config.items[index].image),
       ),
     );

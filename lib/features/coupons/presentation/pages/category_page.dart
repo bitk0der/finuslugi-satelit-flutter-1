@@ -1,6 +1,5 @@
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/theme/app_font.dart';
-import 'package:fin_uslugi/features/coupons/presentation/widgets/app_sliver_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +10,8 @@ import 'package:fin_uslugi/features/coupons/presentation/widgets/config_row_item
 import 'package:get_it/get_it.dart';
 
 class CategoryPage extends StatefulWidget {
-  const CategoryPage({super.key});
+  final ValueChanged<String> onCategorySelected;
+  const CategoryPage({super.key, required this.onCategorySelected});
 
   @override
   State<CategoryPage> createState() => _CategoryPageState();
@@ -44,9 +44,6 @@ class _CategoryPageState extends State<CategoryPage> {
               return Scaffold(
                 backgroundColor: ColorStyles.white,
                 body: CustomScrollView(shrinkWrap: true, slivers: [
-                  DefaultSliverAppBar(
-                      onTextChanged: (text) =>
-                          {} /* context.push('/home/main') */),
                   if (state is Failed)
                     SliverFillRemaining(
                         child: Center(
@@ -89,7 +86,10 @@ class _CategoryPageState extends State<CategoryPage> {
                                 itemBuilder: (context, i) {
                                   if (configModels![i].type == 'col') {
                                     return ConfigColumnItemWidget(
-                                        config: configModels![i]);
+                                      config: configModels![i],
+                                      onCategorySelected:
+                                          widget.onCategorySelected,
+                                    );
                                   }
                                   return ConfigRowItemWidget(
                                       config: configModels![i]);
