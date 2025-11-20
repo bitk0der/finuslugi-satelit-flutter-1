@@ -29,7 +29,7 @@ class HomeAppbarWidget extends StatelessWidget {
               SizedBox(height: 7.h),
               Text('И нaчинaйтe экoнoмить ужe ceгoдня',
                   style: TextStyles.h2.copyWith(
-                      color: Colors.white.withOpacity(0.8), fontSize: 15)),
+                      color: Colors.white.withValues(alpha:0.8), fontSize: 15)),
               SizedBox(height: 18.h), */
               AppUniversalBannerWidget(
                   banners: bannerList, category: 'main-top'),
@@ -65,7 +65,7 @@ class HomeAppbarWidget extends StatelessWidget {
                         SizedBox(height: 5.h),
                         Text('100% одобрения по паспорту',
                             style: TextStyles.h5.copyWith(
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withValues(alpha:0.8),
                                 fontSize: 13,
                                 height: 1.2)),
                       ],

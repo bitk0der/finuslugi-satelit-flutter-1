@@ -150,7 +150,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                               labelPadding:
                                   EdgeInsets.symmetric(horizontal: 8.w),
                               dividerHeight: 1,
-                              dividerColor: Colors.black.withOpacity(0.2),
+                              dividerColor: Colors.black.withValues(alpha: 0.2),
                               tabs: [
                                 for (var i = 0; i < tabsUpper.length; i++)
                                   upperTab(i),
@@ -183,7 +183,7 @@ class _FavouritesPageState extends State<FavouritesPage>
         tabsUpper[index],
         style: TextStyle(
             color: tabController.index != index
-                ? Colors.black.withOpacity(0.4)
+                ? Colors.black.withValues(alpha: 0.4)
                 : ColorStyles.blueText),
       ),
     );
@@ -218,7 +218,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                           'Вы добавили ${favouritesProducts.length} ${!isABank ? 'финуслуг' : 'банка'} в избранное',
                           style: TextStyles.h2.copyWith(
                               fontSize: 14,
-                              color: Colors.black.withOpacity(0.7)),
+                              color: Colors.black.withValues(alpha: 0.7)),
                         ),
                       ),
                       SizedBox(height: 12.h),

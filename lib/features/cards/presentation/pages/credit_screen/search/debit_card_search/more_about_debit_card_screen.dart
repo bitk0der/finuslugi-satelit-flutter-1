@@ -204,13 +204,13 @@ class _MoreAboutDebitCardScreenState extends State<MoreAboutDebitCardScreen>
         decoration: BoxDecoration(
             color: tabController.index == index
                 ? ColorStyles.blueButton
-                : Colors.black.withOpacity(0.1),
+                : Colors.black.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12.r)),
         child: Text(
           tabsUpper[index],
           style: TextStyle(
               color: tabController.index != index
-                  ? Colors.black.withOpacity(0.4)
+                  ? Colors.black.withValues(alpha: 0.4)
                   : ColorStyles.blue),
         ),
       ),
@@ -289,7 +289,7 @@ class _MoreAboutDebitCardScreenState extends State<MoreAboutDebitCardScreen>
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 14.sp,
-                      color: Colors.black.withOpacity(0.6),
+                      color: Colors.black.withValues(alpha: 0.6),
                     ),
                   ),
                   SizedBox(height: 4.h),
@@ -313,7 +313,7 @@ class _MoreAboutDebitCardScreenState extends State<MoreAboutDebitCardScreen>
                     style: TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 14.sp,
-                      color: Colors.black.withOpacity(0.6),
+                      color: Colors.black.withValues(alpha: 0.6),
                     ),
                   ),
                   SizedBox(height: 4.h),

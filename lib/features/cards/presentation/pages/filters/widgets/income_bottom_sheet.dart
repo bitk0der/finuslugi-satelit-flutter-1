@@ -58,7 +58,7 @@ class IncomeBottomSheet {
                       child: Icon(
                         Icons.close,
                         size: 26.r,
-                        color: Colors.black.withOpacity(0.6),
+                        color: Colors.black.withValues(alpha: 0.6),
                       ),
                     ),
                   ),

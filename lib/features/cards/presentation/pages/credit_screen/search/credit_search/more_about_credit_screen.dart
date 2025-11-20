@@ -209,7 +209,7 @@ class _MoreAboutCreditScreenState extends State<MoreAboutCreditScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 14.sp,
-                        color: Colors.black.withOpacity(0.6),
+                        color: Colors.black.withValues(alpha: 0.6),
                       ),
                     ),
                     SizedBox(height: 4.h),

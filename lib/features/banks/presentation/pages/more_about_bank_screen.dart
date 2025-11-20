@@ -151,7 +151,7 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
+                              color: Colors.black.withValues(alpha: 0.1),
                               blurRadius: 10)
                         ],
                         borderRadius: BorderRadius.circular(20),
@@ -167,7 +167,7 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14.sp,
-                                  color: Colors.black.withOpacity(0.5),
+                                  color: Colors.black.withValues(alpha: 0.5),
                                 ),
                               ),
                               SizedBox(height: 6.h),
@@ -190,7 +190,7 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
                                 style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14.sp,
-                                  color: Colors.black.withOpacity(0.5),
+                                  color: Colors.black.withValues(alpha: 0.5),
                                 ),
                               ),
                               SizedBox(height: 6.h),

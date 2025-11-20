@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: double.maxFinite,
       decoration: BoxDecoration(
-          color: isActive ? color : Colors.grey.withOpacity(0.8),
+          color: isActive ? color : Colors.grey.withValues(alpha: 0.8),
           borderRadius: BorderRadius.circular(borderRadius),
           gradient: gradient != null
               ? LinearGradient(

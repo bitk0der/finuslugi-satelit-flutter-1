@@ -33,7 +33,7 @@ class AlertWidget extends StatelessWidget {
             Text(
                 'Мы можем заранее напомнить вам об окончании срока действия купона. Просто добавьте напоминание.',
                 style: UIFonts.hint
-                    .copyWith(color: ColorStyles.black.withOpacity(0.7))),
+                    .copyWith(color: ColorStyles.black.withValues(alpha: 0.7))),
             SizedBox(height: 16.h),
             AppButton(
               backgroundColor: ColorStyles.blueButtonColor,
@@ -55,7 +55,7 @@ class AlertWidget extends StatelessWidget {
               onTap: () => Navigator.pop(context),
               title: 'Пропустить',
               /* textStyle: UIFonts.titleMedium.copyWith(
-                  color: ColorStyles.black.withOpacity(0.4), fontSize: 16.sp), */
+                  color: ColorStyles.black.withValues(alpha:0.4), fontSize: 16.sp), */
             )
           ],
         ));

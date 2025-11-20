@@ -170,7 +170,7 @@ class CustomAppBar {
                   padding: EdgeInsets.all(14.w),
                   decoration: BoxDecoration(
                       border: Border.all(
-                          color: Colors.white.withOpacity(0.2), width: 2),
+                          color: Colors.white.withValues(alpha: 0.2), width: 2),
                       color: Colors.white10,
                       borderRadius: BorderRadius.circular(14)),
                   child: Row(
@@ -179,7 +179,7 @@ class CustomAppBar {
                         'Рейтинг банка:',
                         style: TextStyle(
                             fontSize: 16.sp,
-                            color: Colors.white.withOpacity(0.7)),
+                            color: Colors.white.withValues(alpha: 0.7)),
                       ),
                       SizedBox(width: 10.w),
                       const Spacer(),
@@ -303,7 +303,7 @@ class CustomAppBar {
                                 horizontal: 14.w, vertical: 9.h),
                             decoration: BoxDecoration(
                                 border: Border.all(
-                                    color: Colors.white.withOpacity(0.2),
+                                    color: Colors.white.withValues(alpha: 0.2),
                                     width: 2),
                                 color: Colors.white10,
                                 borderRadius: BorderRadius.circular(14)),
@@ -511,7 +511,7 @@ class CustomAppBar {
               Text(
                 subtitle,
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.6),
+                  color: Colors.white.withValues(alpha: 0.6),
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w400,
                 ),

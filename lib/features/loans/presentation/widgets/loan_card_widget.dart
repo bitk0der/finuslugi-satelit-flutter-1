@@ -26,14 +26,11 @@ class LoanCardWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 20.w),
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-            colors: ColorStyles.navbarGradient,
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter),
+        color: ColorStyles.fillColor2,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: Colors.black.withValues(alpha: 0.15),
             blurRadius: 20,
             offset: const Offset(0, 4),
           ),

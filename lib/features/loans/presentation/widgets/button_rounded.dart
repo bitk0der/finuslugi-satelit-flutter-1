@@ -17,7 +17,7 @@ class ButtonRounded extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(8.w),
         decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
+            color: Colors.white.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(10.r)),
         child: RotatedBox(
           quarterTurns: quarterTurns,

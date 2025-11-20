@@ -13,7 +13,7 @@ class CreditErrorBody extends StatelessWidget {
         Icon(
           Icons.error_outline,
           size: 100,
-          color: Colors.black.withOpacity(0.3),
+          color: Colors.black.withValues(alpha: 0.3),
         ),
         SizedBox(height: 20.h),
         Padding(

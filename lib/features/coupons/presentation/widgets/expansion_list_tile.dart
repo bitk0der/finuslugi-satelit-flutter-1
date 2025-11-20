@@ -128,14 +128,16 @@ class _AppExpansionListTileState extends State<AppExpansionListTile> {
                               ? null
                               : DottedDecoration(
                                   linePosition: LinePosition.bottom,
-                                  color: ColorStyles.black.withOpacity(0.1)),
+                                  color:
+                                      ColorStyles.black.withValues(alpha: 0.1)),
                           child: Container(
                               padding: EdgeInsets.only(
                                   top: 14.h,
                                   bottom: widget.coupon.total <= 3 ? 0 : 8.h),
                               decoration: DottedDecoration(
                                   linePosition: LinePosition.top,
-                                  color: ColorStyles.black.withOpacity(0.1)),
+                                  color:
+                                      ColorStyles.black.withValues(alpha: 0.1)),
                               child: _buildExpandableContent(widget.coupon)),
                         ),
                         widget.coupon.total <= 3

@@ -79,7 +79,7 @@ class _LoansFiltersPageState extends State<LoansFiltersPage> {
                     borderRadius: 10,
                     /*    shadow: [
                       BoxShadow(
-                          color: ColorStyles.green.withOpacity(0.4),
+                          color: ColorStyles.green.withValues(alpha:0.4),
                           blurRadius: 20)
                     ], */
                     titleColor: Colors.black,

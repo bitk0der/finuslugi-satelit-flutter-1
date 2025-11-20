@@ -73,7 +73,7 @@ class CustomAppBar {
             SizedBox(height: 3.h),
             Text('Сервис по умному подбору займов',
                 style: TextStyles.h2
-                    .copyWith(color: Colors.white.withOpacity(0.7))),
+                    .copyWith(color: Colors.white.withValues(alpha: 0.7))),
           ],
         ),
       ),

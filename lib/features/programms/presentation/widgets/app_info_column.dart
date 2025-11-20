@@ -20,7 +20,7 @@ class AppInfoColumn extends StatelessWidget {
           width: isComparison ? 240.w : null,
           child: Text(title,
               style: TextStyle(
-                  color: Colors.black.withOpacity(0.6), fontSize: 14)),
+                  color: Colors.black.withValues(alpha: 0.6), fontSize: 14)),
         ),
         SizedBox(height: 6.h),
         SizedBox(

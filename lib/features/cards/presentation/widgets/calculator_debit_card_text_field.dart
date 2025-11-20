@@ -48,7 +48,7 @@ class _CalculatorDebitCardTextFieldState
           style: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 16.sp,
-            color: Colors.black.withOpacity(0.8),
+            color: Colors.black.withValues(alpha: 0.8),
           ),
         ),
         SizedBox(height: 6.h),
@@ -65,7 +65,8 @@ class _CalculatorDebitCardTextFieldState
                   decoration: BoxDecoration(
                     color: widget.backgroundColor,
                     borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Colors.black.withOpacity(0.5)),
+                    border:
+                        Border.all(color: Colors.black.withValues(alpha: 0.5)),
                   ),
                   child: Center(
                     child: TextField(
@@ -85,7 +86,8 @@ class _CalculatorDebitCardTextFieldState
                         suffixStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14.sp,
-                          color: ColorStyles.primaryFontColor.withOpacity(0.8),
+                          color: ColorStyles.primaryFontColor
+                              .withValues(alpha: 0.8),
                         ),
                       ),
                     ),

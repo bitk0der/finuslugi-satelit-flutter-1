@@ -192,13 +192,13 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
         decoration: BoxDecoration(
             color: tabController.index == index
                 ? ColorStyles.blueButton
-                : Colors.black.withOpacity(0.1),
+                : Colors.black.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(12.r)),
         child: Text(
           tabsUpper[index],
           style: TextStyle(
               color: tabController.index != index
-                  ? Colors.black.withOpacity(0.4)
+                  ? Colors.black.withValues(alpha: 0.4)
                   : ColorStyles.blue),
         ),
       ),

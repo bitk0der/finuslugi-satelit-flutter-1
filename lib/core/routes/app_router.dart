@@ -46,12 +46,18 @@ class AppRouter extends RootStackRouter {
           AutoRoute(
             page: HomeRouter.page,
             path: 'home',
-            children: [AutoRoute(page: HomeRoute.page, path: '')],
+            children: [
+              AutoRoute(page: HomeRoute.page, path: ''),
+            ],
           ),
           AutoRoute(
             page: SelectionRouter.page,
             path: 'home',
-            children: [AutoRoute(page: FsinServiceRoute.page, path: '')],
+            children: [
+              AutoRoute(page: FsinServiceRoute.page, path: ''),
+              AutoRoute(page: LoanDetailsRoute.page, path: 'loan_details'),
+              AutoRoute(page: LoansFiltersRoute.page, path: 'loans_filters'),
+            ],
           ),
           AutoRoute(
             page: ServiceRouter.page,

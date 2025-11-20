@@ -28,7 +28,7 @@ class _ProgrammDetailsPageState extends State<ProgrammDetailsPage> {
 
   Color getColor(bool firstTabIsChoosen) {
     return firstTabIsChoosen
-        ? theme.primaryColor.withOpacity(0.5)
+        ? theme.primaryColor.withValues(alpha: 0.5)
         : theme.primaryColor;
   }
 

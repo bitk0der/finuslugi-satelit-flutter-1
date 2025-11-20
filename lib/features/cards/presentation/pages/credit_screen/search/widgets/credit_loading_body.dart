@@ -15,7 +15,7 @@ class CreditLoadingBody extends StatelessWidget {
           child: LinearProgressIndicator(
             minHeight: 10.h,
             color: Colors.black,
-            backgroundColor: Colors.black.withOpacity(0.05),
+            backgroundColor: Colors.black.withValues(alpha: 0.05),
           ),
         ),
         SizedBox(height: 20.h),

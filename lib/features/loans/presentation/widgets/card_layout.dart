@@ -33,13 +33,13 @@ class AppCardLayout extends StatelessWidget {
                 : [
                     shadow ??
                         BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
+                            color: Colors.black.withValues(alpha: 0.1),
                             blurRadius: 10.r)
                   ],
             border: Border.all(
                 width: 1,
                 color: isNeedBorder
-                    ? Colors.black.withOpacity(0.5)
+                    ? Colors.black.withValues(alpha: 0.5)
                     : Colors.transparent),
             color: color ?? Colors.white,
             borderRadius: BorderRadius.circular(radius ?? 20.r)),

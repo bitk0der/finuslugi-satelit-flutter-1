@@ -229,7 +229,8 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
               child: HtmlWidget(
                 widget.loan.description,
                 textStyle: TextStyles.h3.copyWith(
-                    fontSize: 17.sp, color: Colors.white.withOpacity(0.8)),
+                    fontSize: 17.sp,
+                    color: Colors.white.withValues(alpha: 0.8)),
               )),
         getTitle('Общая информация'),
         Container(
@@ -374,7 +375,7 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
           children: [
             Text(faqs[i].answer,
                 style: TextStyles.h3
-                    .copyWith(color: Colors.white.withOpacity(0.8)))
+                    .copyWith(color: Colors.white.withValues(alpha: 0.8)))
           ],
         ),
       ),

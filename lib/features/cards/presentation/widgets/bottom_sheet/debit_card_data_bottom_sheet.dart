@@ -52,7 +52,7 @@ class _DebitCardDataBottomSheetState extends State<DebitCardDataBottomSheet> {
         CalculatorDebitCardTextField(
           title: 'Введите остаток по счету',
           controller: _balanceController,
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: Colors.black.withValues(alpha: 0.05),
         ),
         SizedBox(height: 15.h),
         Text(
@@ -67,7 +67,7 @@ class _DebitCardDataBottomSheetState extends State<DebitCardDataBottomSheet> {
         CalculatorDebitCardTextField(
           title: 'Введите сумму',
           controller: _spendingController,
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: Colors.black.withValues(alpha: 0.05),
         ),
         if (widget.onTap != null)
           Padding(
@@ -127,7 +127,7 @@ class _DebitCardDataBottomSheetState extends State<DebitCardDataBottomSheet> {
               borderRadius: BorderRadius.circular(12),
               color: isSelected
                   ? ColorStyles.orangeColor
-                  : Colors.black.withOpacity(0.3),
+                  : Colors.black.withValues(alpha: 0.3),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),

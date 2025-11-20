@@ -80,7 +80,7 @@ class _FavouriteHomePageState extends State<FavouriteHomePage>
                 indicatorSize: TabBarIndicatorSize.tab,
                 labelColor: ColorStyles.white,
                 labelStyle: UIFonts.titleMedium,
-                unselectedLabelColor: ColorStyles.black.withOpacity(0.5),
+                unselectedLabelColor: ColorStyles.black.withValues(alpha: 0.5),
                 splashBorderRadius: BorderRadius.circular(100.r),
                 indicatorWeight: 0,
                 dividerHeight: 0,

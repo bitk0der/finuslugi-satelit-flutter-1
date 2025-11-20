@@ -36,7 +36,7 @@ class InvestmentCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.10),
+            color: Colors.black.withValues(alpha: 0.10),
             blurRadius: 10,
           ),
         ],
@@ -59,7 +59,8 @@ class InvestmentCardWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.black.withOpacity(0.2)),
+                    border:
+                        Border.all(color: Colors.black.withValues(alpha: 0.2)),
                   ),
                   child: Center(
                     child:
@@ -84,7 +85,7 @@ class InvestmentCardWidget extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 14.sp,
-                        color: Colors.black.withOpacity(0.7),
+                        color: Colors.black.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -114,7 +115,7 @@ class InvestmentCardWidget extends StatelessWidget {
             children: [
               Flexible(
                 child: CustomButton(
-                  color: ColorStyles.blueButton.withOpacity(0.1),
+                  color: ColorStyles.blueButton.withValues(alpha: 0.1),
                   title: "Подробнее",
                   titleColor: ColorStyles.blueText,
                   gradient: null,
@@ -140,7 +141,7 @@ class InvestmentCardWidget extends StatelessWidget {
                     bloc: GetIt.I<LocalMortgageBloc>(),
                     builder: (context, state) {
                       return AppSmallButton(
-                          color: ColorStyles.blueButton.withOpacity(0.1),
+                          color: ColorStyles.blueButton.withValues(alpha: 0.1),
                           size: 46.w,
                           padding: 11,
                           icon: Assets.icons.buttonsIcon.star,

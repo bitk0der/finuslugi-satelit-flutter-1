@@ -118,19 +118,18 @@ class _LoansScreenState extends State<LoansScreen> {
               ),
             ),
             child: Scaffold(
-              backgroundColor: Colors.transparent,
-              appBar: CalculatorAppBar(
+              /* appBar: CalculatorAppBar(
                 consultantName: 'Каталог',
                 isNeedBackButton: false,
                 style: TextStyles.h1.copyWith(
                   fontSize: 22.sp,
                   fontWeight: FontWeight.w500,
                 ),
-              ),
+              ), */
               body: state is CreditSearchBlocLoadingState
                   ? Column(
                       children: [
-                        upperWidget(theme),
+                        /* upperWidget(theme), */
                         Expanded(flex: 2, child: progressIndicator()),
                       ],
                     )
@@ -158,7 +157,7 @@ class _LoansScreenState extends State<LoansScreen> {
                                       textAlign: TextAlign.center,
                                       style: TextStyles.h2,
                                     ),
-                                    upperWidget(theme),
+                                    /* upperWidget(theme), */
                                   ],
                                 ),
                               ),
@@ -168,7 +167,7 @@ class _LoansScreenState extends State<LoansScreen> {
                               if (index == 0) {
                                 return Column(
                                   children: [
-                                    upperWidget(theme, 0),
+                                    /*   upperWidget(theme, 0), */
                                     AppUniversalBannerWidget(
                                       category: 'mfo-list',
                                       banners: bannerList,

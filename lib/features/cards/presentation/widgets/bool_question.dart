@@ -122,7 +122,7 @@ class _SelectButton extends StatelessWidget {
                   border: Border.all(
                     color: isActive
                         ? ColorStyles.blueButtonColor
-                        : Colors.black.withOpacity(0.8),
+                        : Colors.black.withValues(alpha: 0.8),
                   ),
                   borderRadius: BorderRadius.circular(100),
                 ),

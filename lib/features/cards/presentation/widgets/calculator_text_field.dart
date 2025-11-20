@@ -137,7 +137,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 16.sp,
-              color: Colors.black.withOpacity(0.8),
+              color: Colors.black.withValues(alpha: 0.8),
             ),
           ),
         ),
@@ -176,7 +176,7 @@ class _CalculatorTextFieldState extends State<CalculatorTextField> {
                         suffixStyle: TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14.sp,
-                          color: Colors.black.withOpacity(0.5),
+                          color: Colors.black.withValues(alpha: 0.5),
                         ),
                       ),
                     ),

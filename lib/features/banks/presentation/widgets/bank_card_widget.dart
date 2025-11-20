@@ -33,7 +33,7 @@ class BankCardWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.15),
+            color: Colors.black.withValues(alpha: 0.15),
             blurRadius: 20,
             offset: const Offset(0, 4),
           ),
@@ -67,7 +67,7 @@ class BankCardWidget extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w300,
                         fontSize: 14.sp,
-                        color: Colors.black.withOpacity(0.7),
+                        color: Colors.black.withValues(alpha: 0.7),
                       ),
                     ),
                   ],
@@ -93,7 +93,7 @@ class BankCardWidget extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 14.sp,
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.black.withValues(alpha: 0.5),
                       ),
                     ),
                     Text(
@@ -115,7 +115,7 @@ class BankCardWidget extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.w400,
                         fontSize: 14.sp,
-                        color: Colors.black.withOpacity(0.5),
+                        color: Colors.black.withValues(alpha: 0.5),
                       ),
                     ),
                     Text(
@@ -150,7 +150,7 @@ class BankCardWidget extends StatelessWidget {
                   bloc: GetIt.I<LocalMortgageBloc>(),
                   builder: (context, state) {
                     return AppSmallButton(
-                        color: ColorStyles.blueButton.withOpacity(0.1),
+                        color: ColorStyles.blueButton.withValues(alpha: 0.1),
                         size: 46.w,
                         padding: 11,
                         icon: Assets.icons.buttonsIcon.star,

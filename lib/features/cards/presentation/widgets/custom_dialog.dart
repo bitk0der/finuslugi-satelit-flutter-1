@@ -149,7 +149,7 @@ abstract class CustomDialog {
                     onTap: () => Navigator.pop(dialogContext),
                     child: Icon(
                       Icons.close,
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withValues(alpha: 0.5),
                       size: 25.h,
                     ),
                   )

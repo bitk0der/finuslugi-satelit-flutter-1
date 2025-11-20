@@ -33,7 +33,7 @@ class ChatTextInput extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
                 border: Border.all(color: Colors.white),
               ),
               child: Center(
@@ -55,7 +55,7 @@ class ChatTextInput extends StatelessWidget {
                     hintStyle: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w400,
-                      color: Colors.white.withOpacity(0.6),
+                      color: Colors.white.withValues(alpha: 0.6),
                     ),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -71,7 +71,7 @@ class ChatTextInput extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
               border: Border.all(color: Colors.white),
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withValues(alpha: 0.1),
             ),
             child: TextButton(
               style: TextButton.styleFrom(

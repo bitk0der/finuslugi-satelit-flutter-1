@@ -20,7 +20,7 @@ class UIFonts {
         fontWeight: FontWeight.w400,
         fontFamily: fontFamily,
         height: textHeight,
-        color: ColorStyles.black.withOpacity(0.6),
+        color: ColorStyles.black.withValues(alpha: 0.6),
       );
 
   static TextStyle get bodyMedium => TextStyle(
@@ -35,21 +35,21 @@ class UIFonts {
         fontWeight: FontWeight.w700,
         fontFamily: fontFamily,
         height: textHeight,
-        color: ColorStyles.black.withOpacity(0.6),
+        color: ColorStyles.black.withValues(alpha: 0.6),
       );
   static get bodySmall => TextStyle(
         fontSize: 15.sp,
         fontWeight: FontWeight.w400,
         fontFamily: fontFamily,
         height: textHeight,
-        color: ColorStyles.black.withOpacity(0.6),
+        color: ColorStyles.black.withValues(alpha: 0.6),
       );
   static TextStyle get hint => TextStyle(
         fontSize: 16.sp,
         fontWeight: FontWeight.w400,
         fontFamily: fontFamily,
         height: textHeight,
-        color: ColorStyles.black.withOpacity(0.4),
+        color: ColorStyles.black.withValues(alpha: 0.4),
       );
 
   static TextStyle get titleMedium => TextStyle(

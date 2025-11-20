@@ -278,7 +278,7 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                     children: [
                       Container(
                           decoration: DottedDecoration(
-                              color: ColorStyles.black.withOpacity(0.1))),
+                              color: ColorStyles.black.withValues(alpha: 0.1))),
                       Padding(
                         padding: EdgeInsets.all(16.w),
                         child: Row(
@@ -347,8 +347,8 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                             Text(isExpanded ? 'Свернуть' : 'Развернуть',
                                 style: isExpanded
                                     ? UIFonts.blueText.copyWith(
-                                        color:
-                                            ColorStyles.black.withOpacity(0.6))
+                                        color: ColorStyles.black
+                                            .withValues(alpha: 0.6))
                                     : UIFonts.blueText),
                           ],
                         )),

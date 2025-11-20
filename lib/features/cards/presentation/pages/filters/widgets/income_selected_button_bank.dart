@@ -39,7 +39,7 @@ class IncomeSelectedButtonBank extends StatelessWidget {
           SizedBox(height: 10.h),
           Divider(
             height: 1.h,
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
           ),
           TextButton(
             onPressed: onTap,

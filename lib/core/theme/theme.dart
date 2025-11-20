@@ -8,8 +8,8 @@ final defaultTheme = ThemeData(
   bottomNavigationBarTheme: bottomNavBarTheme,
   buttonTheme: buttonThemeData,
   colorScheme: ColorScheme(
-    primaryContainer: ColorStyles.white.withOpacity(0.15),
-    secondaryContainer: ColorStyles.white.withOpacity(0.1),
+    primaryContainer: ColorStyles.white.withValues(alpha: 0.15),
+    secondaryContainer: ColorStyles.white.withValues(alpha: 0.1),
     onSecondaryContainer: ColorStyles.white,
     brightness: Brightness.dark,
     primary: ColorStyles.primaryBlue,
@@ -40,9 +40,9 @@ var buttonThemeData = const ButtonThemeData(
 var bottomNavBarTheme = BottomNavigationBarThemeData(
   /* selectedLabelStyle: UIFonts.selectedLabelStyle,
     unselectedLabelStyle:
-        UIFonts.selectedLabelStyle.copyWith(color: ColorStyles.white.withOpacity(0.6)), */
+        UIFonts.selectedLabelStyle.copyWith(color: ColorStyles.white.withValues(alpha:0.6)), */
   selectedItemColor: ColorStyles.orange,
-  unselectedItemColor: ColorStyles.white.withOpacity(0.6),
+  unselectedItemColor: ColorStyles.white.withValues(alpha: 0.6),
 );
 
 var appBarTheme = const AppBarTheme(

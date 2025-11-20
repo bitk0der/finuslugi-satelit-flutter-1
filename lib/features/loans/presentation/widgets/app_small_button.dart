@@ -33,7 +33,7 @@ class _AppSmallButtonState extends State<AppSmallButton> {
           width: widget.size ?? 38.w,
           height: widget.size ?? 38.w,
           decoration: BoxDecoration(
-              color: widget.color ?? Colors.white.withOpacity(0.2),
+              color: widget.color ?? Colors.white.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(12.r)),
           padding: EdgeInsets.all(widget.padding),
           child: widget.child ??

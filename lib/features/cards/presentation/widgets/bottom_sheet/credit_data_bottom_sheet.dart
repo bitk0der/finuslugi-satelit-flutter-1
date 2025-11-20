@@ -42,12 +42,12 @@ class _CreditDataBottomSheetState extends State<CreditDataBottomSheet> {
         ///сумма
         CalculatorTextField(
           controller: _sumController,
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: Colors.black.withValues(alpha: 0.05),
           title: "Сумма кредита, руб.",
           minValue: 0,
           maxValue: 30000000,
           showRange: false,
-          borderColor: Colors.black.withOpacity(0.05),
+          borderColor: Colors.black.withValues(alpha: 0.05),
           borderRadius: 8,
           inputFormatter: [LongNumberTextFormatter()],
           maxLength: 10,
@@ -55,7 +55,7 @@ class _CreditDataBottomSheetState extends State<CreditDataBottomSheet> {
         Text(
           '0₽ — 30 000 000₽',
           style: TextStyle(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withValues(alpha: 0.3),
             fontSize: 17.sp,
             fontWeight: FontWeight.w400,
           ),
@@ -65,7 +65,7 @@ class _CreditDataBottomSheetState extends State<CreditDataBottomSheet> {
         ///срок
         CalculatorTextField(
           controller: _termController,
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: Colors.black.withValues(alpha: 0.05),
           title: "Срок кредита, лет",
           minValue: 1,
           maxValue: 30,
@@ -74,13 +74,13 @@ class _CreditDataBottomSheetState extends State<CreditDataBottomSheet> {
           suffixText: "лет",
           maxLength: 2,
           borderRadius: 8,
-          borderColor: Colors.black.withOpacity(0.05),
+          borderColor: Colors.black.withValues(alpha: 0.05),
           showRange: false,
         ),
         Text(
           '1 год — 30 лет',
           style: TextStyle(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withValues(alpha: 0.3),
             fontSize: 17.sp,
             fontWeight: FontWeight.w400,
           ),

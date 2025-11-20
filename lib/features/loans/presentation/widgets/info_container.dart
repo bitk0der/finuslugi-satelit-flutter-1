@@ -31,7 +31,7 @@ class InfoContainer extends StatelessWidget {
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 15.sp,
-              color: textColor.withOpacity(0.7),
+              color: textColor.withValues(alpha: 0.7),
             ),
           ),
           SizedBox(height: 6.h),

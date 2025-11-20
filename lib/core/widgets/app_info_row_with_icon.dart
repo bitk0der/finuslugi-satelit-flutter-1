@@ -19,7 +19,8 @@ class AppInfoRowWithIcon extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
-            BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 10)
+            BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1), blurRadius: 10)
           ],
           borderRadius: BorderRadius.circular(20)),
       child: Row(
@@ -31,7 +32,8 @@ class AppInfoRowWithIcon extends StatelessWidget {
               SizedBox(width: 12.w),
               Text(title,
                   style: TextStyle(
-                      fontSize: 16, color: Colors.black.withOpacity(0.6))),
+                      fontSize: 16,
+                      color: Colors.black.withValues(alpha: 0.6))),
             ],
           ),
           Text(value,

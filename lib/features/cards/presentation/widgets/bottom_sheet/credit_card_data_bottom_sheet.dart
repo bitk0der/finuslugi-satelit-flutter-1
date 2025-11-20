@@ -36,14 +36,14 @@ class _CreditCardDataBottomSheetState extends State<CreditCardDataBottomSheet> {
           title: "Сумма кредита, руб.",
           minValue: 1000,
           maxValue: 1000000,
-          backgroundColor: Colors.black.withOpacity(0.05),
+          backgroundColor: Colors.black.withValues(alpha: 0.05),
         ),
         Align(
           alignment: Alignment.center,
           child: Text(
             '1000₽ — 1 000 000₽',
             style: TextStyle(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               fontSize: 17.sp,
               fontWeight: FontWeight.w400,
             ),
