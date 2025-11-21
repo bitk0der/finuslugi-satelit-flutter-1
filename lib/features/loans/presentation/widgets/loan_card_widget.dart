@@ -7,6 +7,7 @@ import 'package:fin_uslugi/core/theme/app_fonts.dart';
 import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LoanCardWidget extends StatelessWidget {
   final LoanMainModel loan;
@@ -114,8 +115,11 @@ class LoanCardWidget extends StatelessWidget {
                 color: ColorStyles.red,
                 borderRadius: 10,
                 titleColor: Colors.white,
+                onTap: () => launchUrl(
+                  Uri.parse(loan.meta.offerUrl),
+                  mode: LaunchMode.externalApplication,
+                ),
                 title: "Оформить",
-                onTap: onMoreAboutButtonPressed,
               )),
             ],
           )

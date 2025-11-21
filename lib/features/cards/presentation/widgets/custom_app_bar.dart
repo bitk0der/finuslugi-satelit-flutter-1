@@ -86,7 +86,7 @@ class CustomAppBar {
                 Row(
                   children: [
                     ClipRRect(
-                        borderRadius: BorderRadius.circular(11.23),
+                        borderRadius: BorderRadius.circular(6.5),
                         child: AppImageNetwork(
                             UiUtil.getlogoUrl(loan.meta.logoSquare))),
                     SizedBox(width: 13.w),
