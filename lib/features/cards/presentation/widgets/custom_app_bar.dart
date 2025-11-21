@@ -11,6 +11,7 @@ import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network
 import 'package:fin_uslugi/features/cards/presentation/widgets/favourite_button.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
+import 'package:fin_uslugi/features/loans/presentation/widgets/favourite_loan_widget.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/comparison_mortgage_bloc/local/local_comparison_mortgage_bloc.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
@@ -57,46 +58,50 @@ class CustomAppBar {
   static PreferredSize getLoanAppBar(
       {required BuildContext context, required LoanMainModel loan}) {
     return PreferredSize(
-      preferredSize: Size(0, 105.h),
+      preferredSize: Size.fromHeight(kToolbarHeight * 1.5),
       child: Container(
         decoration: const BoxDecoration(
-            color: ColorStyles.violetColor,
+            color: ColorStyles.black,
             border: Border(
                 bottom: BorderSide(
-              color: Colors.white10,
+              color: Colors.white24,
             ))),
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 21.w, vertical: 15.h),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              InkWell(
-                onTap: () => context.maybePop(),
-                child: ButtonRounded(
-                    quarterTurns: 2,
-                    color: Colors.white,
-                    icon: Assets.icons.arrowRight),
-              ),
-              SizedBox(width: 15.w),
-              ClipRRect(
-                  borderRadius: BorderRadius.circular(11.23),
-                  child:
-                      AppImageNetwork(UiUtil.getlogoUrl(loan.meta.logoSquare))),
-              SizedBox(width: 13.w),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text('Микрофинансовая организация',
-                      style: TextStyles.h3
-                          .copyWith(color: Colors.white70, fontSize: 13.sp)),
-                  SizedBox(height: 3.64.h),
-                  Text(loan.title,
-                      style: TextStyles.h1
-                          .copyWith(fontFamily: TextStyles.fontFamily)),
-                ],
-              )
-            ],
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 21.w, vertical: 15.h),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () => context.maybePop(),
+                      child: ButtonRounded(
+                          quarterTurns: 2,
+                          color: Colors.white,
+                          icon: Assets.icons.arrowRight),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    ClipRRect(
+                        borderRadius: BorderRadius.circular(11.23),
+                        child: AppImageNetwork(
+                            UiUtil.getlogoUrl(loan.meta.logoSquare))),
+                    SizedBox(width: 13.w),
+                    Text(loan.title,
+                        style: TextStyles.h1.copyWith(
+                            fontFamily: TextStyles.fontFamily,
+                            color: Colors.white)),
+                  ],
+                ),
+                FavouriteLoanWidget(
+                  loan: loan,
+                  isInDetailsScreen: true,
+                )
+              ],
+            ),
           ),
         ),
       ),

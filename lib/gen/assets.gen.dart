@@ -78,6 +78,9 @@ class $AssetsIconsGen {
   $AssetsIconsNavBarIconsGen get navBarIcons =>
       const $AssetsIconsNavBarIconsGen();
 
+  /// File path: assets/icons/procent.svg
+  SvgGenImage get procent => const SvgGenImage('assets/icons/procent.svg');
+
   /// File path: assets/icons/procent_icon.svg
   SvgGenImage get procentIcon =>
       const SvgGenImage('assets/icons/procent_icon.svg');
@@ -104,6 +107,7 @@ class $AssetsIconsGen {
         favouriteIcon,
         filledFavouriteIcon,
         mfos,
+        procent,
         procentIcon,
         safeIcon,
         shareIcon,

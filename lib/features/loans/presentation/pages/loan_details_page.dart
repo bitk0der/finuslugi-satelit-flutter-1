@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fin_uslugi/core/widgets/app_card_layout.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/custom_button.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/info_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:intl/intl.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/theme/app_fonts.dart';
@@ -42,22 +42,14 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            colors: ColorStyles.navbarGradient,
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: CustomAppBar.getLoanAppBar(loan: widget.loan, context: context),
-        body: _getBody(),
-      ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: CustomAppBar.getLoanAppBar(loan: widget.loan, context: context),
+      body: _getBody(),
     );
   }
 
-  fillExpandedList(int index) {
+  void fillExpandedList(int index) {
     switch (index) {
       case 0:
         isExpandedList = [];
@@ -90,7 +82,7 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
         Builder(builder: (context) {
           return Column(children: [
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
                 width: double.infinity,
                 decoration: BoxDecoration(
                     image: DecorationImage(
@@ -103,9 +95,9 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
                       width: double.maxFinite,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                          color: ColorStyles.fillColor,
+                          color: ColorStyles.white.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: ColorStyles.green)),
+                          border: Border.all(color: ColorStyles.blueText)),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -139,14 +131,25 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
                         ],
                       ),
                     ),
-                    AppUniversalBannerWidget(
-                      category: 'mfo-info',
-                      banners: bannerList,
-                      padding: EdgeInsets.only(top: 10.h),
-                    ),
+                    SizedBox(height: 16),
+                    AppCardLayout(
+                        color: ColorStyles.green,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Assets.icons.procent.svg(),
+                              SizedBox(width: 8),
+                              Text(
+                                'Первые 30 дней без %',
+                                style: TextStyles.h4.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600),
+                              )
+                            ])),
                   ],
                 )),
-            TabBar(
+            Expanded(child: tab1()),
+            /* TabBar(
                 tabAlignment: TabAlignment.center,
                 indicatorSize: TabBarIndicatorSize.tab,
                 controller: tabController,
@@ -176,21 +179,29 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
                       'Пocлeдcтвия пpocpoчки зaймa в MФO До зарплаты'),
                   tab(widget.loan.additionalInfo.prodlenie,
                       'Пpoдлeниe зaймa в До зарплаты'),
-                ])),
+                ])), */
           ]);
         }),
+        AppUniversalBannerWidget(
+          category: 'mfo-info',
+          banners: bannerList,
+          padding: EdgeInsets.only(top: 10.h),
+        ),
         if (widget.loan.meta.offerUrl.isNotEmpty)
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: CustomButton(
-                color: ColorStyles.green,
-                titleColor: Colors.black,
-                title: "Получить займ",
-                onTap: () => launchUrl(
-                  Uri.parse(widget.loan.meta.offerUrl),
-                  mode: LaunchMode.externalApplication,
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: CustomButton(
+                  height: 54.h,
+                  color: ColorStyles.black,
+                  titleColor: Colors.white,
+                  title: "Получить займ",
+                  onTap: () => launchUrl(
+                    Uri.parse(widget.loan.meta.offerUrl),
+                    mode: LaunchMode.externalApplication,
+                  ),
                 ),
               ),
             ),
@@ -219,11 +230,12 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
     'Продление займа'
   ];
 
-  tab1() {
+  ListView tab1() {
     return ListView(
+      shrinkWrap: true,
       children: [
-        if (widget.loan.description.isNotEmpty) getTitle('О компании'),
-        if (widget.loan.description.isNotEmpty)
+        /* if (widget.loan.description.isNotEmpty) getTitle('О компании'),
+           if (widget.loan.description.isNotEmpty)
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: HtmlWidget(
@@ -231,17 +243,14 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
                 textStyle: TextStyles.h3.copyWith(
                     fontSize: 17.sp,
                     color: Colors.white.withValues(alpha: 0.8)),
-              )),
+              )), */
         getTitle('Общая информация'),
         Container(
             padding: const EdgeInsets.symmetric(horizontal: 14),
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             decoration: BoxDecoration(
-                color: ColorStyles.fillColor,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(color: Colors.black12, blurRadius: 10)
-                ]),
+                color: ColorStyles.fillColor2,
+                borderRadius: BorderRadius.circular(20)),
             child: Column(
               children: [
                 InfoContainer(
@@ -267,11 +276,8 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
             padding: const EdgeInsets.symmetric(horizontal: 14),
             margin: EdgeInsets.symmetric(horizontal: 20.w),
             decoration: BoxDecoration(
-                color: ColorStyles.fillColor,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: const [
-                  BoxShadow(color: Colors.black12, blurRadius: 10)
-                ]),
+                color: ColorStyles.fillColor2,
+                borderRadius: BorderRadius.circular(20)),
             child: Column(
               children: [
                 InfoContainer(
@@ -309,12 +315,12 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
                 SizedBox(height: 17.h),
               ],
             )),
-        SizedBox(height: 100.h),
+        SizedBox(height: kToolbarHeight * 1.5),
       ],
     );
   }
 
-  getTitle(String title) {
+  Padding getTitle(String title) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       child: Text(
@@ -325,7 +331,7 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
     );
   }
 
-  tab(List<FAQ> faqs, String title) {
+  ListView tab(List<FAQ> faqs, String title) {
     return ListView(children: [
       getTitle(title),
       for (int i = 0; i < faqs.length; i++) expansionTile(faqs, i),

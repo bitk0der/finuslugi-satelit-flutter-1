@@ -15,7 +15,7 @@ class InfoContainer extends StatelessWidget {
     required this.title,
     this.text,
     this.textList,
-    this.textColor = ColorStyles.white,
+    this.textColor = ColorStyles.black,
   }) : assert(text != null || textList != null);
 
   @override
