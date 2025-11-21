@@ -6,6 +6,7 @@ import 'package:fin_uslugi/core/widgets/app_small_button.dart';
 import 'package:fin_uslugi/core/widgets/favourite_card.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_response.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
+import 'package:fin_uslugi/features/cards/presentation/widgets/cards_favourite_button.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_button.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
@@ -32,14 +33,8 @@ class CreditCardWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 20.w),
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorStyles.fillColor2,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.10),
-            blurRadius: 10,
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,47 +45,60 @@ class CreditCardWidget extends StatelessWidget {
                 icon: Assets.icons.navBarIcons.finServices,
                 colors: ColorStyles.creditFavouriteCardColors),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              if (credit.bankLogoUrl.isNotEmpty)
-                Container(
-                  width: 40.w,
-                  height: 40.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    border:
-                        Border.all(color: Colors.black.withValues(alpha: 0.2)),
-                  ),
-                  child: Center(
-                    child:
-                        AppImageNetwork(UiUtil.getlogoUrl(credit.bankLogoUrl)),
-                  ),
-                ),
-              SizedBox(width: 12.w),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              Flexible(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      credit.bankName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18.sp,
-                        color: Colors.black,
+                    if (credit.bankLogoUrl.isNotEmpty)
+                      Container(
+                        width: 40.w,
+                        height: 40.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                              color: Colors.black.withValues(alpha: 0.2)),
+                        ),
+                        child: Center(
+                          child: AppImageNetwork(
+                              UiUtil.getlogoUrl(credit.bankLogoUrl)),
+                        ),
                       ),
-                    ),
-                    Text(
-                      credit.cardName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        fontSize: 14.sp,
-                        color: Colors.black.withValues(alpha: 0.7),
+                    SizedBox(width: 12.w),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            credit.bankName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18.sp,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            credit.cardName,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 14.sp,
+                              color: Colors.black.withValues(alpha: 0.7),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
+              CardsFavouriteButton(
+                isInCard: true,
+                onTapFavourite: () {
+                  GetIt.I<LocalMortgageBloc>()
+                      .add(AddMortgageToFavourite(productItemModel: credit));
+                },
+                id: credit.id,
+              )
             ],
           ),
           SizedBox(height: 10.h),
@@ -127,7 +135,7 @@ class CreditCardWidget extends StatelessWidget {
                     child: CustomButton(
                   title: "Оформить",
                   titleColor: Colors.white,
-                  gradient: ColorStyles.navbarGradient,
+                  gradient: ColorStyles.redGradient,
                   // onTap: onMoreButtonPressed,
                   onTap: () => launchUrl(
                     Uri.parse(credit.offerUrl),
