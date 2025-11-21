@@ -104,7 +104,7 @@ class _LoanDetailsPageState extends State<LoanDetailsPage>
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Сумма займа1:",
+                              Text("Сумма займа:",
                                   style: TextStyles.h3.copyWith(
                                       color: Colors.white54, fontSize: 17.sp)),
                               Text(

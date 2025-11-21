@@ -1,18 +1,15 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fin_uslugi/core/routes/app_router.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/theme/app_fonts.dart';
 import 'package:fin_uslugi/core/utils/storage_util.dart';
 import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/core/widgets/app_small_button.dart';
 import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
-import 'package:fin_uslugi/features/banks/presentation/blocs/banks_cubit.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/favourite_button.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/favourite_loan_widget.dart';
-import 'package:fin_uslugi/features/programms/presentation/bloc/comparison_mortgage_bloc/local/local_comparison_mortgage_bloc.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
@@ -217,7 +214,7 @@ class CustomAppBar {
     required BuildContext context,
     required VoidCallback onTapFavourite,
     required VoidCallback onTapComparison,
-    required int id,
+    required String id,
     String? imageUrl,
     required String bankName,
     required String bankUrlLogo,
@@ -225,9 +222,8 @@ class CustomAppBar {
     bool isBackButton = false,
     bool isSmall = false,
   }) {
-    final banksCubit = GetIt.I<BanksCubit>();
     return PreferredSize(
-        preferredSize: Size(0, isSmall ? 205.h : 255.h),
+        preferredSize: Size(0, isSmall ? 205.h : kToolbarHeight * 1.5),
         child: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -241,33 +237,47 @@ class CustomAppBar {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppSmallButton(
                           onTap: () => context.maybePop(),
                           padding: 10,
                           icon: Assets.icons.buttonsIcon.arrowRight),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (imageUrl != null)
-                            SizedBox(
-                                width: 128,
-                                height: 82,
-                                child: AppImageNetwork(imageUrl)),
-                          SizedBox(width: 43.w),
-                          BlocBuilder(
-                              bloc: GetIt.I<LocalMortgageBloc>(),
-                              builder: (context, state) {
-                                return AppSmallButton(
-                                    onTap: onTapFavourite,
-                                    iconColor: checkInFavourite(id)
+                      if (imageUrl != null)
+                        Flexible(
+                            child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                              SizedBox(
+                                  width: 40,
+                                  height: 26,
+                                  child: AppImageNetwork(imageUrl)),
+                              SizedBox(width: 10),
+                              Flexible(
+                                child: Text(
+                                  title,
+                                  maxLines: 1,
+                                  style: TextStyle(
+                                      overflow: TextOverflow.ellipsis,
+                                      color: Colors.white,
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ])),
+                      BlocBuilder(
+                          bloc: GetIt.I<LocalMortgageBloc>(),
+                          builder: (context, state) {
+                            return AppSmallButton(
+                                onTap: onTapFavourite,
+                                iconColor:
+                                    GetIt.I<StorageUtil>().checkInFavourite(id)
                                         ? ColorStyles.greenStar
                                         : null,
-                                    icon: Assets.icons.buttonsIcon.star);
-                              }),
-                          SizedBox(width: 12.w),
+                                icon: Assets.icons.buttonsIcon.star);
+                          }),
+                      /*  SizedBox(width: 12.w),
                           BlocBuilder(
                               bloc: GetIt.I<LocalComparisonMortgageBloc>(),
                               builder: (context, state) {
@@ -277,22 +287,10 @@ class CustomAppBar {
                                         ? ColorStyles.greenStar
                                         : null,
                                     icon: Assets.icons.buttonsIcon.comparison);
-                              }),
-                        ],
-                      ),
+                              }), */
                     ],
                   ),
-                  SizedBox(height: 20.h),
-                  Text(
-                    title,
-                    maxLines: 1,
-                    style: TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        color: Colors.white,
-                        fontSize: 28.sp,
-                        fontWeight: FontWeight.w700),
-                  ),
-                  SizedBox(height: 20.h),
+                  /*    SizedBox(height: 20.h),
                   BlocConsumer(
                       bloc: banksCubit,
                       listener: (BuildContext ctx, Object? state) {
@@ -338,7 +336,7 @@ class CustomAppBar {
                                   ),
                           ),
                         );
-                      })
+                      }) */
                 ],
               ),
             ),
@@ -346,20 +344,10 @@ class CustomAppBar {
         ));
   }
 
-  static bool checkInFavourite(int id) {
-    List productsIds =
-        GetIt.I<SharedPreferences>().getStringList('mortgagesIDS') ?? [];
-    if (productsIds.contains('$id')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  static bool checkInComparison(int id) {
+  static bool checkInComparison(String id) {
     List productsIds =
         GetIt.I<SharedPreferences>().getStringList('comparisonIDS') ?? [];
-    if (productsIds.contains('$id')) {
+    if (productsIds.contains(id)) {
       return true;
     } else {
       return false;
@@ -441,7 +429,10 @@ class CustomAppBar {
                     Flexible(
                       child: Text(
                         title,
-                        style: TextStyle(color: Colors.white, fontSize: 24.sp),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                     if (isNeedFilterButtons)

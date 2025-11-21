@@ -1,12 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/utils/ui_util.dart';
-import 'package:fin_uslugi/core/widgets/app_info_row_with_icon.dart';
+import 'package:fin_uslugi/core/widgets/app_info_row_inside.dart';
 import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/credit_card_response.dart';
 import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/search/widgets/info_container.dart';
+import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
+import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../app_banner/app_banner_initial_setup.dart';
@@ -40,7 +43,7 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyles.backgroundColor,
-      /*  appBar: CustomAppBar.getAbout(
+      appBar: CustomAppBar.getAbout(
         isBackButton: true,
         context: context,
         title: widget.creditCard.cardName,
@@ -53,11 +56,8 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
           GetIt.I<LocalMortgageBloc>()
               .add(AddMortgageToFavourite(productItemModel: widget.creditCard));
         },
-        onTapComparison: () {
-          GetIt.I<LocalComparisonMortgageBloc>().add(
-              AddMortgageToComparison(productItemModel: widget.creditCard));
-        },
-      ), */
+        onTapComparison: () {},
+      ),
       body: _getBody(),
     );
   }
@@ -70,6 +70,53 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
             headerSliverBuilder: (context, value) {
               return [
                 SliverToBoxAdapter(
+                    child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 16.h),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(
+                                    Assets.images.homeBackgroundTopWidget.path),
+                                fit: BoxFit.cover)),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: double.maxFinite,
+                              padding: EdgeInsets.all(16.w),
+                              decoration: BoxDecoration(
+                                  color:
+                                      ColorStyles.white.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(10),
+                                  border:
+                                      Border.all(color: ColorStyles.blueText)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  AppInfoRowInside(
+                                    title: "Кредитный лимит:",
+                                    value:
+                                        "До ${UiUtil.prepareNumber(widget.creditCard.maxCreditSum.toString())} ₽",
+                                  ),
+                                  SizedBox(height: 12.h),
+                                  AppInfoRowInside(
+                                    title: "Льготный период:",
+                                    value:
+                                        '${widget.creditCard.interestFreePeriod} дней'
+                                            .toString(),
+                                  ),
+                                  SizedBox(height: 12.h),
+                                  AppInfoRowInside(
+                                    title: "Обслуживание:",
+                                    value:
+                                        "${widget.creditCard.firstYearServiceCost == 0 ? 'Бесплатно' : widget.creditCard.firstYearServiceCost}",
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ))),
+                /*    SliverToBoxAdapter(
                     child: Container(
                   width: double.maxFinite,
                   padding:
@@ -119,7 +166,7 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
                       ),
                     ],
                   ),
-                )),
+                )), */
                 /*  SizedBox(height: 20.h),
               if (widget.creditCard.offerUrl.isNotEmpty)
                 Align(
@@ -141,21 +188,27 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
             },
             body: Column(
               children: [
-                TabBar(
-                    tabAlignment: TabAlignment.center,
-                    indicatorSize: TabBarIndicatorSize.tab,
-                    controller: tabController,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 14.h),
-                    indicatorWeight: 0.1,
-                    splashFactory: NoSplash.splashFactory,
-                    indicatorColor: Colors.transparent,
-                    indicatorPadding: EdgeInsets.zero,
-                    labelPadding: EdgeInsets.symmetric(horizontal: 8.w),
-                    dividerHeight: 0,
-                    tabs: [
-                      for (var i = 0; i < tabsUpper.length; i++) upperTab(i),
-                    ]),
+                Container(
+                  decoration: BoxDecoration(
+                      color: ColorStyles.fillColor2,
+                      borderRadius: BorderRadius.circular(14)),
+                  margin: EdgeInsets.all(16.w),
+                  child: TabBar(
+                      indicatorSize: TabBarIndicatorSize.tab,
+                      controller: tabController,
+                      indicatorWeight: 0.1,
+                      splashFactory: NoSplash.splashFactory,
+                      indicatorColor: Colors.transparent,
+                      labelColor: Colors.white,
+                      labelPadding: EdgeInsets.symmetric(vertical: 5),
+                      indicator: BoxDecoration(
+                          color: ColorStyles.black,
+                          borderRadius: BorderRadius.circular(14)),
+                      dividerHeight: 0,
+                      tabs: [
+                        for (var i = 0; i < tabsUpper.length; i++) upperTab(i),
+                      ]),
+                ),
                 Expanded(
                     child: TabBarView(
                         controller: tabController,
@@ -165,18 +218,20 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
           );
         }),
         if (widget.creditCard.offerUrl.isNotEmpty)
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: CustomButton(
-                color: ColorStyles.yellowColor,
-                titleColor: Colors.black,
-                title: "Оформить заявку",
-                borderRadius: 100,
-                onTap: () => launchUrl(
-                  Uri.parse(widget.creditCard.offerUrl),
-                  mode: LaunchMode.externalApplication,
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: CustomButton(
+                  color: ColorStyles.black,
+                  titleColor: Colors.white,
+                  title: "Оформить заявку",
+                  borderRadius: 100,
+                  onTap: () => launchUrl(
+                    Uri.parse(widget.creditCard.offerUrl),
+                    mode: LaunchMode.externalApplication,
+                  ),
                 ),
               ),
             ),
@@ -186,32 +241,12 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
   }
 
   Widget upperTab(int index) {
-    return Tab(
-      child: Container(
-        padding: EdgeInsets.all(12.w),
-        decoration: BoxDecoration(
-            color: tabController.index == index
-                ? ColorStyles.blueButton
-                : Colors.black.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(12.r)),
-        child: Text(
-          tabsUpper[index],
-          style: TextStyle(
-              color: tabController.index != index
-                  ? Colors.black.withValues(alpha: 0.4)
-                  : ColorStyles.blue),
-        ),
-      ),
-    );
+    return Tab(text: tabsUpper[index]);
   }
 
-  List<String> tabsUpper = [
-    'Условия',
-    "Требования",
-    'Кэшбэк и бонусы' /*,"Вклады", 'Ипотека' */
-  ];
+  List<String> tabsUpper = ['Условия', "Требования", 'Бонусы'];
 
-  tab1() {
+  ListView tab1() {
     return ListView(
       children: [
         AppUniversalBannerWidget(
@@ -306,12 +341,12 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
                 SizedBox(height: 17.h),
               ],
             )),
-        SizedBox(height: 100.h),
+        SizedBox(height: 70.h),
       ],
     );
   }
 
-  tab2() {
+  ListView tab2() {
     return ListView(children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
@@ -356,12 +391,13 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
                 title: "Требования к клиенту:",
                 text: widget.creditCard.clientRequirements.join(', '),
               ),
-            SizedBox(height: 100.h),
-          ]))
+            SizedBox(height: 17.h),
+          ])),
+      SizedBox(height: 70.h),
     ]);
   }
 
-  tab3() {
+  ListView tab3() {
     return ListView(
       children: [
         Column(children: [
@@ -403,11 +439,11 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
                   title: "Описание кэшбэка:",
                   text: widget.creditCard.cashbackDescription,
                 ),
-              SizedBox(height: 100.h),
+              SizedBox(height: 17.h),
             ]),
-          )
-        ]),
-        // Text(widget.creditCard.cashbackDescription)
+          ),
+          SizedBox(height: 70.h),
+        ])
       ],
     );
   }

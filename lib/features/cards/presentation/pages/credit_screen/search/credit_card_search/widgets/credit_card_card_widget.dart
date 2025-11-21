@@ -53,7 +53,7 @@ class CreditCardCardWidget extends StatelessWidget {
             children: [
               if (creditCard.additionalImageUrl.isNotEmpty)
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(100),
                   child: Container(
                     width: 62.w,
                     height: 40.h,
@@ -131,7 +131,7 @@ class CreditCardCardWidget extends StatelessWidget {
                     child: CustomButton(
                   title: "Оформить",
                   titleColor: Colors.white,
-                  gradient: ColorStyles.navbarGradient,
+                  gradient: [ColorStyles.red, ColorStyles.red],
                   onTap: () => launchUrl(
                     Uri.parse(creditCard.offerUrl),
                     mode: LaunchMode.externalApplication,

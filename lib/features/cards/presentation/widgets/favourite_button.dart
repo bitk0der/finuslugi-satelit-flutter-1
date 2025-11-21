@@ -48,10 +48,13 @@ class _FavouriteButtonState extends State<FavouriteButton> {
                   decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(color: ColorStyles.grayBorder),
-                      color: ColorStyles.greenStar),
+                      color: ColorStyles.red),
                   child: Text(
                     productsIds.length.toString(),
-                    style: const TextStyle(fontSize: 10),
+                    style: const TextStyle(
+                        fontSize: 9,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white),
                   ),
                 ),
               )
