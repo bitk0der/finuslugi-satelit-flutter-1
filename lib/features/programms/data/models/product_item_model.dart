@@ -3,7 +3,7 @@ import 'package:fin_uslugi/features/programms/data/models/params_model.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 part 'product_item_model.g.dart';
 
-@HiveType(typeId: 7)
+@HiveType(typeId: 29)
 class ProductItemModel {
   @HiveField(0)
   String id;

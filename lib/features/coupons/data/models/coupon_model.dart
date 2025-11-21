@@ -4,7 +4,7 @@ import 'package:fin_uslugi/features/coupons/data/models/coupon_item_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/retailer_model.dart';
 part 'coupon_model.g.dart'; // This is for the generated file
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 18)
 class CouponModel extends Equatable {
   @HiveField(0)
   final int total;

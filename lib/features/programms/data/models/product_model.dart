@@ -2,7 +2,7 @@ import 'package:fin_uslugi/features/programms/data/models/product_item_model.dar
 import 'package:hive_ce_flutter/adapters.dart';
 part 'product_model.g.dart';
 
-@HiveType(typeId: 8)
+@HiveType(typeId: 30)
 class ProductModel {
   @HiveField(0)
   final List<ProductItemModel> items;

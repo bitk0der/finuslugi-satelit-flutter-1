@@ -12,7 +12,7 @@ class CreditResponse extends Product {
 
   @HiveField(1)
   @override
-  final int id;
+  final String id;
 
   @override
   @HiveField(2)
@@ -150,7 +150,7 @@ class CreditResponse extends Product {
 
     return CreditResponse(
       productType: BankingCategory.credits,
-      id: json['id'] as int,
+      id: json['id'].toString(),
       cardName: json['title']['rendered'] as String,
       link: (json['link'] ?? '') as String,
       offerUrl: meta['offerurl'],

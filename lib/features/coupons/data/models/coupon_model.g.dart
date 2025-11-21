@@ -8,7 +8,7 @@ part of 'coupon_model.dart';
 
 class CouponModelAdapter extends TypeAdapter<CouponModel> {
   @override
-  final typeId = 0;
+  final typeId = 18;
 
   @override
   CouponModel read(BinaryReader reader) {

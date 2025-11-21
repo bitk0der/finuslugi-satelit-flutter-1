@@ -8,7 +8,7 @@ part of 'article_category.dart';
 
 class ArticleCategoryAdapter extends TypeAdapter<ArticleCategory> {
   @override
-  final typeId = 3;
+  final typeId = 24;
 
   @override
   ArticleCategory read(BinaryReader reader) {

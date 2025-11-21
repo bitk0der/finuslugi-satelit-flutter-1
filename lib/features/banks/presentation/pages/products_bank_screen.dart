@@ -92,6 +92,20 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
                 context.router.push(MoreAboutbankRoute(
                   bank: product,
                 )));
+      case BankingCategory.loans:
+        return BankCardWidget(
+            bank: (product as BankInfo),
+            onMoreAboutButtonPressed: () =>
+                context.router.push(MoreAboutbankRoute(
+                  bank: product,
+                )));
+      case BankingCategory.promocodes:
+        return BankCardWidget(
+            bank: (product as BankInfo),
+            onMoreAboutButtonPressed: () =>
+                context.router.push(MoreAboutbankRoute(
+                  bank: product,
+                )));
     }
   }
 

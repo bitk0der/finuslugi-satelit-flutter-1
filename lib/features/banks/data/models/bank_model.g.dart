@@ -18,7 +18,7 @@ class BankInfoAdapter extends TypeAdapter<BankInfo> {
     };
     return BankInfo(
       productType: fields[0] as BankingCategory,
-      id: (fields[1] as num).toInt(),
+      id: fields[1] as String,
       bankName: fields[3] as String,
       fullName: fields[2] as String,
       registrationDate: fields[4] as String,

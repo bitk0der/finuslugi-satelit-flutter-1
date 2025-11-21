@@ -41,7 +41,7 @@ class LocalMortgageBloc extends Bloc<LocalMortgageEvent, LocalMortgageState> {
     }
   }
 
-  bool checkId(Box<Product> incomesBox, int id) {
+  bool checkId(Box<Product> incomesBox, String id) {
     for (var elem in incomesBox.values) {
       if (elem.id == id) return true;
     }

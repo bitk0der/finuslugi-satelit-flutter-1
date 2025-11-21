@@ -2,13 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:fin_uslugi/core/routes/app_router.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/theme/app_fonts.dart';
+import 'package:fin_uslugi/core/utils/storage_util.dart';
 import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/core/widgets/app_small_button.dart';
 import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
 import 'package:fin_uslugi/features/banks/presentation/blocs/banks_cubit.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/favourite_button.dart';
-import 'package:fin_uslugi/features/cards/presentation/widgets/filter_button.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/comparison_mortgage_bloc/local/local_comparison_mortgage_bloc.dart';
@@ -141,7 +141,8 @@ class CustomAppBar {
                                     AddMortgageToFavourite(
                                         productItemModel: bank));
                               },
-                              iconColor: checkInFavourite(bank.id)
+                              iconColor: GetIt.I<StorageUtil>()
+                                      .checkInFavourite(bank.id)
                                   ? ColorStyles.greenStar
                                   : null,
                               icon: Assets.icons.buttonsIcon.star);
@@ -413,9 +414,10 @@ class CustomAppBar {
     required BuildContext context,
     required VoidCallback onTap,
     bool isBackButton = false,
+    bool isNeedFilterButtons = true,
   }) {
     return PreferredSize(
-      preferredSize: Size(0, 100.h),
+      preferredSize: Size.fromHeight(kToolbarHeight * 1.5),
       child: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -437,14 +439,15 @@ class CustomAppBar {
                         style: TextStyle(color: Colors.white, fontSize: 24.sp),
                       ),
                     ),
-                    Row(
-                      children: [
-                        FavouriteButton(),
-                        if (!title.contains('Банки')) SizedBox(width: 12.w),
-                        if (!title.contains('Банки'))
-                          FilterButton(onTap: onTap),
-                      ],
-                    ),
+                    if (isNeedFilterButtons)
+                      Row(
+                        children: [
+                          FavouriteButton(),
+                          /* if (!title.contains('Банки')) SizedBox(width: 12.w),
+                          if (!title.contains('Банки'))
+                            FilterButton(onTap: onTap), */
+                        ],
+                      ),
                   ],
                 )
               ],

@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         InkWell(
                             onTap: () {
                               GetIt.I<FiltersBloc>()
-                                  .add(ChangeTabIndex(index: 2));
+                                  .add(ChangeTabIndex(index: 0));
                               context.navigateTo(const SelectionRouter());
                             },
                             child: ImageCard(

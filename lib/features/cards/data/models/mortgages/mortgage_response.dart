@@ -7,7 +7,7 @@ part 'mortgage_response.g.dart';
 class MortgageResponse extends Product {
   @override
   @HiveField(0)
-  int id;
+  String id;
 
   @HiveField(1)
   DateTime date;
@@ -203,7 +203,7 @@ class MortgageResponse extends Product {
   // Создание объекта из JSON
   factory MortgageResponse.fromJson(Map<String, dynamic> json) {
     return MortgageResponse(
-      id: json['id'],
+      id: json['id'].toString(),
       productType: BankingCategory.mortgages,
       date: DateTime.parse(json['date']),
       dateGmt: DateTime.parse(json['date_gmt']),

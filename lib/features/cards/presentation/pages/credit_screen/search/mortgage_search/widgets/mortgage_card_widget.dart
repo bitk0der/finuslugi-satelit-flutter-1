@@ -1,4 +1,5 @@
 import 'package:fin_uslugi/core/theme/app_colors.dart';
+import 'package:fin_uslugi/core/utils/storage_util.dart';
 import 'package:fin_uslugi/core/utils/translator.dart';
 import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/core/widgets/app_info_row.dart';
@@ -13,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MortgageCardWidget extends StatelessWidget {
@@ -149,7 +149,8 @@ class MortgageCardWidget extends StatelessWidget {
                           size: 46.w,
                           padding: 11,
                           icon: Assets.icons.buttonsIcon.star,
-                          iconColor: checkInFavourite(mortgage.id)
+                          iconColor: GetIt.I<StorageUtil>()
+                                  .checkInFavourite(mortgage.id)
                               ? ColorStyles.blueText
                               : null,
                           onTap: () => GetIt.I<LocalMortgageBloc>().add(
@@ -161,15 +162,5 @@ class MortgageCardWidget extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  bool checkInFavourite(int id) {
-    List productsIds =
-        GetIt.I<SharedPreferences>().getStringList('mortgagesIDS') ?? [];
-    if (productsIds.contains('$id')) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }

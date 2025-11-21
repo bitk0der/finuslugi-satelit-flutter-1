@@ -1,4 +1,4 @@
-import 'package:fin_uslugi/features/loans/data/models/credit/search_responses/product.dart';
+import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/product.dart';
 
 class Response {
   final List<Product> products;

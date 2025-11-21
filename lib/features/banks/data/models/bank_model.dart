@@ -12,7 +12,7 @@ class BankInfo extends Product {
 
   @override
   @HiveField(1)
-  final int id;
+  final String id;
 
   @HiveField(2)
   final String fullName;
@@ -96,7 +96,7 @@ class BankInfo extends Product {
 
   factory BankInfo.fromJson(Map<String, dynamic> json) {
     return BankInfo(
-        id: json['id'],
+        id: json['id'].toString(),
         productType: BankingCategory.banks,
         bankName: json['title']['rendered'] ?? "Нет данных",
         fullName: json['meta']['namefull'] ?? "Нет данных",

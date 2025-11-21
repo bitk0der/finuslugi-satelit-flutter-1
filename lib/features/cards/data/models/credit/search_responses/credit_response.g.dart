@@ -18,7 +18,7 @@ class CreditResponseAdapter extends TypeAdapter<CreditResponse> {
     };
     return CreditResponse(
       productType: fields[0] as BankingCategory,
-      id: (fields[1] as num).toInt(),
+      id: fields[1] as String,
       cardName: fields[2] as String,
       offerUrl: fields[7] as String,
       link: fields[3] as String,

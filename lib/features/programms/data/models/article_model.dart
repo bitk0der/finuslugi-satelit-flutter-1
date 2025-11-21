@@ -2,7 +2,7 @@ import 'package:fin_uslugi/features/programms/data/models/content_block_model.da
 import 'package:hive_ce_flutter/adapters.dart';
 part 'article_model.g.dart';
 
-@HiveType(typeId: 4)
+@HiveType(typeId: 26)
 class Article {
   @HiveField(0)
   final String id;

@@ -1,13 +1,12 @@
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
+import 'package:fin_uslugi/features/loans/presentation/widgets/favourite_loan_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:fin_uslugi/core/theme/app_fonts.dart';
 import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_button.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoanCardWidget extends StatelessWidget {
   final LoanMainModel loan;
@@ -28,13 +27,6 @@ class LoanCardWidget extends StatelessWidget {
       decoration: BoxDecoration(
         color: ColorStyles.fillColor2,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
-            blurRadius: 20,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,25 +44,26 @@ class LoanCardWidget extends StatelessWidget {
                     SizedBox(width: 10.w)
                   ],
                   Text(loan.title,
-                      style:
-                          TextStyles.h2.copyWith(fontWeight: FontWeight.w500)),
+                      style: TextStyles.h2.copyWith(
+                          fontWeight: FontWeight.w500, color: Colors.black)),
                 ],
               ),
-              SizedBox(width: 50.w),
+              FavouriteLoanWidget(loan: loan),
+              /*  SizedBox(width: 50.w),
               Flexible(
                 child: Text('Лицензия №${loan.meta.license}',
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.h3
-                        .copyWith(color: Colors.white54, fontSize: 13.sp)),
-              ),
+                        .copyWith(color: Colors.black, fontSize: 13.sp)),
+              ), */
             ],
           ),
           Container(
             width: double.maxFinite,
-            padding: EdgeInsets.all(10.w),
+            padding: EdgeInsets.all(12.w),
             margin: EdgeInsets.symmetric(vertical: 12.h),
             decoration: BoxDecoration(
-                color: Colors.white10,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: Colors.white24)),
             child: Column(
@@ -80,10 +73,11 @@ class LoanCardWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Сумма займа:",
-                        style: TextStyles.h3.copyWith(color: Colors.white54)),
+                        style: TextStyles.h4.copyWith(
+                            color: Colors.black.withValues(alpha: 0.5))),
                     Text('от ${loan.meta.sumFrom} до ${loan.meta.sumTo} ₽',
-                        style: TextStyles.h3
-                            .copyWith(fontWeight: FontWeight.w500)),
+                        style: TextStyles.h4.copyWith(
+                            fontWeight: FontWeight.w500, color: Colors.black)),
                   ],
                 ),
                 /* SizedBox(height: 10.h),
@@ -101,26 +95,32 @@ class LoanCardWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: 4.h),
-          CustomButton(
-            height: 44.h,
-            color: ColorStyles.green,
-            borderRadius: 10,
-            titleColor: Colors.black,
-            title: "Подробнее",
-            onTap: onMoreAboutButtonPressed,
-          ),
+          Row(
+            children: [
+              Flexible(
+                child: CustomButton(
+                  height: 44.h,
+                  color: ColorStyles.blueButtonColor,
+                  borderRadius: 10,
+                  titleColor: ColorStyles.blueText,
+                  title: "Подробнее",
+                  onTap: onMoreAboutButtonPressed,
+                ),
+              ),
+              const SizedBox(width: 10),
+              Flexible(
+                  child: CustomButton(
+                height: 44.h,
+                color: ColorStyles.red,
+                borderRadius: 10,
+                titleColor: Colors.white,
+                title: "Оформить",
+                onTap: onMoreAboutButtonPressed,
+              )),
+            ],
+          )
         ],
       ),
     );
-  }
-
-  static bool checkInFavourite(int id) {
-    List productsIds =
-        GetIt.I<SharedPreferences>().getStringList('mortgagesIDS') ?? [];
-    if (productsIds.contains('$id')) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }

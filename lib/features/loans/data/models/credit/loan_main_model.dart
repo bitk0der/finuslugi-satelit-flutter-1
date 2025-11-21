@@ -1,11 +1,24 @@
-import 'package:fin_uslugi/features/loans/data/models/credit/search_responses/product.dart';
+import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/product.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 
+part 'loan_main_model.g.dart'; // для генерации hive adapters
+
+@HiveType(typeId: 11)
 class LoanMainModel extends Product {
+  @HiveField(0)
   @override
-  final int id;
+  final String id;
+
+  @HiveField(1)
   final String title;
+
+  @HiveField(2)
   final String description;
+
+  @HiveField(3)
   final Meta meta;
+
+  @HiveField(4)
   final AdditionalInfo additionalInfo;
 
   LoanMainModel({
@@ -18,54 +31,103 @@ class LoanMainModel extends Product {
 
   factory LoanMainModel.fromJson(Map<String, dynamic> json) {
     return LoanMainModel(
-      id: json['id'] ?? 0,
+      id: json['id']?.toString() ?? '0',
       title: json['title']?['rendered'] ?? '',
       description: json['content']?['rendered'] ?? '',
       meta: Meta.fromJson(json['meta'] ?? {}),
       additionalInfo: AdditionalInfo.fromJson(json['additionalinfo'] ?? {}),
     );
   }
+
+  @override
+  String get bankName => meta.nameFull;
+
+  @override
+  String get cardName => title;
+
+  @override
+  BankingCategory get productType => BankingCategory.loans;
 }
 
+@HiveType(typeId: 12)
 class Meta {
+  @HiveField(0)
   final String offerUrl;
+  @HiveField(1)
   final bool inHorizontalTop;
+  @HiveField(2)
   final String offerEpc;
+  @HiveField(3)
   final String namePrepositional;
+  @HiveField(4)
   final String nameGenitive;
+  @HiveField(5)
   final String nameFull;
+  @HiveField(6)
   final DateTime registerDate;
+  @HiveField(7)
   final int registerDateTs;
+  @HiveField(8)
   final String license;
+  @HiveField(9)
   final String cbrfUrl;
+  @HiveField(10)
   final String website;
+  @HiveField(11)
   final String phoneMain;
+  @HiveField(12)
   final String emailMain;
+  @HiveField(13)
   final String addressMain;
+  @HiveField(14)
   final String ogrn;
+  @HiveField(15)
   final String inn;
+  @HiveField(16)
   final String kpp;
+  @HiveField(17)
   final String bik;
+  @HiveField(18)
   final String okpo;
+  @HiveField(19)
   final String swift;
+  @HiveField(20)
   final String personalAccountName;
+  @HiveField(21)
   final String personalAccountSite;
+  @HiveField(22)
   final String logoRound;
+  @HiveField(23)
   final String logoSquare;
+  @HiveField(24)
   final int sumFrom;
+  @HiveField(25)
   final int sumTo;
+  @HiveField(26)
   final int considerationTimeMin;
+  @HiveField(27)
   final String considerationTimeMinUnit;
+  @HiveField(28)
   final String considerationTimeMax;
+  @HiveField(29)
   final String considerationTimeMaxUnit;
+  @HiveField(30)
   final int termFrom;
+  @HiveField(31)
   final String termFromUnit;
+  @HiveField(32)
   final int termTo;
+  @HiveField(33)
   final String termToUnit;
+  @HiveField(34)
   final int rateFrom;
+  @HiveField(35)
   final int rateTo;
+  @HiveField(36)
   final String approvalProbability;
+  @HiveField(37)
   final String footnotes;
+  @HiveField(38)
   final double rating;
 
   Meta({
@@ -155,53 +217,11 @@ class Meta {
       rating: double.tryParse(json['rating']?.toString() ?? '0') ?? 0,
     );
   }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'offerurl': offerUrl,
-      'inhorizontaltop': inHorizontalTop ? 'true' : 'false',
-      'offerepc': offerEpc,
-      'nameprepositional': namePrepositional,
-      'namegenitive': nameGenitive,
-      'namefull': nameFull,
-      'registerdate': registerDate.toIso8601String(),
-      'registerdatets': registerDateTs,
-      'license': license,
-      'cbrfurl': cbrfUrl,
-      'website': website,
-      'phonemain': phoneMain,
-      'emailmain': emailMain,
-      'addressmain': addressMain,
-      'ogrn': ogrn,
-      'inn': inn,
-      'kpp': kpp,
-      'bik': bik,
-      'okpo': okpo,
-      'swift': swift,
-      'personalaccountname': personalAccountName,
-      'personalaccountsite': personalAccountSite,
-      'logoround': logoRound,
-      'logosquare': logoSquare,
-      'sumfrom': sumFrom,
-      'sumto': sumTo,
-      'considerationtimemin': considerationTimeMin,
-      'considerationtimeminunit': considerationTimeMinUnit,
-      'considerationtimemax': considerationTimeMax,
-      'considerationtimemaxunit': considerationTimeMaxUnit,
-      'termfrom': termFrom,
-      'termfromunit': termFromUnit,
-      'termto': termTo,
-      'termtounit': termToUnit,
-      'ratefrom': rateFrom,
-      'rateto': rateTo,
-      'approvalprobability': approvalProbability,
-      'footnotes': footnotes,
-      'rating': rating,
-    };
-  }
 }
 
+@HiveType(typeId: 13)
 class Phone {
+  @HiveField(0)
   final String phone;
 
   Phone({required this.phone});
@@ -215,7 +235,9 @@ class Phone {
   }
 }
 
+@HiveType(typeId: 14)
 class Email {
+  @HiveField(0)
   final String email;
 
   Email({required this.email});
@@ -229,8 +251,12 @@ class Email {
   }
 }
 
+@HiveType(typeId: 15)
 class App {
+  @HiveField(0)
   final String appType;
+
+  @HiveField(1)
   final String appLink;
 
   App({required this.appType, required this.appLink});
@@ -250,10 +276,18 @@ class App {
   }
 }
 
+@HiveType(typeId: 16)
 class AdditionalInfo {
+  @HiveField(0)
   final List<FAQ> lichniyKabinet;
+
+  @HiveField(1)
   final List<FAQ> goriachayaLiniya;
+
+  @HiveField(2)
   final List<FAQ> prosrochka;
+
+  @HiveField(3)
   final List<FAQ> prodlenie;
 
   AdditionalInfo({
@@ -285,8 +319,12 @@ class AdditionalInfo {
   }
 }
 
+@HiveType(typeId: 17)
 class FAQ {
+  @HiveField(0)
   final String question;
+
+  @HiveField(1)
   final String answer;
 
   FAQ({

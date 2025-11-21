@@ -2,7 +2,7 @@ import 'package:fin_uslugi/features/programms/data/models/article_model.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 part 'article_category.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 24)
 class ArticleCategory {
   @HiveField(0)
   final String name;

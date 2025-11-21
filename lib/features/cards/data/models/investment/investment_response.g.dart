@@ -17,7 +17,7 @@ class InvestmentResponseAdapter extends TypeAdapter<InvestmentResponse> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return InvestmentResponse(
-      id: (fields[0] as num).toInt(),
+      id: fields[0] as String,
       productType: fields[40] as BankingCategory,
       date: fields[1] as DateTime,
       dateGmt: fields[2] as DateTime,

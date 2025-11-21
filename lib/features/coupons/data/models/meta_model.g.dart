@@ -8,7 +8,7 @@ part of 'meta_model.dart';
 
 class MetaModelAdapter extends TypeAdapter<MetaModel> {
   @override
-  final typeId = 2;
+  final typeId = 20;
 
   @override
   MetaModel read(BinaryReader reader) {

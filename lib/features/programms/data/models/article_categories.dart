@@ -3,7 +3,7 @@ import 'package:hive_ce_flutter/adapters.dart';
 
 part 'article_categories.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 23)
 class ArticleCategories {
   @HiveField(0)
   final List<ArticleCategory> items;

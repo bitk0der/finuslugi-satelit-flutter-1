@@ -17,6 +17,7 @@ import 'package:fin_uslugi/features/coupons/data/models/features_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/meta_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/retailer_model.dart';
 import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/data/models/coupon_favourite_model.dart';
+import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/programms/data/models/article_categories.dart';
 import 'package:fin_uslugi/features/programms/data/models/article_category.dart';
 import 'package:fin_uslugi/features/programms/data/models/article_data_model.dart';
@@ -29,6 +30,8 @@ import 'package:fin_uslugi/features/programms/data/models/product_type.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
+    registerAdapter(AdditionalInfoAdapter());
+    registerAdapter(AppAdapter());
     registerAdapter(ArticleAdapter());
     registerAdapter(ArticleCategoriesAdapter());
     registerAdapter(ArticleCategoryAdapter());
@@ -42,11 +45,16 @@ extension HiveRegistrar on HiveInterface {
     registerAdapter(CreditCardResponseAdapter());
     registerAdapter(CreditResponseAdapter());
     registerAdapter(DebitCardResponseAdapter());
+    registerAdapter(EmailAdapter());
+    registerAdapter(FAQAdapter());
     registerAdapter(FeaturesModelAdapter());
     registerAdapter(InvestmentResponseAdapter());
+    registerAdapter(LoanMainModelAdapter());
+    registerAdapter(MetaAdapter());
     registerAdapter(MetaModelAdapter());
     registerAdapter(MortgageResponseAdapter());
     registerAdapter(ParamsModelAdapter());
+    registerAdapter(PhoneAdapter());
     registerAdapter(ProductItemModelAdapter());
     registerAdapter(ProductModelAdapter());
     registerAdapter(ProductTypeAdapter());
@@ -57,6 +65,8 @@ extension HiveRegistrar on HiveInterface {
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
+    registerAdapter(AdditionalInfoAdapter());
+    registerAdapter(AppAdapter());
     registerAdapter(ArticleAdapter());
     registerAdapter(ArticleCategoriesAdapter());
     registerAdapter(ArticleCategoryAdapter());
@@ -70,11 +80,16 @@ extension IsolatedHiveRegistrar on IsolatedHiveInterface {
     registerAdapter(CreditCardResponseAdapter());
     registerAdapter(CreditResponseAdapter());
     registerAdapter(DebitCardResponseAdapter());
+    registerAdapter(EmailAdapter());
+    registerAdapter(FAQAdapter());
     registerAdapter(FeaturesModelAdapter());
     registerAdapter(InvestmentResponseAdapter());
+    registerAdapter(LoanMainModelAdapter());
+    registerAdapter(MetaAdapter());
     registerAdapter(MetaModelAdapter());
     registerAdapter(MortgageResponseAdapter());
     registerAdapter(ParamsModelAdapter());
+    registerAdapter(PhoneAdapter());
     registerAdapter(ProductItemModelAdapter());
     registerAdapter(ProductModelAdapter());
     registerAdapter(ProductTypeAdapter());

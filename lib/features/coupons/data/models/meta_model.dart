@@ -3,7 +3,7 @@ import 'package:hive_ce_flutter/adapters.dart';
 
 part 'meta_model.g.dart'; // This is for the generated file
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 20)
 class MetaModel extends Equatable {
   @HiveField(0)
   final int activationsCount;

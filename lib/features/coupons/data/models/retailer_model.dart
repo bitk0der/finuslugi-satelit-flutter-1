@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 part 'retailer_model.g.dart'; // This is for the generated file
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 21)
 class RetailerModel extends Equatable {
   @HiveField(0)
   final String uuid;

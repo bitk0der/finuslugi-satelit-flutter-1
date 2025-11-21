@@ -1,7 +1,7 @@
 import 'package:hive_ce_flutter/adapters.dart';
 part 'content_block_model.g.dart';
 
-@HiveType(typeId: 5)
+@HiveType(typeId: 27)
 class ContentBlock {
   @HiveField(0)
   final String type;

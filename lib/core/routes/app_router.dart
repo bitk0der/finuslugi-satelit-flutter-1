@@ -54,13 +54,15 @@ class AppRouter extends RootStackRouter {
               AutoRoute(page: HomeRoute.page, path: ''),
               AutoRoute(page: BanksRoute.page, path: 'banks'),
               AutoRoute(page: MoreAboutbankRoute.page, path: 'banks_details'),
+              AutoRoute(page: FavouritesRoute.page, path: 'favourites_route'),
             ],
           ),
           AutoRoute(
             page: SelectionRouter.page,
-            path: 'home',
+            path: 'selection',
             children: [
               AutoRoute(page: FsinServiceRoute.page, path: ''),
+              AutoRoute(page: FavouritesRoute.page, path: 'favourites_route'),
               AutoRoute(page: LoanDetailsRoute.page, path: 'loan_details'),
               AutoRoute(page: LoansFiltersRoute.page, path: 'loans_filters'),
               AutoRoute(page: CouponDetailsRoute.page, path: 'coupons_details'),
@@ -88,8 +90,14 @@ class AppRouter extends RootStackRouter {
           ),
           AutoRoute(
             page: ServiceRouter.page,
-            path: 'home',
-            children: [AutoRoute(page: MainServiceRoute.page, path: '')],
+            path: 'service',
+            children: [
+              AutoRoute(page: MainServiceRoute.page, path: ''),
+              AutoRoute(page: FavouritesRoute.page, path: 'favourites_page'),
+              AutoRoute(
+                  page: BackgroundNotificationsRoute.page,
+                  path: 'background_notifications_screen')
+            ],
           ),
         ],
       ),

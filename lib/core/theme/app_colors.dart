@@ -14,7 +14,7 @@ class ColorStyles {
   static const Color blue = Color(0xff1BE2EF);
   static const Color lightViolet = Color(0xffC4C8F6);
   static const Color red = Color(0xffFF0508);
-  static const grayBorder = Color(0xff797979);
+  static const grayBorder = Color(0xff737373);
   static const List<Color> detailsGradient = [
     Color(0xffB7E8F7),
     Color(0xffC8FAB6),
@@ -41,7 +41,7 @@ class ColorStyles {
   static const greyTextColor = Color.fromRGBO(150, 150, 150, 1);
   static const redButtonColor = Color.fromRGBO(238, 63, 88, 1);
   static const primaryFontColor = Color.fromRGBO(35, 35, 35, 1);
-  static const blueButtonColor = Color.fromRGBO(62, 139, 250, 1);
+  static const blueButtonColor = Color(0xffDAE4FF);
   static const primaryTextColor = Color.fromRGBO(57, 57, 57, 1);
   static const yellowColor = Color.fromRGBO(255, 221, 45, 1);
   static const fontColorDarkGrey = Color.fromRGBO(125, 125, 125, 1);

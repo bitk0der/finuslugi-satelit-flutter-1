@@ -8,7 +8,7 @@ part of 'features_model.dart';
 
 class FeaturesModelAdapter extends TypeAdapter<FeaturesModel> {
   @override
-  final typeId = 4;
+  final typeId = 19;
 
   @override
   FeaturesModel read(BinaryReader reader) {

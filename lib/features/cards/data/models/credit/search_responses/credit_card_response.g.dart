@@ -17,7 +17,7 @@ class CreditCardResponseAdapter extends TypeAdapter<CreditCardResponse> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return CreditCardResponse(
-      id: (fields[0] as num).toInt(),
+      id: fields[0] as String,
       productType: fields[1] as BankingCategory,
       minCreditSum: (fields[2] as num).toInt(),
       maxCreditSum: (fields[3] as num).toInt(),

@@ -84,7 +84,7 @@ class _FsinServiceScreenState extends State<FsinServiceScreen>
           return Scaffold(
             appBar: CustomAppBar.getGradient(
               context: context,
-              title: 'Финуслуги банков',
+              title: 'Подбор предложений',
               tabBarIndex: tabController.index,
               onTap: () => goTo(),
               isBackButton: true,

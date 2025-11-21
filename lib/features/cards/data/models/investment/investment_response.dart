@@ -7,7 +7,7 @@ part 'investment_response.g.dart';
 class InvestmentResponse extends Product {
   @override
   @HiveField(0)
-  int id;
+  String id;
 
   @HiveField(1)
   DateTime date;
@@ -232,7 +232,7 @@ class InvestmentResponse extends Product {
   // Создание объекта из JSON
   factory InvestmentResponse.fromJson(Map<String, dynamic> json) {
     return InvestmentResponse(
-      id: json['id'],
+      id: json['id']?.toString() ?? '0',
       productType: BankingCategory.deposits,
       date: DateTime.parse(json['date']),
       dateGmt: DateTime.parse(json['date_gmt']),

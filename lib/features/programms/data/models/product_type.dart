@@ -1,7 +1,7 @@
 import 'package:hive_ce_flutter/adapters.dart';
 part 'product_type.g.dart';
 
-@HiveType(typeId: 9)
+@HiveType(typeId: 31)
 class ProductType {
   @HiveField(0)
   final String type;

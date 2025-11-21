@@ -7,8 +7,10 @@ import 'package:fin_uslugi/features/cards/data/models/user.dart'; /*
 import 'package:fin_uslugi/features/investment_search/domain/models/api_user.dart';
 import 'package:fin_uslugi/features/investment_search/domain/models/investment.dart';
 import 'package:fin_uslugi/features/investment_search/domain/models/user.dart'; */
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:json_store/json_store.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @injectable
 class StorageUtil {
@@ -57,6 +59,15 @@ class StorageUtil {
     return history;
   }
 
+  bool checkInFavourite(String id) {
+    List productsIds =
+        GetIt.I<SharedPreferences>().getStringList('mortgagesIDS') ?? [];
+    if (productsIds.contains(id)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 /*   Future<UserInvest> loadUserInvest() async {
     try {
       final result = await _jsonStore.getItem('user');

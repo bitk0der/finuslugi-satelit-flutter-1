@@ -7,7 +7,7 @@ part 'credit_card_response.g.dart';
 class CreditCardResponse extends Product {
   @override
   @HiveField(0)
-  final int id;
+  final String id;
 
   @override
   @HiveField(1)
@@ -153,7 +153,7 @@ class CreditCardResponse extends Product {
     final bankInfo = json['bankinfo'] as Map<String, dynamic>? ?? {};
 
     return CreditCardResponse(
-      id: json['id'] ?? 0,
+      id: json['id']?.toString() ?? '0',
       productType: BankingCategory.creditCards,
       parentPostRelation:
           int.tryParse(json['parent_post_relation']?.toString() ?? '0') ?? 0,

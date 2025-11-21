@@ -8,7 +8,7 @@ part of 'params_model.dart';
 
 class ParamsModelAdapter extends TypeAdapter<ParamsModel> {
   @override
-  final typeId = 6;
+  final typeId = 28;
 
   @override
   ParamsModel read(BinaryReader reader) {

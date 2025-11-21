@@ -1,5 +1,3 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:fin_uslugi/core/routes/app_router.dart';
 import 'package:fin_uslugi/core/widgets/app_button.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';

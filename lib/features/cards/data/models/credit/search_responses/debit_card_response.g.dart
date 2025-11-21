@@ -17,7 +17,7 @@ class DebitCardResponseAdapter extends TypeAdapter<DebitCardResponse> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return DebitCardResponse(
-      id: (fields[1] as num).toInt(),
+      id: fields[1] as String,
       productType: fields[0] as BankingCategory,
       cardName: fields[2] as String,
       status: fields[3] as String,

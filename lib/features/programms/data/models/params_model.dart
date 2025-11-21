@@ -1,7 +1,7 @@
 import 'package:hive_ce_flutter/adapters.dart';
 part 'params_model.g.dart';
 
-@HiveType(typeId: 6)
+@HiveType(typeId: 28)
 class ParamsModel {
   @HiveField(0)
   List<dynamic> advantages;

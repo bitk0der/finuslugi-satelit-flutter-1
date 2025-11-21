@@ -10,7 +10,7 @@ class DebitCardResponse extends Product {
   final BankingCategory productType;
   @override
   @HiveField(1)
-  final int id;
+  final String id;
 
   @override
   @HiveField(2)
@@ -132,7 +132,7 @@ class DebitCardResponse extends Product {
     final bankInfo = json['bankinfo'] as Map<String, dynamic>?;
 
     return DebitCardResponse(
-      id: json['id'] as int,
+      id: json['id'].toString(),
       productType: BankingCategory.debitCards,
       parentPostRelation:
           int.tryParse(json['parent_post_relation']?.toString() ?? '0') ?? 0,

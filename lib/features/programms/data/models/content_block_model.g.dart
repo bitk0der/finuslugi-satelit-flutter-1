@@ -8,7 +8,7 @@ part of 'content_block_model.dart';
 
 class ContentBlockAdapter extends TypeAdapter<ContentBlock> {
   @override
-  final typeId = 5;
+  final typeId = 27;
 
   @override
   ContentBlock read(BinaryReader reader) {

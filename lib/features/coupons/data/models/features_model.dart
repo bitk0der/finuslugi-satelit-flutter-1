@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:hive_ce_flutter/adapters.dart';
 part 'features_model.g.dart'; // This is for the generated file
 
-@HiveType(typeId: 4)
+@HiveType(typeId: 19)
 class FeaturesModel extends Equatable {
   @HiveField(0)
   final bool forNewUser;

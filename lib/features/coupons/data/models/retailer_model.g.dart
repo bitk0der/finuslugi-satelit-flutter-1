@@ -8,7 +8,7 @@ part of 'retailer_model.dart';
 
 class RetailerModelAdapter extends TypeAdapter<RetailerModel> {
   @override
-  final typeId = 1;
+  final typeId = 21;
 
   @override
   RetailerModel read(BinaryReader reader) {

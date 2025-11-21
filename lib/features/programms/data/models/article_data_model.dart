@@ -5,7 +5,7 @@ import 'package:fin_uslugi/features/programms/data/models/product_model.dart';
 import 'package:fin_uslugi/features/programms/data/models/product_type.dart';
 part 'article_data_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 25)
 class ArticleData {
   @HiveField(0)
   final Article article;

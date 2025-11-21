@@ -17,7 +17,7 @@ class MortgageResponseAdapter extends TypeAdapter<MortgageResponse> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return MortgageResponse(
-      id: (fields[0] as num).toInt(),
+      id: fields[0] as String,
       date: fields[1] as DateTime,
       dateGmt: fields[2] as DateTime,
       modified: fields[3] as DateTime,

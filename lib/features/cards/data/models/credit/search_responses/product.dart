@@ -4,7 +4,7 @@ part 'product.g.dart';
 
 abstract class Product {
   BankingCategory get productType;
-  int get id;
+  String get id;
   String get bankName;
   String get cardName;
 }
@@ -22,5 +22,9 @@ enum BankingCategory {
   @HiveField(4)
   mortgages, // Ипотеки
   @HiveField(5)
-  banks // Банки
+  banks, // Банки
+  @HiveField(6)
+  loans, // Займы
+  @HiveField(7)
+  promocodes // Промокоды
 }

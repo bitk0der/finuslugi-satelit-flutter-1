@@ -1,11 +1,10 @@
 import 'package:fin_uslugi/core/widgets/app_card_layout.dart';
+import 'package:fin_uslugi/features/cards/data/models/credit/search_responses/product.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
-import 'package:fin_uslugi/features/loans/data/models/credit/search_responses/product.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/search_responses/response.dart';
 import 'package:fin_uslugi/features/loans/presentation/blocs/credit_search_bloc.dart';
 import 'package:fin_uslugi/features/loans/presentation/theme/calculator_colors.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/app_error_widget.dart';
-import 'package:fin_uslugi/features/loans/presentation/widgets/calculator_app_bar.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/loan_card_widget.dart';
 import 'package:fin_uslugi/features/programms/presentation/widgets/app_textfield.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +44,7 @@ class _LoansScreenState extends State<LoansScreen> {
     super.initState();
   }
 
-  search() {
+  void search() {
     _pagingController.itemList?.clear();
     _creditSearchBloc.add(
       CreditSearchBlocSearchEvent(page: 1, query: textEditingController.text),
@@ -67,7 +66,7 @@ class _LoansScreenState extends State<LoansScreen> {
     );
   }
 
-  fillData() {
+  void fillData() {
     final isLastPage = _response.page >= _response.totalPages;
     final nextPageKey = _response.page + 1;
     if (_response.page == 1 && !isLastPage) {
@@ -94,7 +93,6 @@ class _LoansScreenState extends State<LoansScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
     return SafeArea(
       top: false,
       child: BlocConsumer(
@@ -206,7 +204,7 @@ class _LoansScreenState extends State<LoansScreen> {
     );
   }
 
-  upperWidget(ThemeData theme, [double? vertical]) {
+  Padding upperWidget(ThemeData theme, [double? vertical]) {
     return Padding(
       padding: EdgeInsets.symmetric(
         vertical: vertical ?? 12.h,

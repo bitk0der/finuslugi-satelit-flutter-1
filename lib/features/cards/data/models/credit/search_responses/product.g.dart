@@ -25,6 +25,10 @@ class BankingCategoryAdapter extends TypeAdapter<BankingCategory> {
         return BankingCategory.mortgages;
       case 5:
         return BankingCategory.banks;
+      case 6:
+        return BankingCategory.loans;
+      case 7:
+        return BankingCategory.promocodes;
       default:
         return BankingCategory.credits;
     }
@@ -45,6 +49,10 @@ class BankingCategoryAdapter extends TypeAdapter<BankingCategory> {
         writer.writeByte(4);
       case BankingCategory.banks:
         writer.writeByte(5);
+      case BankingCategory.loans:
+        writer.writeByte(6);
+      case BankingCategory.promocodes:
+        writer.writeByte(7);
     }
   }
 
