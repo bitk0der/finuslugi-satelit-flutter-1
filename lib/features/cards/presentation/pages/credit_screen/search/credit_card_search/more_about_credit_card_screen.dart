@@ -42,7 +42,7 @@ class _MoreAboutCreditCardScreenState extends State<MoreAboutCreditCardScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorStyles.backgroundColor,
+      backgroundColor: ColorStyles.white,
       appBar: CustomAppBar.getAbout(
         isBackButton: true,
         context: context,

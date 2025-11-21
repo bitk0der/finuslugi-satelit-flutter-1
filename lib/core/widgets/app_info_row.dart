@@ -12,8 +12,7 @@ class AppInfoRow extends StatelessWidget {
     return Container(
         padding: EdgeInsets.all(14.w),
         decoration: BoxDecoration(
-            color: ColorStyles.fillColor,
-            borderRadius: BorderRadius.circular(14)),
+            color: ColorStyles.white, borderRadius: BorderRadius.circular(14)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

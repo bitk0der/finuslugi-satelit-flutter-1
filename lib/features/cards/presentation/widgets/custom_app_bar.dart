@@ -6,6 +6,7 @@ import 'package:fin_uslugi/core/utils/ui_util.dart';
 import 'package:fin_uslugi/core/widgets/app_small_button.dart';
 import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
+import 'package:fin_uslugi/features/cards/presentation/widgets/cards_favourite_button.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/favourite_button.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
@@ -266,17 +267,11 @@ class CustomAppBar {
                                 ),
                               ),
                             ])),
-                      BlocBuilder(
-                          bloc: GetIt.I<LocalMortgageBloc>(),
-                          builder: (context, state) {
-                            return AppSmallButton(
-                                onTap: onTapFavourite,
-                                iconColor:
-                                    GetIt.I<StorageUtil>().checkInFavourite(id)
-                                        ? ColorStyles.greenStar
-                                        : null,
-                                icon: Assets.icons.buttonsIcon.star);
-                          }),
+                      CardsFavouriteButton(
+                        onTapFavourite: onTapFavourite,
+                        id: id,
+                      )
+
                       /*  SizedBox(width: 12.w),
                           BlocBuilder(
                               bloc: GetIt.I<LocalComparisonMortgageBloc>(),
