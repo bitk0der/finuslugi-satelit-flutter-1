@@ -40,6 +40,7 @@ class _MoreAboutinvestmentScreenState extends State<MoreAboutinvestmentScreen> {
         title: widget.investment.cardName,
         bankName: widget.investment.bankName,
         bankUrlLogo: widget.investment.bankLogo,
+        imageUrl: widget.investment.bankLogo,
         onTapFavourite: () {
           GetIt.I<LocalMortgageBloc>()
               .add(AddMortgageToFavourite(productItemModel: widget.investment));

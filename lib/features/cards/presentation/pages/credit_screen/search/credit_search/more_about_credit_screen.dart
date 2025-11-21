@@ -38,6 +38,7 @@ class _MoreAboutCreditScreenState extends State<MoreAboutCreditScreen> {
         id: widget.credit.id,
         bankId: widget.credit.parentPostRelation,
         title: widget.credit.cardName,
+        imageUrl: widget.credit.bankLogoUrl,
         bankName: widget.credit.bankName,
         bankUrlLogo: widget.credit.bankLogoUrl,
         onTapFavourite: () {
