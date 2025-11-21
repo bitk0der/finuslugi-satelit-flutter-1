@@ -59,6 +59,8 @@ class ColorStyles {
   ];
   static const navbarGradient = [Color(0xff4F8E36), Color(0xff75C555)];
 
+  static const redGradient = [red, red];
+
   static const creditFavouriteCardColors = [
     Color(0xffFFEDEC),
     Color(0xffFF410C),
