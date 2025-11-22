@@ -1,7 +1,9 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:fin_uslugi/core/theme/app_font.dart';
+import 'package:fin_uslugi/features/coupons/data/models/coupon_item_model.dart';
 import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/data/models/coupon_favourite_model.dart';
 import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/presentation/bloc/local/local_coupons_bloc.dart';
+import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,6 +17,8 @@ import 'package:fin_uslugi/core/widgets/app_card_layout.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'dart:ui' as ui;
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class CouponDetailsWidget extends StatefulWidget {
   final CouponFavouriteModel couponWithRetailer;
   final bool isInFavoutrite;
@@ -27,22 +31,22 @@ class CouponDetailsWidget extends StatefulWidget {
 }
 
 class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
-  bool _isInFavourites = false;
   bool _isActiveNotification = false;
 /*   final box = GetStorage(); */
   late LocalCouponsBloc _localFootballBloc;
   bool isExpanded = false;
+  late LocalMortgageBloc localMortgageBloc;
   @override
   void initState() {
-    checkInCache();
     _localFootballBloc = GetIt.I<LocalCouponsBloc>();
+    localMortgageBloc = GetIt.I<LocalMortgageBloc>();
     super.initState();
   }
 
-  checkInCache() {
-    /* var isInFavouriteIds = box.read('coupons') as List? ?? [];
-    _isInFavourites =
-        isInFavouriteIds.contains(widget.couponWithRetailer.coupon.uuid); */
+  bool checkInCache(CouponItem couponItem) {
+    var isInFavouriteIds =
+        GetIt.I<SharedPreferences>().getStringList('mortgagesIDS') ?? [];
+    return isInFavouriteIds.contains(couponItem.uuid);
   }
 
   checkInCacheNotification() {
@@ -53,11 +57,10 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    checkInCacheNotification();
     return BlocBuilder(
         bloc: _localFootballBloc,
         builder: (context, state) {
-          checkInCache();
+          checkInCache(widget.couponWithRetailer.coupon);
           return Container(
             decoration: BoxDecoration(
                 color: ColorStyles.fillColor2,
@@ -80,33 +83,35 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                             style: UIFonts.bodyMedium,
                           )),
                           SizedBox(width: 10.w),
-                          GestureDetector(
-                            behavior: HitTestBehavior.opaque,
-                            onTap: () async {
-                              if (_isInFavourites) {
-                                _localFootballBloc.add(
-                                    DeleteCouponFromFavourite(
-                                        coupon: widget.couponWithRetailer));
-                              } else {
-                                _localFootballBloc.add(AddCouponToFavourite(
-                                    coupon: widget.couponWithRetailer));
-                              }
+                          BlocBuilder(
+                            bloc: localMortgageBloc,
+                            builder: (context, state) {
+                              checkInCache(widget.couponWithRetailer.coupon);
+                              return GestureDetector(
+                                behavior: HitTestBehavior.opaque,
+                                onTap: () async {
+                                  localMortgageBloc.add(AddMortgageToFavourite(
+                                      productItemModel:
+                                          widget.couponWithRetailer));
+                                },
+                                child: Container(
+                                  width: 42.w,
+                                  height: 42.w,
+                                  padding: EdgeInsets.all(9.w),
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: ColorStyles.grayBorder),
+                                      shape: BoxShape.circle),
+                                  child: checkInCache(
+                                          widget.couponWithRetailer.coupon)
+                                      ? Assets.icons.yellowStar.svg(
+                                          colorFilter: ColorFilter.mode(
+                                              ColorStyles.red, BlendMode.srcIn))
+                                      : Assets.icons.buttonsIcon.outlinedStar
+                                          .svg(),
+                                ),
+                              );
                             },
-                            child: Container(
-                              width: 42.w,
-                              height: 42.w,
-                              padding: EdgeInsets.all(9.w),
-                              decoration: BoxDecoration(
-                                  color: _isInFavourites
-                                      ? ColorStyles.yellowColor
-                                      : ColorStyles.grayBorder,
-                                  border: Border.all(
-                                      color: ColorStyles.yellowColor),
-                                  shape: BoxShape.circle),
-                              child: _isInFavourites
-                                  ? Assets.icons.filledFavouriteIcon.svg()
-                                  : Assets.icons.favouriteIcon.svg(),
-                            ),
                           )
                         ],
                       ),
@@ -219,7 +224,9 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Assets.icons.yellowStar.svg(),
+                                Assets.icons.yellowStar.svg(
+                                    colorFilter: ColorFilter.mode(
+                                        ColorStyles.red, BlendMode.srcIn)),
                                 SizedBox(width: 6.w),
                                 Text(
                                   '${widget.couponWithRetailer.coupon.meta.activationsCount} активации',

@@ -210,17 +210,18 @@ class _AppExpansionListTileState extends State<AppExpansionListTile> {
                                           height: 42.w,
                                           padding: EdgeInsets.all(9.w),
                                           decoration: BoxDecoration(
-                                              color: isInFavourites
-                                                  ? ColorStyles.yellowColor
-                                                  : ColorStyles.white,
                                               border: Border.all(
                                                   color:
-                                                      ColorStyles.yellowColor),
-                                              shape: BoxShape.circle),
+                                                      ColorStyles.grayBorder),
+                                              borderRadius:
+                                                  BorderRadius.circular(14)),
                                           child: isInFavourites
-                                              ? Assets.icons.filledFavouriteIcon
-                                                  .svg()
-                                              : Assets.icons.favouriteIcon
+                                              ? Assets.icons.yellowStar.svg(
+                                                  colorFilter: ColorFilter.mode(
+                                                      ColorStyles.red,
+                                                      BlendMode.srcIn))
+                                              : Assets.icons.buttonsIcon
+                                                  .outlinedStar
                                                   .svg(),
                                         ),
                                       ),

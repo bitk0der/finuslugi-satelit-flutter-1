@@ -195,7 +195,9 @@ class CustomAppBar {
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700)),
                           SizedBox(width: 8.w),
-                          Assets.icons.yellowStar.svg()
+                          Assets.icons.yellowStar.svg(
+                              colorFilter: ColorFilter.mode(
+                                  ColorStyles.red, BlendMode.srcIn))
                         ],
                       ),
                     ],

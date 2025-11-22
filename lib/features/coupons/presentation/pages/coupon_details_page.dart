@@ -27,16 +27,10 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
   /* bool _isInFavourites = false; */
 /*   final box = GetStorage(); */
 
-  void checkInCache() {
-    /*  var isInFavouriteIds = box.read('retailers') as List? ?? [];
-    _isInFavourites = isInFavouriteIds.contains(widget.retailerModel.uuid); */
-  }
-
   late LocalCouponsBloc _localFootballBloc;
   late RemoteCouponsBloc _remoteCouponsBloc;
   @override
   void initState() {
-    checkInCache();
     _localFootballBloc = GetIt.I<LocalCouponsBloc>();
     _remoteCouponsBloc = GetIt.I<RemoteCouponsBloc>();
     widget.couponFavouriteModel != null
@@ -53,7 +47,6 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
     return BlocBuilder(
         bloc: _localFootballBloc,
         builder: (context, state) {
-          checkInCache();
           return BlocConsumer(
               bloc: _remoteCouponsBloc,
               listener: (context, RemoteCouponsState state) async {

@@ -91,8 +91,11 @@ class _FavouritesPageState extends State<FavouritesPage>
         );
 
       case BankingCategory.promocodes:
-        return CouponDetailsWidget(
-            couponWithRetailer: (product as CouponFavouriteModel));
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: CouponDetailsWidget(
+              couponWithRetailer: (product as CouponFavouriteModel)),
+        );
 
       /*   case BankingCategory.banks:
         return BankCardWidget(
@@ -258,33 +261,36 @@ class _FavouritesPageState extends State<FavouritesPage>
                 ? 'Добавьте хотя бы один банк, чтобы следить за его финансовыми услугами с этой страницы'
                 : 'Перейдите в каталог и добавьте финуслугу для быстрого перехода к ней',
           )
-        : ListView.separated(
-            padding: EdgeInsets.symmetric(vertical: 12.h),
-            itemCount: favouritesProducts.length,
-            shrinkWrap: true,
-            itemBuilder: ((context, index) {
-              if (index == 0) {
-                return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.w, vertical: 4.h),
-                        child: Text(
-                          'Вы добавили ${favouritesProducts.length} ${!isABank ? 'финуслуг' : 'банка'} в избранное',
-                          style: TextStyles.h2.copyWith(
-                              fontSize: 14,
-                              color: Colors.black.withValues(alpha: 0.7)),
+        : SafeArea(
+            child: ListView.separated(
+              padding:
+                  EdgeInsets.symmetric(vertical: 12.h).copyWith(bottom: 100.h),
+              itemCount: favouritesProducts.length,
+              shrinkWrap: true,
+              itemBuilder: ((context, index) {
+                if (index == 0) {
+                  return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.w, vertical: 4.h),
+                          child: Text(
+                            'Вы добавили ${favouritesProducts.length} ${!isABank ? 'финуслуг' : 'банка'} в избранное',
+                            style: TextStyles.h2.copyWith(
+                                fontSize: 14,
+                                color: Colors.black.withValues(alpha: 0.7)),
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 12.h),
-                      getWidgetByCategoryType(favouritesProducts[index])
-                    ]);
-              }
-              return getWidgetByCategoryType(favouritesProducts[index]);
-            }),
-            separatorBuilder: (BuildContext context, int index) =>
-                SizedBox(height: 12.h),
+                        SizedBox(height: 12.h),
+                        getWidgetByCategoryType(favouritesProducts[index])
+                      ]);
+                }
+                return getWidgetByCategoryType(favouritesProducts[index]);
+              }),
+              separatorBuilder: (BuildContext context, int index) =>
+                  SizedBox(height: 12.h),
+            ),
           );
   }
 }
