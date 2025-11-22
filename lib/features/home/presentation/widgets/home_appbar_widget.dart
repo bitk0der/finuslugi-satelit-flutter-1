@@ -1,7 +1,7 @@
 import 'package:fin_uslugi/features/app_banner/app_banner_initial_setup.dart';
 import 'package:fin_uslugi/features/app_banner/presentation/app_universal_banner_widget.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/favourite_button.dart';
-import 'package:fin_uslugi/features/cards/presentation/widgets/filter_button.dart';
+import 'package:fin_uslugi/features/local_notifications/presentation/widgets/notification_button.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +41,7 @@ class HomeAppbarWidget extends StatelessWidget {
                     children: [
                       FavouriteButton(),
                       SizedBox(width: 12.w),
-                      FilterButton(onTap: () {}),
+                      NotificationButton(),
                     ],
                   ),
                 ],

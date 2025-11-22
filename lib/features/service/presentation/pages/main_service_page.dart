@@ -1,7 +1,7 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:fin_uslugi/core/routes/app_router.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
+import 'package:fin_uslugi/core/theme/app_fonts.dart';
 import 'package:fin_uslugi/core/widgets/app_card_layout.dart';
 import 'package:fin_uslugi/core/widgets/app_circle_button.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
@@ -63,7 +63,12 @@ class _MainServicePageState extends State<MainServicePage> {
                       iconColor: Colors.white,
                     ),
                     SizedBox(width: 12),
-                    Flexible(child: Text(title))
+                    Flexible(
+                        child: Text(
+                      title,
+                      style: TextStyles.h2.copyWith(
+                          color: Colors.black, fontWeight: FontWeight.w400),
+                    ))
                   ],
                 ),
               ),

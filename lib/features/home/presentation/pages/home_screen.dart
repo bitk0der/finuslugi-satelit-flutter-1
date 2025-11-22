@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       SizedBox(height: 10.h),
                       InkWell(
                         onTap: () {
-                          GetIt.I<FiltersBloc>().add(ChangeTabIndex(index: 0));
+                          GetIt.I<FiltersBloc>().add(ChangeTabIndex(index: 1));
                           context.navigateTo(const SelectionRouter());
                         },
                         child: ImageCard(
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         'Дебетовые карты',
                         'Высокий кэшбэк!',
                         () {
-                          GetIt.I<FiltersBloc>().add(ChangeTabIndex(index: 4));
+                          GetIt.I<FiltersBloc>().add(ChangeTabIndex(index: 2));
                           context.navigateTo(const SelectionRouter());
                         },
                       ),
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         'Промокоды и купоны',
                         'Выгодные покупки!',
                         () {
-                          GetIt.I<FiltersBloc>().add(ChangeTabIndex(index: 4));
+                          GetIt.I<FiltersBloc>().add(ChangeTabIndex(index: 6));
                           context.navigateTo(const SelectionRouter());
                         },
                       ),
@@ -156,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                             onTap: () {
                               GetIt.I<FiltersBloc>()
-                                  .add(ChangeTabIndex(index: 4));
+                                  .add(ChangeTabIndex(index: 0));
                               context.navigateTo(const SelectionRouter());
                             },
                             child: grayCard(Assets.icons.mfos, 'Каталог МФО РФ',
@@ -181,10 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
     double? width,
   ]) {
     return InkWell(
-        onTap: () {
-          GetIt.I<FiltersBloc>().add(ChangeTabIndex(index: 4));
-          context.navigateTo(const SelectionRouter());
-        },
+        onTap: onTap,
         child: Container(
             padding: EdgeInsets.all(16.w),
             decoration: BoxDecoration(

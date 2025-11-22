@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:fin_uslugi/core/routes/app_router.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
-import 'package:fin_uslugi/core/widgets/app_small_button.dart';
-import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
+import 'package:fin_uslugi/core/widgets/app_circle_button.dart';
+import 'package:fin_uslugi/features/local_notifications/presentation/bloc/notification_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,33 +10,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class FavouriteButton extends StatefulWidget {
-  const FavouriteButton({super.key});
+class NotificationButton extends StatefulWidget {
+  const NotificationButton({super.key});
 
   @override
-  State<FavouriteButton> createState() => _FavouriteButtonState();
+  State<NotificationButton> createState() => _NotificationButtonState();
 }
 
-class _FavouriteButtonState extends State<FavouriteButton> {
+class _NotificationButtonState extends State<NotificationButton> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-        bloc: GetIt.I<LocalMortgageBloc>(),
+        bloc: GetIt.I<LocalNotificationBloc>(),
         builder: (context, state) {
-          List<String> productsIds =
-              GetIt.I<SharedPreferences>().getStringList('mortgagesIDS') ?? [];
+          List<String> productsIds = GetIt.I<SharedPreferences>()
+                  .getStringList('local_notifications') ??
+              [];
           return Stack(children: [
-            Container(
-              height: 36.h,
-              width: 36.h,
-              padding: EdgeInsets.all(2.w),
-              child: AppSmallButton(
-                size: 38.w,
-                onTap: () {
-                  context.router.push(const FavouritesRoute());
-                },
-                icon: Assets.icons.buttonsIcon.star,
-              ),
+            AppCircleButton(
+              icon: Assets.icons.bell,
+              backgroundColor: Colors.white10,
+              onTap: () =>
+                  context.router.navigate(BackgroundNotificationsRoute()),
             ),
             if (productsIds.isNotEmpty)
               Positioned(
