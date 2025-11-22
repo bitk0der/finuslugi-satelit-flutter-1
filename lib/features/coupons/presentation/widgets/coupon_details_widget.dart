@@ -60,7 +60,7 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
           checkInCache();
           return Container(
             decoration: BoxDecoration(
-                color: ColorStyles.white,
+                color: ColorStyles.fillColor2,
                 borderRadius: BorderRadius.circular(16.r)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,7 +134,7 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                       Container(
                         padding: EdgeInsets.all(16.w),
                         decoration: BoxDecoration(
-                            color: ColorStyles.blueButton,
+                            color: ColorStyles.white,
                             borderRadius: BorderRadius.circular(16.r)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -165,7 +165,9 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                           ],
                         ),
                       ),
-                      widget.couponWithRetailer.coupon.condition != null
+                      widget.couponWithRetailer.coupon.condition != null &&
+                              widget.couponWithRetailer.coupon.condition!
+                                  .isNotEmpty
                           ? LayoutBuilder(builder: (context, constraints) {
                               final span = TextSpan(
                                   text: widget
@@ -192,7 +194,7 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                               alignment: Alignment.center,
                               padding: EdgeInsets.symmetric(vertical: 8.h),
                               decoration: BoxDecoration(
-                                  color: ColorStyles.grayBorder,
+                                  color: ColorStyles.white,
                                   borderRadius: BorderRadius.circular(10.r)),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -212,7 +214,7 @@ class _CouponDetailsWidgetState extends State<CouponDetailsWidget> {
                               child: Container(
                             padding: EdgeInsets.symmetric(vertical: 8.h),
                             decoration: BoxDecoration(
-                                color: ColorStyles.grayBorder,
+                                color: ColorStyles.white,
                                 borderRadius: BorderRadius.circular(10.r)),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

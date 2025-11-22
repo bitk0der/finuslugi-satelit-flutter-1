@@ -11,7 +11,6 @@ import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/searc
 import 'package:fin_uslugi/features/cards/presentation/widgets/bottom_sheet/credit_card_data_bottom_sheet.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_dialog.dart';
-import 'package:fin_uslugi/features/coupons/presentation/pages/category_page.dart';
 import 'package:fin_uslugi/features/coupons/presentation/pages/home/main_page.dart';
 import 'package:fin_uslugi/features/loans/presentation/pages/loans_main_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -125,11 +124,9 @@ class _FsinServiceScreenState extends State<FsinServiceScreen>
                 CreditSearchScreen(),
                 InvestmentSearchScreen(),
                 MortgageSearchScreen(),
-                isCategoryPage == null
-                    ? CategoryPage(
-                        onCategorySelected: (v) =>
-                            setState(() => isCategoryPage = v))
-                    : CouponsMainPage(category: isCategoryPage),
+                CouponsMainPage(
+                    category:
+                        'fooddelivery,travel,construction,grocery,beauty,jewelry,insurance,car,kids,electronics,pet,sport'),
               ]),
               Container(
                 decoration: BoxDecoration(

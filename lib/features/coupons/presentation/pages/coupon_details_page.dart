@@ -24,7 +24,7 @@ class CouponDetailsPage extends StatefulWidget {
 }
 
 class _CouponDetailsPageState extends State<CouponDetailsPage> {
-  bool _isInFavourites = false;
+  /* bool _isInFavourites = false; */
 /*   final box = GetStorage(); */
 
   void checkInCache() {

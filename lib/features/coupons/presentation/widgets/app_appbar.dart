@@ -18,13 +18,9 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 0,
       toolbarHeight: 100.h,
       leadingWidth: 0,
-      title: Container(
+      leading: SizedBox.shrink(),
+      title: SizedBox(
         height: 100.h,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: ColorStyles.navbarGradient,
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
@@ -40,10 +36,12 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
                           width: 40.w,
                           height: 40.w,
                           decoration: BoxDecoration(
-                              color: ColorStyles.white,
+                              color: ColorStyles.white.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(12.r)),
                           padding: EdgeInsets.all(10.w),
-                          child: Assets.icons.arrowRight.svg(),
+                          child: RotatedBox(
+                              quarterTurns: 2,
+                              child: Assets.icons.arrowRight.svg()),
                         )),
                     SizedBox(width: 10.w),
                     Flexible(

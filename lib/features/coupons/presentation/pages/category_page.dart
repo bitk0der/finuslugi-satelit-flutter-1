@@ -32,18 +32,18 @@ class _CategoryPageState extends State<CategoryPage> {
 //TODO coupons route
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: BlocConsumer(
-            bloc: _remoteCouponsBloc,
-            listener: (context, RemoteCouponsState state) async {
-              if (state is GetConfigSuccessfull) {
-                configModels = state.configModel;
-              }
-            },
-            builder: (context, state) {
-              return Scaffold(
-                backgroundColor: ColorStyles.white,
-                body: CustomScrollView(shrinkWrap: true, slivers: [
+    return BlocConsumer(
+        bloc: _remoteCouponsBloc,
+        listener: (context, RemoteCouponsState state) async {
+          if (state is GetConfigSuccessfull) {
+            configModels = state.configModel;
+          }
+        },
+        builder: (context, state) {
+          return Scaffold(
+              backgroundColor: ColorStyles.white,
+              body: SafeArea(
+                child: CustomScrollView(shrinkWrap: true, slivers: [
                   if (state is Failed)
                     SliverFillRemaining(
                         child: Center(
@@ -80,7 +80,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           ))
                         : SliverPadding(
                             padding: EdgeInsets.symmetric(
-                                vertical: 17.h, horizontal: 20.w),
+                                    vertical: 17.h, horizontal: 20.w)
+                                .copyWith(bottom: 100),
                             sliver: SliverList.builder(
                                 itemCount: configModels!.length,
                                 itemBuilder: (context, i) {
@@ -95,7 +96,7 @@ class _CategoryPageState extends State<CategoryPage> {
                                       config: configModels![i]);
                                 }))
                 ]),
-              );
-            }));
+              ));
+        });
   }
 }
