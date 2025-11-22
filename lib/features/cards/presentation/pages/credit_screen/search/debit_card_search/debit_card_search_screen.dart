@@ -120,39 +120,41 @@ class _DebitCardSearchScreenState extends State<DebitCardSearchScreen>
   }
 
   body() {
-    return PagedListView<int, Product>.separated(
-        pagingController: _pagingController,
-        physics: const AlwaysScrollableScrollPhysics(),
-        padding: EdgeInsets.only(bottom: 120.h, top: 12.h),
-        builderDelegate: PagedChildBuilderDelegate<Product>(
-            newPageProgressIndicatorBuilder: (context) => progressIndicator(),
-            noItemsFoundIndicatorBuilder: (context) => Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                            'Программ не найдено, попробуйте изменить параметры поиска',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.titleLarge),
-                      ],
+    return SafeArea(
+      child: PagedListView<int, Product>.separated(
+          pagingController: _pagingController,
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: EdgeInsets.only(bottom: 120.h, top: 12.h),
+          builderDelegate: PagedChildBuilderDelegate<Product>(
+              newPageProgressIndicatorBuilder: (context) => progressIndicator(),
+              noItemsFoundIndicatorBuilder: (context) => Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                              'Программ не найдено, попробуйте изменить параметры поиска',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.titleLarge),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-            itemBuilder: (context, item, index) {
-              DebitCardResponse? debitCard;
-              if (item is DebitCardResponse) {
-                debitCard = item;
-              }
+              itemBuilder: (context, item, index) {
+                DebitCardResponse? debitCard;
+                if (item is DebitCardResponse) {
+                  debitCard = item;
+                }
 
-              return DebitCardCardWidget(
-                  debitCard: debitCard!,
-                  onMoreAboutButtonPressed: () => context.router.push(
-                      MoreAboutDebitCardRoute(
-                          debitCard: debitCard!, income: 0, cashback: 0)));
-            }),
-        separatorBuilder: (BuildContext context, int index) =>
-            SizedBox(height: 12.h));
+                return DebitCardCardWidget(
+                    debitCard: debitCard!,
+                    onMoreAboutButtonPressed: () => context.router.push(
+                        MoreAboutDebitCardRoute(
+                            debitCard: debitCard!, income: 0, cashback: 0)));
+              }),
+          separatorBuilder: (BuildContext context, int index) =>
+              SizedBox(height: 12.h)),
+    );
   }
 }

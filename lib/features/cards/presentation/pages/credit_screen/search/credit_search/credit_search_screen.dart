@@ -88,6 +88,7 @@ class _CreditSearchScreenState extends State<CreditSearchScreen>
           padding: EdgeInsets.all(0),
         ),
         Expanded(
+            child: SafeArea(
           child: PagedListView<int, Product>.separated(
               pagingController: _pagingController,
               physics: const AlwaysScrollableScrollPhysics(),
@@ -125,7 +126,7 @@ class _CreditSearchScreenState extends State<CreditSearchScreen>
                   }),
               separatorBuilder: (BuildContext context, int index) =>
                   SizedBox(height: 12.h)),
-        ),
+        )),
       ],
     );
   }

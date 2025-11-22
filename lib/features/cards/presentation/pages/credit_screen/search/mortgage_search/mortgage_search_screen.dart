@@ -75,41 +75,43 @@ class _MortgageSearchScreenState extends State<MortgageSearchScreen>
   }
 
   body() {
-    return PagedListView<int, Product>.separated(
-        pagingController: _pagingController,
-        physics: const AlwaysScrollableScrollPhysics(),
-        padding: EdgeInsets.only(bottom: 120.h, top: 12.h),
-        builderDelegate: PagedChildBuilderDelegate<Product>(
-            newPageProgressIndicatorBuilder: (context) => progressIndicator(),
-            noItemsFoundIndicatorBuilder: (context) => Center(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                            'Программ не найдено, попробуйте изменить параметры поиска',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.titleLarge),
-                      ],
+    return SafeArea(
+        child: PagedListView<int, Product>.separated(
+            pagingController: _pagingController,
+            physics: const AlwaysScrollableScrollPhysics(),
+            padding: EdgeInsets.only(bottom: 120.h, top: 12.h),
+            builderDelegate: PagedChildBuilderDelegate<Product>(
+                newPageProgressIndicatorBuilder: (context) =>
+                    progressIndicator(),
+                noItemsFoundIndicatorBuilder: (context) => Center(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                                'Программ не найдено, попробуйте изменить параметры поиска',
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.titleLarge),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-            itemBuilder: (context, item, index) {
-              MortgageResponse? mortgageResponse;
-              if (item is MortgageResponse) mortgageResponse = item;
-              return MortgageCardWidget(
-                mortgage: mortgageResponse!,
-                onMoreButtonPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        MoreAboutMortgageScreen(mortgage: mortgageResponse!),
-                  ),
-                ),
-              );
-            }),
-        separatorBuilder: (BuildContext context, int index) =>
-            SizedBox(height: 12.h));
+                itemBuilder: (context, item, index) {
+                  MortgageResponse? mortgageResponse;
+                  if (item is MortgageResponse) mortgageResponse = item;
+                  return MortgageCardWidget(
+                    mortgage: mortgageResponse!,
+                    onMoreButtonPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => MoreAboutMortgageScreen(
+                            mortgage: mortgageResponse!),
+                      ),
+                    ),
+                  );
+                }),
+            separatorBuilder: (BuildContext context, int index) =>
+                SizedBox(height: 12.h)));
   }
 
   final PagingController<int, Product> _pagingController =

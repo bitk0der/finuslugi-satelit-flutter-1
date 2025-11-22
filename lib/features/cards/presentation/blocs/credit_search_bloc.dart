@@ -19,6 +19,7 @@ class CreditSearchBloc
     required this.repository,
   }) : super(CreditSearchBlocInitialState()) {
     on<CreditSearchBlocSearchEvent>(_onSearchEvent);
+    add(CreditSearchBlocSearchEvent(page: 1));
   }
 
   Future<void> _onSearchEvent(

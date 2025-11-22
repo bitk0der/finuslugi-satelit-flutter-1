@@ -17,6 +17,7 @@ class InvestmentSearchBloc
     required this.repository,
   }) : super(InvestmentSearchBlocInitialState()) {
     on<InvestmentSearchBlocSearchEvent>(_onSearchEvent);
+    add(InvestmentSearchBlocSearchEvent(page: 1, query: ''));
   }
 
   Future<void> _onSearchEvent(

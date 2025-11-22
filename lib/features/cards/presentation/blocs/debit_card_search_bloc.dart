@@ -20,6 +20,7 @@ class DebitCardSearchBloc
     required this.repository,
   }) : super(DebitCardSearchBlocInitialState()) {
     on<DebitCardSearchBlocSearchEvent>(_onSearchEvent);
+    add(DebitCardSearchBlocSearchEvent(page: 1));
   }
 
   Future<void> _onSearchEvent(

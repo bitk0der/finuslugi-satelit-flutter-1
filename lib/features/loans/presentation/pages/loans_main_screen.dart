@@ -140,7 +140,8 @@ class _LoansScreenState extends State<LoansScreen> {
                       : PagedListView<int, Product>.separated(
                           pagingController: _pagingController,
                           physics: const AlwaysScrollableScrollPhysics(),
-                          padding: EdgeInsets.symmetric(vertical: 12.h),
+                          padding: EdgeInsets.symmetric(vertical: 12.h)
+                              .copyWith(bottom: 80.h),
                           builderDelegate: PagedChildBuilderDelegate<Product>(
                             newPageProgressIndicatorBuilder: (context) =>
                                 progressIndicator(),

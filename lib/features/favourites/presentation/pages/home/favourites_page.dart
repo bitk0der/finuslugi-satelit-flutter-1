@@ -98,83 +98,80 @@ class _FavouritesPageState extends State<FavouritesPage>
   @override
   Widget build(BuildContext context) {
     return BlocListener(
-        bloc: _localMortgageBloc,
-        listener: (context, LocalMortgageState state) async {
-          if (state is MortgageSuccessfullyAddedToFavourite) {
-            setState(() {});
-            _localMortgageBloc.add(GetFavouritesMortgages());
-          }
-          if (state is MortgageSuccessfullyDeletedFromFavourite) {
-            setState(() {});
-            _localMortgageBloc.add(GetFavouritesMortgages());
-          }
-          if (state is AllProductsRemovedFromFavourites) {
-            setState(() {});
-            _localMortgageBloc.add(GetFavouritesMortgages());
-          }
-        },
-        child: BlocBuilder(
-            bloc: _localMortgageBloc,
-            builder: (context, state) {
-              if (state is LocalError) {
-                return AppErrorWidget(
-                    onTap: () =>
-                        _localMortgageBloc.add(GetFavouritesMortgages()));
-              }
-              if (state is GetFavouritesLocalMortgagesSuccessfull) {
-                List<Product> favouritesProducts = state.favouritesMortgages
-                    .where((element) =>
-                        element.productType != BankingCategory.banks)
-                    .toList();
+      bloc: _localMortgageBloc,
+      listener: (context, LocalMortgageState state) async {
+        if (state is MortgageSuccessfullyAddedToFavourite) {
+          setState(() {});
+          _localMortgageBloc.add(GetFavouritesMortgages());
+        }
+        if (state is MortgageSuccessfullyDeletedFromFavourite) {
+          setState(() {});
+          _localMortgageBloc.add(GetFavouritesMortgages());
+        }
+        if (state is AllProductsRemovedFromFavourites) {
+          setState(() {});
+          _localMortgageBloc.add(GetFavouritesMortgages());
+        }
+      },
+      child: BlocBuilder(
+          bloc: _localMortgageBloc,
+          builder: (context, state) {
+            if (state is LocalError) {
+              return AppErrorWidget(
+                  onTap: () =>
+                      _localMortgageBloc.add(GetFavouritesMortgages()));
+            }
+            if (state is GetFavouritesLocalMortgagesSuccessfull) {
+              List<Product> favouritesProducts = state.favouritesMortgages
+                  .where(
+                      (element) => element.productType != BankingCategory.banks)
+                  .toList();
 
-                List<Product> favouritesBanks = state.favouritesMortgages
-                    .where((element) =>
-                        element.productType == BankingCategory.banks)
-                    .toList();
-                return SafeArea(
-                    top: false,
-                    child: Scaffold(
-                      appBar: CustomAppBar.getFavourites(
-                          context: context,
-                          onClearTap: () =>
-                              _localMortgageBloc.add(DeleteAllProducts())),
-                      body: Column(
-                        children: [
-                          TabBar(
-                              indicatorSize: TabBarIndicatorSize.tab,
-                              controller: tabController,
-                              indicatorWeight: 1,
-                              splashFactory: NoSplash.splashFactory,
-                              indicatorColor: ColorStyles.blueText,
-                              indicatorPadding: EdgeInsets.zero,
-                              labelPadding:
-                                  EdgeInsets.symmetric(horizontal: 8.w),
-                              dividerHeight: 1,
-                              dividerColor: Colors.black.withValues(alpha: 0.2),
-                              tabs: [
-                                for (var i = 0; i < tabsUpper.length; i++)
-                                  upperTab(i),
-                              ]),
-                          Expanded(
-                              child: TabBarView(
-                                  controller: tabController,
-                                  children: [
-                                _getBody(favouritesProducts),
-                                _getBody(favouritesBanks, true)
-                              ])),
-                        ],
-                      ),
-                    ));
-              }
-
-              return Center(
-                child: SizedBox(
-                    width: 32.w,
-                    height: 32.w,
-                    child: CircularProgressIndicator(
-                        color: Theme.of(context).indicatorColor)),
+              /*  List<Product> favouritesBanks = state.favouritesMortgages
+                  .where(
+                      (element) => element.productType == BankingCategory.banks)
+                  .toList(); */
+              return Scaffold(
+                appBar: CustomAppBar.getFavourites(
+                    context: context,
+                    onClearTap: () =>
+                        _localMortgageBloc.add(DeleteAllProducts())),
+                body: SafeArea(
+                    child: Expanded(child: _getBody(favouritesProducts))),
+                /*    TabBar(
+                                indicatorSize: TabBarIndicatorSize.tab,
+                                controller: tabController,
+                                indicatorWeight: 1,
+                                splashFactory: NoSplash.splashFactory,
+                                indicatorColor: ColorStyles.blueText,
+                                indicatorPadding: EdgeInsets.zero,
+                                labelPadding:
+                                    EdgeInsets.symmetric(horizontal: 8.w),
+                                dividerHeight: 1,
+                                dividerColor: Colors.black.withValues(alpha: 0.2),
+                                tabs: [
+                                  for (var i = 0; i < tabsUpper.length; i++)
+                                    upperTab(i),
+                                ]),
+                            Expanded(
+                                child: TabBarView(
+                                    controller: tabController,
+                                    children: [
+                                  _getBody(favouritesProducts),
+                                  _getBody(favouritesBanks, true)
+                                ])), */
               );
-            }));
+            }
+
+            return Center(
+              child: SizedBox(
+                  width: 32.w,
+                  height: 32.w,
+                  child: CircularProgressIndicator(
+                      color: Theme.of(context).indicatorColor)),
+            );
+          }),
+    );
   }
 
   Widget upperTab(int index) {
@@ -189,7 +186,7 @@ class _FavouritesPageState extends State<FavouritesPage>
     );
   }
 
-  List<String> tabsUpper = ['Финуслуги', "Банки"];
+  List<String> tabsUpper = ['Финуслуги'];
 
   Widget _getBody(List<Product> favouritesProducts, [bool isABank = false]) {
     return favouritesProducts.isEmpty
