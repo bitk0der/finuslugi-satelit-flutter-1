@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fin_uslugi/core/widgets/app_circle_button.dart';
 import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/app_small_button.dart';
 import 'package:fin_uslugi/features/loans/presentation/widgets/button_rounded.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
@@ -12,35 +13,44 @@ import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network
 import 'package:fin_uslugi/gen/assets.gen.dart';
 
 class CustomAppBar {
-  static AppBar get({
-    required String title,
-    List<Widget>? actions,
-    bool isBackButton = false,
-  }) {
+  static AppBar get(
+      {required String title,
+      List<Widget>? actions,
+      bool isBackButton = false,
+      required BuildContext context}) {
     return AppBar(
       elevation: 0,
       backgroundColor: ColorStyles.black,
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: isBackButton ? 18.sp : 22.sp,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-      actions: actions,
-      leading: isBackButton
-          ? Builder(
-              builder: (context) => InkWell(
-                onTap: () => context.maybePop(),
-                child: const Icon(
-                  CupertinoIcons.left_chevron,
-                  color: Colors.black,
-                  size: 24,
+      bottom: PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight / 2),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppCircleButton(
+                    buttonSize: 36,
+                    padding: 8,
+                    quarterTurns: 2,
+                    onTap: () => context.maybePop(),
+                    backgroundColor: Color(0xff2A2D32),
+                    radius: 12,
+                    icon: Assets.icons.arrowRight),
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: isBackButton ? 18.sp : 22.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-            )
-          : null,
+                if (actions != null) ...actions
+              ],
+            ),
+          )),
+      leadingWidth: !isBackButton ? 0 : null,
+      automaticallyImplyLeading: false,
+      leading: SizedBox.shrink(),
     );
   }
 

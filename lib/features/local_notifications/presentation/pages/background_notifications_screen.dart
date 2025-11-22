@@ -41,61 +41,65 @@ class _BackgroundNotificationsScreenState
       extendBody: true,
       appBar: CustomAppBar.get(
         title: "Уведомления",
+        context: context,
+        isBackButton: true,
         actions: [
           AppCircleButton(
-            icon: Assets.icons.arrowRight,
-            buttonSize: 44,
-            padding: 10,
+            icon: Assets.icons.bin,
+            buttonSize: 36,
+            padding: 8,
             iconColor: Colors.white,
             backgroundColor: Colors.white.withValues(alpha: 0.2),
-            onTap: () {},
+            onTap: () {
+              GetIt.I<LocalNotificationBloc>().add(
+                ClearNotifications(),
+              );
+            },
           ),
         ],
       ),
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AppCardLayout(
-                color: ColorStyles.grayBorder,
-                padding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 16,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Push-уведомления',
-                      style: TextStyles.h3.copyWith(fontSize: 18.sp),
-                    ),
-                    CupertinoSwitch(
-                      value: switchValue,
-                      onChanged: (v) => setState(() => switchValue = v),
-                    ),
-                  ],
-                ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AppCardLayout(
+              color: ColorStyles.fillColor2,
+              padding: const EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 16,
               ),
-              const SizedBox(height: 16),
-              const AppTitle('Уведомления'),
-              const SizedBox(height: 16),
-              BlocBuilder(
-                bloc: bloc,
-                builder: (c, state) {
-                  if (state is NotificationError) {
-                    return const Center(
-                      child: Text('Ошибка загрузки уведомлений'),
-                    );
-                  } else if (state is NotificationLoadedSuccessfull) {
-                    if (state.messageResponses.isEmpty) {
-                      return _getEmptyListPlaceholder();
-                    }
-                    /*  return Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Push-уведомления',
+                    style: TextStyles.h3
+                        .copyWith(fontSize: 18.sp, color: Colors.black),
+                  ),
+                  CupertinoSwitch(
+                    value: switchValue,
+                    onChanged: (v) => setState(() => switchValue = v),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            const AppTitle('Уведомления'),
+            const SizedBox(height: 16),
+            BlocBuilder(
+              bloc: bloc,
+              builder: (c, state) {
+                if (state is NotificationError) {
+                  return const Center(
+                    child: Text('Ошибка загрузки уведомлений'),
+                  );
+                } else if (state is NotificationLoadedSuccessfull) {
+                  if (state.messageResponses.isEmpty) {
+                    return _getEmptyListPlaceholder();
+                  }
+                  /*   return Column(
                       children: [
                         NotificationWidget(
                           messageResponse: getMessageResponse(
@@ -111,13 +115,12 @@ class _BackgroundNotificationsScreenState
                               'Заголовок уведомления'),
                         )
                       ],
-                    ),
-                  ); */
+                    ); */
 
-                    return ListView.separated(
+                  return Expanded(
+                    child: ListView.separated(
                       itemCount: state.messageResponses.length,
                       shrinkWrap: true,
-                      padding: const EdgeInsets.all(20),
                       itemBuilder: (context, index) {
                         return NotificationWidget(
                           messageResponse: state.messageResponses[index],
@@ -125,26 +128,26 @@ class _BackgroundNotificationsScreenState
                       },
                       separatorBuilder: (BuildContext context, int index) =>
                           const SizedBox(height: 10),
-                    );
-                  }
-                  return const Center(child: CircularProgressIndicator());
-                },
-              ),
-            ],
-          ),
+                    ),
+                  );
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+          ],
         ),
       ),
     );
   }
 
   AppCardLayout _getEmptyListPlaceholder() => AppCardLayout(
-        color: ColorStyles.grayBorder,
+        color: ColorStyles.red,
         padding: const EdgeInsets.symmetric(vertical: 17, horizontal: 16),
         child: Row(
           children: [
             Assets.icons.bankCategoriesIcons.creditCard.svg(
               colorFilter: ColorFilter.mode(
-                ColorStyles.black.withValues(alpha: 0.5),
+                ColorStyles.white,
                 BlendMode.srcIn,
               ),
             ),

@@ -116,7 +116,10 @@ class AppRouter extends RootStackRouter {
               AutoRoute(page: FavouritesRoute.page, path: 'favourites_page'),
               AutoRoute(
                   page: BackgroundNotificationsRoute.page,
-                  path: 'background_notifications_screen')
+                  path: 'background_notifications_screen'),
+              AutoRoute(
+                  page: NotificationDetailsRoute.page,
+                  path: 'notifications_details_screen')
             ],
           ),
         ],

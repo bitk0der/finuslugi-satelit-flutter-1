@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:fin_uslugi/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -28,7 +29,7 @@ class NotificationWidget extends StatelessWidget {
       isNeedShadow:
           !isExtendedNotiification && messageResponse.checkDate == null,
       padding: const EdgeInsets.all(15),
-      /*   color: messageResponse.checkDate != null ? const Color(0xffE7E7E7) : null, */
+      color: messageResponse.checkDate != null ? const Color(0xffE7E7E7) : null,
       border: !isExtendedNotiification && messageResponse.checkDate == null
           ? Border.all(color: orange)
           : null,
@@ -139,7 +140,10 @@ class NotificationWidget extends StatelessWidget {
                 ),
               ),
             if (isExtendedNotiification)
-              AppButton(onTap: () => tapHandler(context), title: 'Получить'),
+              AppButton(
+                  backgroundColor: ColorStyles.black,
+                  onTap: () => tapHandler(context),
+                  title: 'Получить'),
           ],
         ],
       ),

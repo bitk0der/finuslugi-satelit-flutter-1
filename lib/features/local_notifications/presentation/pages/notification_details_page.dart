@@ -1,5 +1,5 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
+import 'package:fin_uslugi/features/loans/presentation/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
@@ -26,6 +26,7 @@ class _NotificationDetailsPageState extends State<NotificationDetailsPage> {
       backgroundColor: ColorStyles.fillColor,
       appBar: CustomAppBar.get(
         title: widget.messageResponse.messages.first.buttons.first.text,
+        context: context,
         actions: [
           AppCircleButton(
             onTap: () {
@@ -34,7 +35,7 @@ class _NotificationDetailsPageState extends State<NotificationDetailsPage> {
               );
               context.maybePop();
             },
-            icon: Assets.icons.arrowRight,
+            icon: Assets.icons.bin,
             backgroundColor: Colors.white24,
             iconColor: Colors.white,
           ),

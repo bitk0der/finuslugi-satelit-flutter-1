@@ -56,6 +56,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/banks.svg
   SvgGenImage get banks => const SvgGenImage('assets/icons/banks.svg');
 
+  /// File path: assets/icons/bin.svg
+  SvgGenImage get bin => const SvgGenImage('assets/icons/bin.svg');
+
   /// Directory path: assets/icons/buttons_icon
   $AssetsIconsButtonsIconGen get buttonsIcon =>
       const $AssetsIconsButtonsIconGen();
@@ -103,6 +106,7 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [
         arrowRight,
         banks,
+        bin,
         closeIcon,
         favouriteIcon,
         filledFavouriteIcon,
