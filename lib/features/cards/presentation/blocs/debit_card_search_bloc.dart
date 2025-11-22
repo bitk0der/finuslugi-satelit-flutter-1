@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@injectable
+@singleton
 class DebitCardSearchBloc
     extends Bloc<DebitCardSearchBlocEvent, DebitCardSearchBlocState> {
   final ProfileBloc profileBloc;
@@ -20,7 +20,6 @@ class DebitCardSearchBloc
     required this.repository,
   }) : super(DebitCardSearchBlocInitialState()) {
     on<DebitCardSearchBlocSearchEvent>(_onSearchEvent);
-    add(DebitCardSearchBlocSearchEvent(page: 1));
   }
 
   Future<void> _onSearchEvent(

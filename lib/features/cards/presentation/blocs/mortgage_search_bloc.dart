@@ -17,7 +17,6 @@ class MortgageSearchBloc
     required this.repository,
   }) : super(MortgageSearchBlocInitialState()) {
     on<MortgageSearchBlocSearchEvent>(_onSearchEvent);
-    add(MortgageSearchBlocSearchEvent(page: 1, query: ''));
   }
 
   Future<void> _onSearchEvent(

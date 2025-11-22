@@ -222,6 +222,7 @@ class CustomAppBar {
     required int bankId,
     bool isBackButton = false,
     bool isSmall = false,
+    bool isNeedFavouriteButton = true,
   }) {
     return PreferredSize(
         preferredSize: Size(0, isSmall ? 205.h : kToolbarHeight * 1.5),
@@ -267,11 +268,12 @@ class CustomAppBar {
                                 ),
                               ),
                             ])),
-                      CardsFavouriteButton(
-                        onTapFavourite: onTapFavourite,
-                        id: id,
-                      )
-
+                      if (isNeedFavouriteButton)
+                        CardsFavouriteButton(
+                          onTapFavourite: onTapFavourite,
+                          id: id,
+                        ),
+                      if (!isNeedFavouriteButton) SizedBox(width: 38.w),
                       /*  SizedBox(width: 12.w),
                           BlocBuilder(
                               bloc: GetIt.I<LocalComparisonMortgageBloc>(),

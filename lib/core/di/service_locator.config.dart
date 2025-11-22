@@ -106,15 +106,15 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i779.SearchDataRepository(gh<_i597.ApiUtil>()));
     gh.factory<_i270.BanksRepository>(
         () => _i544.BanksDataRepository(gh<_i597.ApiUtil>()));
-    gh.factory<_i930.CreditSearchBloc>(() => _i930.CreditSearchBloc(
-          profileBloc: gh<_i1010.ProfileBloc>(),
-          repository: gh<_i3.CreditSearchRepository>(),
-        ));
-    gh.factory<_i147.DebitCardSearchBloc>(() => _i147.DebitCardSearchBloc(
-          profileBloc: gh<_i1010.ProfileBloc>(),
-          repository: gh<_i3.CreditSearchRepository>(),
-        ));
     gh.singleton<_i307.CreditCardSearchBloc>(() => _i307.CreditCardSearchBloc(
+          profileBloc: gh<_i1010.ProfileBloc>(),
+          repository: gh<_i3.CreditSearchRepository>(),
+        ));
+    gh.singleton<_i930.CreditSearchBloc>(() => _i930.CreditSearchBloc(
+          profileBloc: gh<_i1010.ProfileBloc>(),
+          repository: gh<_i3.CreditSearchRepository>(),
+        ));
+    gh.singleton<_i147.DebitCardSearchBloc>(() => _i147.DebitCardSearchBloc(
           profileBloc: gh<_i1010.ProfileBloc>(),
           repository: gh<_i3.CreditSearchRepository>(),
         ));

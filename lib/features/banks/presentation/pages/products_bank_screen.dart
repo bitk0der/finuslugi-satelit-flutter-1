@@ -56,19 +56,16 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
       case BankingCategory.credits:
         return CreditCardWidget(
             credit: (product as CreditResponse),
-            isFavourite: true,
             onMoreButtonPressed: () =>
                 context.router.push(MoreAboutCreditRoute(credit: product)));
       case BankingCategory.creditCards:
         return CreditCardCardWidget(
             creditCard: (product as CreditCardResponse),
-            isFavourite: true,
             onMoreAboutButtonPressed: () => context.router
                 .push(MoreAboutCreditCardRoute(creditCard: product)));
       case BankingCategory.debitCards:
         return DebitCardCardWidget(
             debitCard: (product as DebitCardResponse),
-            isFavourite: true,
             onMoreAboutButtonPressed: () => context.router.push(
                 MoreAboutDebitCardRoute(
                     debitCard: product, income: 0, cashback: 0)));
@@ -116,7 +113,68 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
   final investmentSearchBloc = GetIt.I<InvestmentSearchBloc>();
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer(
+    return MultiBlocListener(
+        listeners: [
+          BlocListener(
+              bloc: investmentSearchBloc,
+              listener: (context, state) {
+                if (state is InvestmentSearchForBankBlocReadyState) {
+                  bankingProducts = state.response.products;
+                  setState(() {});
+                }
+              }),
+          BlocListener(
+              bloc: mortgageSearchBloc,
+              listener: (context, state) {
+                if (state is MortgageSearchForBankBlocReadyState) {
+                  bankingProducts = state.response.products;
+                  setState(() {});
+                }
+              }),
+          BlocListener(
+              bloc: creditCardSearchBloc,
+              listener: (context, state) {
+                if (state is CreditCardForBankSearchBlocReadyState) {
+                  bankingProducts = state.response.products;
+                  setState(() {});
+                }
+              }),
+          BlocListener(
+              bloc: debitCardSearchBloc,
+              listener: (context, state) {
+                if (state is DebitCardForBankSearchBlocReadyState) {
+                  bankingProducts = state.response.products;
+                  setState(() {});
+                }
+              }),
+          BlocListener(
+              bloc: creditSearchBloc,
+              listener: (context, state) {
+                if (state is CreditSearchForBankBlocReadyState) {
+                  bankingProducts = state.response.products;
+                  setState(() {});
+                }
+              }),
+        ],
+        child: SafeArea(
+            top: false,
+            child: Scaffold(
+                appBar: CustomAppBar.getFavourites(
+                    context: context,
+                    title: bankingProducts.isEmpty
+                        ? ''
+                        : getTitle(bankingProducts.first.productType)),
+                body: bankingProducts.isEmpty
+                    ? Center(
+                        child: SizedBox(
+                            width: 32.w,
+                            height: 32.w,
+                            child: CircularProgressIndicator(
+                                color: Theme.of(context).indicatorColor)),
+                      )
+                    : _getBody(bankingProducts))));
+
+    /*  return BlocListener(
         bloc: investmentSearchBloc,
         listener: (context, state) {
           if (state is InvestmentSearchForBankBlocReadyState) {
@@ -124,7 +182,7 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
           }
         },
         builder: (context, state) {
-          return BlocConsumer(
+          return BlocListener(
               bloc: mortgageSearchBloc,
               listener: (context, state) {
                 if (state is MortgageSearchForBankBlocReadyState) {
@@ -132,7 +190,7 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
                 }
               },
               builder: (context, state) {
-                return BlocConsumer(
+                return BlocListener(
                     bloc: creditCardSearchBloc,
                     listener: (context, state) {
                       if (state is CreditCardForBankSearchBlocReadyState) {
@@ -140,7 +198,7 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
                       }
                     },
                     builder: (context, state) {
-                      return BlocConsumer(
+                      return BlocListener(
                           bloc: debitCardSearchBloc,
                           listener: (context, state) {
                             if (state is DebitCardForBankSearchBlocReadyState) {
@@ -148,7 +206,7 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
                             }
                           },
                           builder: (context, state) {
-                            return BlocConsumer(
+                            return BlocListener(
                                 bloc: creditSearchBloc,
                                 listener: (context, state) {
                                   if (state
@@ -181,7 +239,7 @@ class _ProductsBankScreenState extends State<ProductsBankScreen>
                           });
                     });
               });
-        });
+        }); */
   }
 
   String getTitle(BankingCategory category) {

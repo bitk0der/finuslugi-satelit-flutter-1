@@ -27,8 +27,8 @@ class AppImageNetwork extends StatelessWidget {
       return SvgPicture.network(
         localUrl,
         placeholderBuilder: (BuildContext context) => SizedBox(
-          width: 25.r,
-          height: 25.r,
+          width: width ?? 25.r,
+          height: height ?? 25.r,
           child: Center(
             child: CircularProgressIndicator(
               strokeWidth: strokeWidth,

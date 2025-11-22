@@ -55,6 +55,26 @@ class AppRouter extends RootStackRouter {
               AutoRoute(page: BanksRoute.page, path: 'banks'),
               AutoRoute(page: MoreAboutbankRoute.page, path: 'banks_details'),
               AutoRoute(page: FavouritesRoute.page, path: 'favourites_route'),
+              AutoRoute(
+                page: MoreAboutCreditCardRoute.page,
+                path: 'more_about_credit_card_route',
+              ),
+              AutoRoute(
+                page: MoreAboutCreditRoute.page,
+                path: 'more_about_credits_route',
+              ),
+              AutoRoute(
+                page: MoreAboutDebitCardRoute.page,
+                path: 'more_about_debit_card_route',
+              ),
+              AutoRoute(
+                page: MoreAboutMortgageRoute.page,
+                path: 'more_about_mortgage',
+              ),
+              AutoRoute(
+                page: MoreAboutinvestmentRoute.page,
+                path: 'more_about_investment',
+              ),
             ],
           ),
           AutoRoute(

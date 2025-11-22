@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-@injectable
+@singleton
 class CreditSearchBloc
     extends Bloc<CreditSearchBlocEvent, CreditSearchBlocState> {
   final ProfileBloc profileBloc;
@@ -19,7 +19,6 @@ class CreditSearchBloc
     required this.repository,
   }) : super(CreditSearchBlocInitialState()) {
     on<CreditSearchBlocSearchEvent>(_onSearchEvent);
-    add(CreditSearchBlocSearchEvent(page: 1));
   }
 
   Future<void> _onSearchEvent(

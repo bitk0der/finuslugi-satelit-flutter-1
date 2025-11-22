@@ -10,7 +10,6 @@ import 'package:fin_uslugi/features/cards/presentation/blocs/investment_search_b
 import 'package:fin_uslugi/features/cards/presentation/blocs/mortgage_search_bloc.dart';
 import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/search/widgets/info_container.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
-import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,24 +43,24 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
   void initState() {
     if (widget.bank.productsInfo.kredityCount > 0) {
       cardTitles.add('Кредиты на любые цели');
-      icons.add(Assets.icons.buttonsIcon.walletGreen);
+      icons.add(Assets.icons.buttonsIcon.walletBlack);
     }
     if (widget.bank.productsInfo.kreditnieKartyCount > 0) {
       cardTitles.add('Кредитные карты');
-      icons.add(Assets.icons.buttonsIcon.creditCardGreen);
+      icons.add(Assets.icons.buttonsIcon.creditCardBlack);
     }
     if (widget.bank.productsInfo.debetovieKartyCount > 0) {
       cardTitles.add('Дебетовые карты');
-      icons.add(Assets.icons.buttonsIcon.debitCardGreen);
+      icons.add(Assets.icons.buttonsIcon.debitCardBlack);
     }
     if (widget.bank.productsInfo.vkladyCountCount > 0) {
       cardTitles.add('Вклады');
-      icons.add(Assets.icons.buttonsIcon.safeGreen);
+      icons.add(Assets.icons.buttonsIcon.safeBlack);
     }
-    if (widget.bank.productsInfo.debetovieKartyCount > 0) {
+/*     if (widget.bank.productsInfo.debetovieKartyCount > 0) {
       cardTitles.add('Ипотеки');
       icons.add(Assets.icons.buttonsIcon.homeGreen);
-    }
+    } */
 
     super.initState();
   }
@@ -70,14 +69,17 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyles.backgroundColor,
-      appBar: CustomAppBar.getAboutBank(
-        isBackButton: true,
+      appBar: CustomAppBar.getAbout(
+        isNeedFavouriteButton: false,
         context: context,
-        onTap: () {
-          GetIt.I<LocalMortgageBloc>()
-              .add(AddMortgageToFavourite(productItemModel: widget.bank));
-        },
-        bank: widget.bank,
+        title: widget.bank.bankName,
+        bankName: widget.bank.bankName,
+        imageUrl: widget.bank.logoRound,
+        id: widget.bank.id,
+        bankId: int.tryParse(widget.bank.id) ?? 0,
+        bankUrlLogo: widget.bank.logosquare,
+        onTapFavourite: () {},
+        onTapComparison: () {},
       ),
       body: _getBody(),
     );
@@ -151,12 +153,7 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
                         padding: EdgeInsets.symmetric(
                             horizontal: 16.w, vertical: 20.h),
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.1),
-                                blurRadius: 10)
-                          ],
+                          color: ColorStyles.fillColor2,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Column(
@@ -164,6 +161,7 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
                           children: [
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   "Полное наименование:",
@@ -217,11 +215,9 @@ class MoreAboutbankScreenState extends State<MoreAboutbankScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 14),
                   margin: EdgeInsets.symmetric(horizontal: 20.w),
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: const [
-                        BoxShadow(color: Colors.black12, blurRadius: 10)
-                      ]),
+                    color: ColorStyles.fillColor2,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   child: Column(
                     children: [
                       SizedBox(height: 4.h),

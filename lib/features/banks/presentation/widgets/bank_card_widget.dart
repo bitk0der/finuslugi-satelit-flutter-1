@@ -1,16 +1,10 @@
 import 'package:fin_uslugi/core/theme/app_colors.dart';
-import 'package:fin_uslugi/core/utils/storage_util.dart';
 import 'package:fin_uslugi/core/utils/ui_util.dart';
-import 'package:fin_uslugi/core/widgets/app_small_button.dart';
 import 'package:fin_uslugi/features/banks/data/models/bank_model.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/app_image_network.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_button.dart';
-import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
-import 'package:fin_uslugi/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 
 class BankCardWidget extends StatelessWidget {
   final BankInfo bank;
@@ -29,15 +23,8 @@ class BankCardWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 20.w),
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: ColorStyles.fillColor2,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.15),
-            blurRadius: 20,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,7 +35,10 @@ class BankCardWidget extends StatelessWidget {
               if (bank.logosquare.isNotEmpty)
                 ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: AppImageNetwork(UiUtil.getlogoUrl(bank.logosquare))),
+                    child: AppImageNetwork(
+                        width: 48,
+                        height: 48,
+                        UiUtil.getlogoUrl(bank.logosquare))),
               SizedBox(width: 12.w),
               Expanded(
                 child: Column(
@@ -80,12 +70,12 @@ class BankCardWidget extends StatelessWidget {
             padding: EdgeInsets.all(14.w),
             margin: EdgeInsets.symmetric(vertical: 10.h),
             decoration: BoxDecoration(
-                color: ColorStyles.fillColor,
+                color: ColorStyles.white,
                 borderRadius: BorderRadius.circular(12)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                /* Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -106,7 +96,7 @@ class BankCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 10.h),
+                SizedBox(height: 10.h), */
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -137,15 +127,14 @@ class BankCardWidget extends StatelessWidget {
               Flexible(
                 child: CustomButton(
                   height: 44.h,
-                  color: ColorStyles.violetColor,
+                  color: ColorStyles.blueButtonColor,
                   borderRadius: 12,
-                  gradient: ColorStyles.navbarGradient,
-                  titleColor: Colors.white,
+                  titleColor: ColorStyles.blueText,
                   title: "Узнать подробности",
                   onTap: onMoreAboutButtonPressed,
                 ),
               ),
-              SizedBox(width: 10.w),
+              /*    SizedBox(width: 10.w),
               BlocBuilder(
                   bloc: GetIt.I<LocalMortgageBloc>(),
                   builder: (context, state) {
@@ -160,7 +149,7 @@ class BankCardWidget extends StatelessWidget {
                                 : null,
                         onTap: () => GetIt.I<LocalMortgageBloc>().add(
                             AddMortgageToFavourite(productItemModel: bank)));
-                  })
+                  }) */
             ],
           ),
         ],

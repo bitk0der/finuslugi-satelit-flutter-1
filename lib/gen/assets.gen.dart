@@ -231,9 +231,17 @@ class $AssetsIconsButtonsIconGen {
   SvgGenImage get comparison =>
       const SvgGenImage('assets/icons/buttons_icon/comparison.svg');
 
+  /// File path: assets/icons/buttons_icon/credit_card_black.svg
+  SvgGenImage get creditCardBlack =>
+      const SvgGenImage('assets/icons/buttons_icon/credit_card_black.svg');
+
   /// File path: assets/icons/buttons_icon/credit_card_green.svg
   SvgGenImage get creditCardGreen =>
       const SvgGenImage('assets/icons/buttons_icon/credit_card_green.svg');
+
+  /// File path: assets/icons/buttons_icon/debit_card_black.svg
+  SvgGenImage get debitCardBlack =>
+      const SvgGenImage('assets/icons/buttons_icon/debit_card_black.svg');
 
   /// File path: assets/icons/buttons_icon/debit_card_green.svg
   SvgGenImage get debitCardGreen =>
@@ -259,6 +267,10 @@ class $AssetsIconsButtonsIconGen {
   SvgGenImage get rubleGreen =>
       const SvgGenImage('assets/icons/buttons_icon/ruble_green.svg');
 
+  /// File path: assets/icons/buttons_icon/safe_black.svg
+  SvgGenImage get safeBlack =>
+      const SvgGenImage('assets/icons/buttons_icon/safe_black.svg');
+
   /// File path: assets/icons/buttons_icon/safe_green.svg
   SvgGenImage get safeGreen =>
       const SvgGenImage('assets/icons/buttons_icon/safe_green.svg');
@@ -275,6 +287,10 @@ class $AssetsIconsButtonsIconGen {
   SvgGenImage get timeGreen =>
       const SvgGenImage('assets/icons/buttons_icon/time_green.svg');
 
+  /// File path: assets/icons/buttons_icon/wallet_black.svg
+  SvgGenImage get walletBlack =>
+      const SvgGenImage('assets/icons/buttons_icon/wallet_black.svg');
+
   /// File path: assets/icons/buttons_icon/wallet_green.svg
   SvgGenImage get walletGreen =>
       const SvgGenImage('assets/icons/buttons_icon/wallet_green.svg');
@@ -283,17 +299,21 @@ class $AssetsIconsButtonsIconGen {
   List<SvgGenImage> get values => [
         arrowRight,
         comparison,
+        creditCardBlack,
         creditCardGreen,
+        debitCardBlack,
         debitCardGreen,
         discountGreen,
         favouriteStar,
         homeGreen,
         outlinedStar,
         rubleGreen,
+        safeBlack,
         safeGreen,
         settings,
         star,
         timeGreen,
+        walletBlack,
         walletGreen
       ];
 }
