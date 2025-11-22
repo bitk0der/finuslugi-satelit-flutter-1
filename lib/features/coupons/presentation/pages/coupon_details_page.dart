@@ -1,6 +1,5 @@
 import 'package:auto_route/annotations.dart';
 import 'package:fin_uslugi/core/theme/app_colors.dart';
-import 'package:fin_uslugi/core/widgets/app_button.dart';
 import 'package:fin_uslugi/features/coupons/data/models/coupon_item_model.dart';
 import 'package:fin_uslugi/features/coupons/data/models/retailer_model.dart';
 import 'package:fin_uslugi/features/coupons/presentation/bloc/coupons_bloc/remote/remote_coupons_bloc.dart';
@@ -63,8 +62,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
                 }
               },
               builder: (context, state) {
-                return SafeArea(
-                    child: Scaffold(
+                return Scaffold(
                   backgroundColor: ColorStyles.white,
                   appBar: DefaultAppBar(retailer: widget.retailerModel),
                   body: state is Loading
@@ -93,7 +91,7 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
                                   (BuildContext context, int index) =>
                                       SizedBox(height: 12.h),
                             ),
-                  floatingActionButtonLocation:
+                  /*  floatingActionButtonLocation:
                       FloatingActionButtonLocation.centerDocked,
                   floatingActionButton: Padding(
                     padding: EdgeInsets.fromLTRB(20.w, 0, 20.w, 10.h),
@@ -114,8 +112,8 @@ class _CouponDetailsPageState extends State<CouponDetailsPage> {
                           ? 'Убрать из избранного'
                           : 'Добавить магазин в избранное',
                     ),
-                  ),
-                ));
+                  ), */
+                );
               });
         });
   }
