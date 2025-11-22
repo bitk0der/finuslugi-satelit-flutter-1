@@ -15,6 +15,10 @@ import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/searc
 import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/search/investment_search/widget/investment_card_widget.dart';
 import 'package:fin_uslugi/features/cards/presentation/pages/credit_screen/search/mortgage_search/widgets/mortgage_card_widget.dart';
 import 'package:fin_uslugi/features/cards/presentation/widgets/custom_app_bar.dart';
+import 'package:fin_uslugi/features/coupons/presentation/pages/favourites/data/models/coupon_favourite_model.dart';
+import 'package:fin_uslugi/features/coupons/presentation/widgets/coupon_details_widget.dart';
+import 'package:fin_uslugi/features/loans/data/models/credit/loan_main_model.dart';
+import 'package:fin_uslugi/features/loans/presentation/widgets/loan_card_widget.dart';
 import 'package:fin_uslugi/features/programms/presentation/bloc/favourite_mortgage_bloc/local/local_mortgage_bloc.dart';
 import 'package:fin_uslugi/features/programms/presentation/widgets/app_error_widget.dart';
 import 'package:fin_uslugi/gen/assets.gen.dart';
@@ -38,7 +42,7 @@ class _FavouritesPageState extends State<FavouritesPage>
 
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 7, vsync: this);
     tabController.addListener(() {
       setState(() {});
     });
@@ -52,19 +56,16 @@ class _FavouritesPageState extends State<FavouritesPage>
       case BankingCategory.credits:
         return CreditCardWidget(
             credit: (product as CreditResponse),
-            isFavourite: true,
             onMoreButtonPressed: () =>
                 context.router.push(MoreAboutCreditRoute(credit: product)));
       case BankingCategory.creditCards:
         return CreditCardCardWidget(
             creditCard: (product as CreditCardResponse),
-            isFavourite: true,
             onMoreAboutButtonPressed: () => context.router
                 .push(MoreAboutCreditCardRoute(creditCard: product)));
       case BankingCategory.debitCards:
         return DebitCardCardWidget(
             debitCard: (product as DebitCardResponse),
-            isFavourite: true,
             onMoreAboutButtonPressed: () => context.router.push(
                 MoreAboutDebitCardRoute(
                     debitCard: product, income: 0, cashback: 0)));
@@ -72,16 +73,26 @@ class _FavouritesPageState extends State<FavouritesPage>
       case BankingCategory.deposits:
         return InvestmentCardWidget(
             investment: (product as InvestmentResponse),
-            isFavourite: true,
             onMoreButtonPressed: () => context.router
                 .push(MoreAboutinvestmentRoute(investment: product)));
 
       case BankingCategory.mortgages:
         return MortgageCardWidget(
             mortgage: (product as MortgageResponse),
-            isFavourite: true,
             onMoreButtonPressed: () =>
                 context.router.push(MoreAboutMortgageRoute(mortgage: product)));
+
+      case BankingCategory.loans:
+        return LoanCardWidget(
+          onMoreAboutButtonPressed: () => context.router.push(
+            LoanDetailsRoute(loan: product),
+          ),
+          loan: (product as LoanMainModel),
+        );
+
+      case BankingCategory.promocodes:
+        return CouponDetailsWidget(
+            couponWithRetailer: (product as CouponFavouriteModel));
 
       /*   case BankingCategory.banks:
         return BankCardWidget(
@@ -127,18 +138,48 @@ class _FavouritesPageState extends State<FavouritesPage>
                       (element) => element.productType != BankingCategory.banks)
                   .toList();
 
-              /*  List<Product> favouritesBanks = state.favouritesMortgages
-                  .where(
-                      (element) => element.productType == BankingCategory.banks)
-                  .toList(); */
               return Scaffold(
                 appBar: CustomAppBar.getFavourites(
                     context: context,
                     onClearTap: () =>
                         _localMortgageBloc.add(DeleteAllProducts())),
-                body: SafeArea(
-                    child: Expanded(child: _getBody(favouritesProducts))),
-                /*    TabBar(
+                body: Stack(alignment: Alignment.bottomCenter, children: [
+                  TabBarView(controller: tabController, children: [
+                    _getBody(favouritesProducts, BankingCategory.loans),
+                    _getBody(favouritesProducts, BankingCategory.creditCards),
+                    _getBody(favouritesProducts, BankingCategory.debitCards),
+                    _getBody(favouritesProducts, BankingCategory.credits),
+                    _getBody(favouritesProducts, BankingCategory.deposits),
+                    _getBody(favouritesProducts, BankingCategory.mortgages),
+                    _getBody(favouritesProducts, BankingCategory.promocodes),
+                  ]),
+                  Container(
+                    decoration: BoxDecoration(
+                        color: ColorStyles.lightViolet,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12.r),
+                            topRight: Radius.circular(12.r))),
+                    child: SafeArea(
+                        child: TabBar(
+                      tabAlignment: TabAlignment.center,
+                      controller: tabController,
+                      isScrollable: true,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 20.w, vertical: 14.h),
+                      indicatorWeight: 0.1,
+                      indicatorColor: Colors.transparent,
+                      indicatorPadding: EdgeInsets.zero,
+                      labelPadding: EdgeInsets.only(right: 8.w),
+                      dividerHeight: 0,
+                      tabs: [
+                        for (var i = 0; i < tabsUpper.length; i++) upperTab(i),
+                      ],
+                    )),
+                  ),
+                ]),
+              );
+              /* _getBody(favouritesProducts) */
+              /*    TabBar(
                                 indicatorSize: TabBarIndicatorSize.tab,
                                 controller: tabController,
                                 indicatorWeight: 1,
@@ -160,9 +201,7 @@ class _FavouritesPageState extends State<FavouritesPage>
                                   _getBody(favouritesProducts),
                                   _getBody(favouritesBanks, true)
                                 ])), */
-              );
             }
-
             return Center(
               child: SizedBox(
                   width: 32.w,
@@ -176,28 +215,48 @@ class _FavouritesPageState extends State<FavouritesPage>
 
   Widget upperTab(int index) {
     return Tab(
-      child: Text(
-        tabsUpper[index],
-        style: TextStyle(
-            color: tabController.index != index
-                ? Colors.black.withValues(alpha: 0.4)
-                : ColorStyles.blueText),
+      child: Container(
+        padding: EdgeInsets.all(12.w),
+        decoration: BoxDecoration(
+            color:
+                tabController.index == index ? ColorStyles.black : Colors.white,
+            borderRadius: BorderRadius.circular(12.r)),
+        child: Text(
+          tabsUpper[index],
+          style: TextStyle(
+              color: tabController.index != index
+                  ? Colors.black
+                  : ColorStyles.white),
+        ),
       ),
     );
   }
 
-  List<String> tabsUpper = ['Финуслуги'];
+  List<String> tabsUpper = [
+    "Займы",
+    "Кредитные карты",
+    "Дебетовые карты",
+    "Кредиты",
+    "Вклады",
+    "Ипотека",
+    "Промокоды"
+  ];
 
-  Widget _getBody(List<Product> favouritesProducts, [bool isABank = false]) {
+  Widget _getBody(
+      List<Product> favouritesProductsFromCache, BankingCategory category,
+      [bool isABank = false]) {
+    var favouritesProducts = favouritesProductsFromCache
+        .where((prod) => prod.productType == category)
+        .toList();
     return favouritesProducts.isEmpty
         ? EmptyWidget(
             assetGenImage: Assets.images.emptyPageStar,
             title: isABank
                 ? 'Вы не добавляли ни один из банков в избранное'
-                : 'Вы не добавляли финуслуги в избранное',
+                : 'Вы не добавляли ${tabsUpper[tabController.index].toLowerCase()} в избранное',
             subtitle: isABank
                 ? 'Добавьте хотя бы один банк, чтобы следить за его финансовыми услугами с этой страницы'
-                : 'Не потеряйте финуслугу банка и быстро перейдите в ее подробности для оформления',
+                : 'Перейдите в каталог и добавьте финуслугу для быстрого перехода к ней',
           )
         : ListView.separated(
             padding: EdgeInsets.symmetric(vertical: 12.h),
